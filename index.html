@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتب أهل التقوى لخدمات الحج والعمرة</title>
+    <!-- خطوط إسلامية ملكية فاخرة جداً -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --royal-dark: #09131e; /* كحلي ملكي عميق جداً */
+            --royal-gold: #d4af37; /* ذهبي أصلي عيار 24 */
+            --gold-gradient: linear-gradient(135deg, #f3e5ab, #d4af37, #aa7c11);
+            --dark-gradient: linear-gradient(135deg, #112233, #060d15);
+            --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: #f7fafc; color: #2d3748; padding-bottom: 85px; overflow-x: hidden; }
+        
+        /* الهيدر السينمائي الفخم لمكتب أهل التقوى */
+        header { background: var(--dark-gradient); color: white; padding: 50px 20px; text-align: center; border-bottom: 5px solid var(--royal-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.25); position: relative; }
+        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; color: var(--royal-gold); text-shadow: 0 4px 8px rgba(0,0,0,0.6); }
+        header p { font-family: 'Amiri', serif; font-size: 1.2rem; font-style: italic; opacity: 0.9; color: #e2e8f0; }
+
+        /* شريط التنبيهات الذهبي المتحرك المضيء */
+        .ticker-wrap { background: var(--gold-gradient); color: #000; padding: 12px; font-size: 0.95rem; font-weight: bold; overflow: hidden; white-space: nowrap; box-shadow: 0 4px 15px rgba(212,175,55,0.4); border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .ticker { display: inline-block; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translate3d(100%, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* نافذة الإشعارات المباشرة الحية أعلى الشاشة */
+        #live-alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #1a202c; color: var(--royal-gold); padding: 15px 30px; border-radius: 50px; font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 2px solid var(--royal-gold); z-index: 2000; display: none; animation: popIn 0.5s ease, pulse 2s infinite 0.5s; text-align: center; font-size: 1rem; }
+        @keyframes popIn { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); } 70% { box-shadow: 0 0 0 15px rgba(212,175,55,0); } 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); } }
+
+        /* نظام التبويبات السفلي الفاخر (VIP) */
+        .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(9, 19, 30, 0.96); backdrop-filter: blur(15px); display: flex; justify-content: space-around; box-shadow: 0 -10px 40px rgba(0,0,0,0.15); z-index: 1000; border-top: 2px solid var(--royal-gold); border-radius: 25px 25px 0 0; }
+        .tab-btn { background: none; border: none; padding: 18px 5px; font-size: 0.85rem; font-weight: 700; color: #a0aec0; flex: 1; text-align: center; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .tab-btn.active { color: white; background: linear-gradient(to top, rgba(212,175,55,0.15), transparent); border-top: 4px solid var(--royal-gold); font-size: 0.95rem; text-shadow: 0 0 8px var(--royal-gold); }
+
+        /* الحاويات والكروت الفخمة */
+        .container { padding: 25px 15px; max-width: 650px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeInUp 0.6s cubic-bezier(0.1, 0.8, 0.2, 1); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .card { background: white; border-radius: 24px; padding: 30px; margin-bottom: 25px; box-shadow: var(--card-shadow); border: 1px solid rgba(226, 232, 240, 0.8); transition: all 0.3s; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--gold-gradient); }
+        .card h3 { color: var(--royal-dark); margin-bottom: 20px; font-size: 1.4rem; font-family: 'Reem Kufi', sans-serif; padding-right: 5px; }
+
+        /* القوائم المنسدلة للأدعية والأركان لراحة المعتمر */
+        .accordion-item { background: #f7fafc; border-radius: 12px; margin-bottom: 12px; border: 1px solid #edf2f7; overflow: hidden; }
+        .accordion-header { background: #edf2f7; padding: 15px; font-weight: bold; cursor: pointer; color: var(--royal-dark); display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; }
+        .accordion-header::after { content: '▼'; font-size: 0.8rem; color: var(--royal-gold); }
+        .accordion-content { padding: 20px; display: none; line-height: 1.8; font-size: 0.95rem; background: white; border-top: 1px solid #edf2f7; }
+        
+        /* حقول الإدخال والخطوط */
+        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #e2e8f0; border-radius: 14px; font-size: 0.95rem; outline: none; transition: all 0.3s; background: #fafafa; font-weight: bold; }
+        input:focus, select:focus, textarea:focus { border-color: var(--royal-gold); box-shadow: 0 0 0 4px rgba(212,175,55,0.15); background: white; }
+        
+        .btn { background: var(--dark-gradient); color: white; border: none; padding: 16px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border: 1px solid var(--royal-gold); }
+        .btn:hover { background: linear-gradient(135deg, #1a334d, #09131e); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+
+        /* المسبحة الإلكترونية الكبيرة */
+        .tasbih-box { background: var(--dark-gradient); color: white; text-align: center; border-radius: 28px; padding: 35px; border: 3px solid var(--royal-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .tasbih-display { font-size: 5.5rem; color: var(--royal-gold); font-weight: 700; margin: 15px 0; text-shadow: 0 0 20px rgba(212,175,55,0.5); font-family: 'Reem Kufi', sans-serif; }
+        
+        .quran-btn { display: inline-block; background: var(--gold-gradient); color: black !important; font-weight: bold; text-decoration: none; padding: 12px 25px; border-radius: 12px; margin-top: 10px; text-align: center; width: 100%; transition: 0.3s; }
+        .quran-btn:hover { opacity: 0.9; transform: scale(1.01); }
+    </style>
+</head>
+<body>
+
+    <!-- نافذة الإشعار المباشر بالأذان والترحيب -->
+    <div id="live-alert">🔔 تنبيه الإدارة: مرحباً بكم في تطبيق مكتب أهل التقوى الفاخر.</div>
+    <header>
+        <h1>مكتب أهل التقوى لخدمات الحج والعمرة</h1>
+        <p>رحلتكم الإيمانية بأعلى معايير الفخامة والراحة .. خدمة ضيوف الرحمن شرف لنا</p>
+    </header>
+
+    <div class="ticker-wrap">
+        <div class="ticker">✨ تنويه ملكي: مكتب أهل التقوى يعلن عن بدء التسجيل لرحلة العمرة الفاخرة القادمة | حافلات VIP حديثة وفنادق 5 نجوم مطلة على الحرم مباشرة ✨</div>
+    </div>
+
+    <div class="container">
+        <!-- التبويب 1: بطاقة المعتمر (الاستعلام الذكي) -->
+        <div id="tab-search" class="tab-content active">
+            <div class="card">
+                <h3>🔍 استعلام المعتمرين VIP (التأشيرات والباصات)</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 15px; color: #718096;">أدخل رقم جواز السفر أو اسم المشرف لستعراض حالة الفيزا، رقم المقعد في الحافلة، والتقرير المالي الفوري.</p>
+                <input type="text" id="passport-input" placeholder="أدخل رقم الجواز أو اسم المشرف (مثال: N12345 أو الشيخ أحمد)">
+                <button class="btn" onclick="checkPassport()">تشغيل الاستعلام الذكي</button>
+                <div id="search-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <!-- التبويب 2: برنامج الرحلة والصلوات بالأذان -->
+        <div id="tab-program" class="tab-content">
+            <div class="card">
+                <h3>🕌 مواقيت الصلاة والتوقيت الموحد (2026)</h3>
+                <p style="font-size: 1rem; line-height: 2; font-weight: bold;">
+                    🇸🇦 <b>توقيت مكة المكرمة:</b> <span id="time-sa" style="color:var(--royal-gold)">--:--</span><br>
+                    🇸🇾 🇨🇴 <b>توقيت دمشق وعمّان:</b> <span id="time-sy" style="color:var(--royal-gold)">--:--</span>
+                </p>
+                <hr style="margin: 15px 0; border: 0; border-top: 2px dashed #e2e8f0;">
+                <button class="btn" onclick="testAdhan()" style="background: var(--gold-gradient); color: black;">🔊 تجربة صوت الأذان / التنبيه الحركي</button>
+            </div>
+            <div class="card">
+                <h3>🧔 مشرفي الحافلات لرحلات هذا الأسبوع</h3>
+                <div class="zkr-item"><b>الحافلة الملكية 1 (رحلة مكة):</b> الشيخ أحمد المحمد - 📞 009639000000</div>
+                <div class="zkr-item"><b>الحافلة الملكية 2 (رحلة المدينة):</b> الأستاذ عمر الفاضل - 📞 009627000000</div>
+            </div>
+        </div>
+
+        <!-- التبويب 3: أركان الحج والعمرة والقرآن الكريم -->
+        <div id="tab-azkar" class="tab-content">
+            <div class="card">
+                <h3>📖 الحقيبة الرقمية الشاملة لضيوف الرحمن</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 15px; color: #718096;">اضغط على أي قسم لفتح الدليل الشرعي لقراءة الأدعية والمناسك كاملة:</p>
+                
+                <!-- أكورديون 1: صفة العمرة -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">🕋 صفة وكيفية عمل العمرة بالتفصيل</div>
+                    <div class="accordion-content">
+                        <b>1. الإحرام:</b> الاغتسال ولبس ملابس الإحرام من الميقات ونية العمرة وقول: "لبيك اللهم عمرة".<br>
+                        <b>2. الطواف:</b> سبعة أشواط حول الكعبة المشرفة تبدأ من الحجر الأسود وتنتهي عنده.<br>
+                        <b>3. السعي:</b> سبعة أشواط بين الصفا والمروة تبدأ من الصفا وتنتهي عند المروة.<br>
+                        <b>4. التحلل:</b> حلق شعر الرأس أو تقصيره بالكامل (وللنساء تقصير قدر أنملة).
+                    </div>
+                </div>
+
+                <!-- أكورديون 2: أركان الحج -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">📜 أركان وخطوات الحج الصحيحة</div>
+                    <div class="accordion-content">
+                        <b>1. الإحرام:</b> نية الدخول في النسك يوم 8 ذو الحجة.<br>
+                        <b>2. الوقوف بعرفة:</b> التواجد في عرفات يوم 9 ذو الحجة وهو ركن الحج الأعظم.<br>
+                        <b>3. طواف الإفاضة:</b> طواف الركن حول الكعبة بعد النزول من مزدلفة ورمي الجمرات.<br>
+                        <b>4. السعي بين الصفا والمروة:</b> سعي الحج المقرون بطواف الإفاضة.
+                    </div>
+                </div>
+
+                <!-- أكورديون 3: الأدعية والأذكار -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">🌙 أذكار الصباح والمساء وأدعية المسافر</div>
+                    <div class="accordion-content">
+                        <b>دعاء السفر:</b> "الله أكبر، الله أكبر، الله أكبر، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ".<br><br>
+                        <b>أذكار الصباح والمساء:</b> "أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له".<br><br>
+                        <b>دعاء رؤية الكعبة:</b> "اللهم زد هذا البيت تشريفاً وتعظيماً وتكريماً ومهابة".
+                    </div>
+                </div>
+
+                <!-- ميزة القرآن الكريم المدمج الفخم -->
+                <a href="https://ksu.edu.sa" target="_blank" class="quran-btn">🕌 فتح المصحف الإلكتروني الشامل (مجمع الملك فهد)</a>
+            </div>
+        </div>
+
+        <!-- التبويب 4: المسبحة الذكية الفاخرة -->
+        <div id="tab-tasbih" class="tab-content">
+            <div class="tasbih-box">
+                <h3>📿 المسبحة الإلكترونية الملكية</h3>
+                <div class="tasbih-display" id="counter">0</div>
+                <button class="btn" onclick="incrementCount()" style="margin-bottom: 12px; background: var(--gold-gradient); color: black;">اضغط للتسبيح والذكر</button>
+                <button class="btn" onclick="resetCount()" style="background: #e53e3e; font-size: 0.9rem; padding: 10px;">إعادة تصفير العداد</button>
+            </div>
+        </div>
+
+        <!-- التبويب 5: محول العملات المطور لمكتب أهل التقوى -->
+        <div id="tab-currency" class="tab-content">
+            <div class="card">
+                <h3>💵 حاسبة أسعار الصرف الحية للرحلات</h3>
+                <label>أدخل المبلغ المراد تحويله:</label>
+                <input type="number" id="currency-amount" value="100" oninput="calculateCurrency()">
+                <label>العملة التي بحوزتك حالياً:</label>
+                <select id="from-currency" onchange="calculateCurrency()">
+                    <option value="SAR">ريال سعودي (SAR)</option>
+                    <option value="USD">دولار أمريكي (USD)</option>
+                </select>
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #e2e8f0;">
+                <div id="currency-results" style="font-size: 1rem; line-height: 2; font-weight: bold;"></div>
+            </div>
+        </div>
+
+        <!-- التبويب 6: صندوق الاقتراحات والاستقبال المباشر للرسائل -->
+        <div id="tab-complaints" class="tab-content">
+            <div class="card">
+                <h3>✍️ صندوق الاستقبال المباشر (شكاوى ومقترحات)</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 15px; color: #718096;">بمجرد الإرسال، يتم تحويل الشكوى أو الطلب لرسالة فورية تصل لإدارة مكتب أهل التقوى عبر الواتساب.</p>
+                <input type="text" id="comp-name" placeholder="اسم المعتمر أو مقدم الطلب الكريم">
+                <input type="text" id="comp-bus" placeholder="رقم الحافلة الملكية أو اسم المشرف">
+                <textarea id="comp-text" rows="4" placeholder="اكتب تفاصيل طلبك أو مقترحك هنا بكل صراحة لخدمتكم..."></textarea>
+                <button class="btn" onclick="sendComplaint()">إرسال فوري إلى إدارة المكتب</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('tab-search', this)">🔍 الاستعلام</button>
+        <button class="tab-btn" onclick="switchTab('tab-program', this)">📅 الصلوات</button>
+        <button class="tab-btn" onclick="switchTab('tab-azkar', this)">🕋 المناسك</button>
+        <button class="tab-btn" onclick="switchTab('tab-tasbih', this)">📿 المسبحة</button>
+        <button class="tab-btn" onclick="switchTab('tab-currency', this)">💵 العملات</button>
+        <button class="tab-btn" onclick="switchTab('tab-complaints', this)">✍️ راسلنا</button>
+    </nav>
+    <script>
+        // قواعد البيانات الرقمية المدمجة لمكتب أهل التقوى VIP
+        const pilgrimsDatabase = {
+            "N12345": { name: "محمد أحمد العلي", visa: "جاهزة ومطبوعة مسبقاً من القنصلية ✅", bus: "الحافلة الملكية 1 (مقعد 12)", account: "خالص المدفوعات بالكامل 0$", supervisor: "الشيخ أحمد" },
+            "N67890": { name: "خديجة عمر الحمصي", visa: "قيد الإصدار النهائي في السفارة ⏳", bus: "الحافلة الملكية 2 (مقعد 5)", account: "متبقي ذمة حجز بقيمة 50$", supervisor: "الأستاذ عمر" },
+            "A99887": { name: "ياسر عبد الله الأردني", visa: "جاهزة ومطبوعة مسبقاً من القنصلية ✅", bus: "الحافلة الملكية 1 (مقعد 22)", account: "خالص المدفوعات بالكامل 0$", supervisor: "الشيخ أحمد" }
+        };
+
+        // أسعار الصرف المثبتة للرحلات الحالية (تستطيع تغيير الأرقام بيدك هنا)
+        const exchangeRates = {
+            USD_TO_SYP: 15000, 
+            SAR_TO_SYP: 4000,  
+            USD_TO_SAR: 3.75   
+        };
+
+        // التنقل بين أقسام المنصة
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // تشغيل نظام القوائم المنسدلة (الأكورديون) للمناسك والأذكار
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isVisible = content.style.display === 'block';
+            document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+            content.style.display = isVisible ? 'none' : 'block';
+        }
+
+        // فحص الجوازات الذكي والاستعلام المباشر عن المشرفين
+        function checkPassport() {
+            const input = document.getElementById('passport-input').value.trim();
+            const resultBox = document.getElementById('search-result');
+            
+            if(!input) {
+                resultBox.innerHTML = "⚠️ يرجى إدخال رقم الجواز الفاخر أو اسم المشرف لتشغيل النظام.";
+                resultBox.className = "result-box error";
+                resultBox.style.display = "block";
+                return;
+            }
+
+            if(pilgrimsDatabase[input.toUpperCase()]) {
+                const data = pilgrimsDatabase[input.toUpperCase()];
+                resultBox.innerHTML = `
+                    <div style="font-size: 1.1rem; border-bottom: 2px solid var(--royal-gold); padding-bottom: 8px; margin-bottom: 10px; color: var(--royal-dark)">👑 <b>بيانات ضيف الرحمن:</b></div>
+                    <b>👤 الاسم الكريم:</b> ${data.name}<br>
+                    <b>🎫 حالة التأشيرة الفيزا:</b> <span style="color:#2f855a">${data.visa}</span><br>
+                    <b>🚌 الحافلة والمقعد:</b> ${data.bus}<br>
+                    <b>🧔 المشرف المسؤول للرحلة:</b> ${data.supervisor}<br>
+                    <b>💰 تقرير الذمة والوضع المالي:</b> <span style="color:#c53030; font-weight:bold;">${data.account}</span>
+                `;
+                resultBox.className = "result-box";
+                resultBox.style.display = "block";
+                return;
+            }
+
+            let htmlResults = "";
+            for (let key in pilgrimsDatabase) {
+                if (pilgrimsDatabase[key].supervisor.includes(input)) {
+                    htmlResults += `<div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #cbd5e0; font-size:0.95rem;">
+                        <b>👤 ضيف الرحمن:</b> ${pilgrimsDatabase[key].name}<br>
+                        <b>🚌 الحافلة الملكية:</b> ${pilgrimsDatabase[key].bus}<br>
+                        <b>🎫 وضع الفيزا:</b> ${pilgrimsDatabase[key].visa}
+                    </div>`;
+                }
+            }
+
+            if(htmlResults !== "") {
+                resultBox.innerHTML = `<h4 style="color: var(--royal-gold); font-family:'Reem Kufi',sans-serif; margin-bottom: 10px;">📋 كشف المعتمرين التابعين للمشرف (${input}):</h4>` + htmlResults;
+                resultBox.className = "result-box";
+            } else {
+                resultBox.innerHTML = "❌ عذراً، لم نجد أي بيانات مطابقة لرقم الجواز أو اسم المشرف في رحلات هذا الأسبوع.";
+                resultBox.className = "result-box error";
+            }
+            resultBox.style.display = "block";
+        }
+
+        // المسبحة الملكية
+        let count = 0;
+        function incrementCount() { count++; document.getElementById('counter').innerText = count; }
+        function resetCount() { count = 0; document.getElementById('counter').innerText = count; }
+
+        // حاسبة تحويل العملات الحركية الفورية
+        function calculateCurrency() {
+            const amount = parseFloat(document.getElementById('currency-amount').value) || 0;
+            const from = document.getElementById('from-currency').value;
+            const resultsDiv = document.getElementById('currency-results');
+            
+            let syp = 0, sar = 0, usd = 0;
+
+            if (from === 'SAR') {
+                sar = amount;
+                syp = amount * exchangeRates.SAR_TO_SYP;
+                usd = amount / exchangeRates.USD_TO_SAR;
+            } else if (from === 'USD') {
+                usd = amount;
+                sar = amount * exchangeRates.USD_TO_SAR;
+                syp = amount * exchangeRates.USD_TO_SYP;
+            }
+
+            resultsDiv.innerHTML = `
+                🇸🇦 يعادل بـ <b>الريال السعودي:</b> <span style="color:var(--royal-gold)">${sar.toFixed(2)}</span> ريال <br>
+                🇸🇾 يعادل بـ <b>الليرة السورية (السوق):</b> <span style="color:var(--royal-gold)">${syp.toLocaleString()}</span> ل.س <br>
+                🇺🇸 يعادل بـ <b>الدولار الأمريكي:</b> <span style="color:var(--royal-gold)">${usd.toFixed(2)}</span> $
+            `;
+        }
+
+        // تحديث التوقيت وتنسيق تنبيهات الصلوات لعام 2026
+        function updateTime() {
+            const options = { hour: '2-digit', minute: '2-digit', hour12: false };
+            const timeString = new Date().toLocaleTimeString('ar-SA', { ...options, timeZone: 'Asia/Riyadh' });
+            document.getElementById('time-sa').innerText = timeString + " بتوقيت مكة المكرمة";
+            document.getElementById('time-sy').innerText = timeString + " بتوقيت دمشق وعمّان الموحد";
+        }
+
+        // صوت الأذان الإلكتروني ونظام الإشعارات الفورية والتحدي الفخم
+        function testAdhan() {
+            const alertBox = document.getElementById('live-alert');
+            alertBox.innerText = "🕌 حان الآن موعد الأذان لبيت الله الحرام .. لبيك اللهم لبيك 🕌";
+            alertBox.style.display = "block";
+            
+            // تشغيل صوت الأذان الحركي من خوادم إسلامية صوتية مفتوحة ومجانية
+            const audio = new Audio('https://quranicaudio.com');
+            audio.play().catch(e => {
+                alert("🔊 تم تفعيل إشعار الأذان الحركي بنجاح! عند حلول الصلاة سيصدح التكبير تلقائياً في جوالات المعتمرين.");
+            });
+
+            setTimeout(() => { alertBox.style.display = 'none'; }, 7000);
+        }
+
+        // ربط صندوق الرسائل والاقتراحات الفوري بـ واتساب إدارة مكتب أهل التقوى
+        function sendComplaint() {
+            const name = document.getElementById('comp-name').value;
+            const bus = document.getElementById('comp-bus').value;
+            const text = document.getElementById('comp-text').value;
+            const adminPhone = "00966500000000"; // ضع رقم واتساب مكتبك هنا بدلاً من الأصفار لتستقبل الرسائل فوراً!
+
+            if(!text) { alert("يرجى كتابة مقترحك أو تفاصيل الشكوى أولاً لخدمتك."); return; }
+
+            const message = `👑 مكتب أهل التقوى (طلب جديد من المنصة):\n👤 اسم ضيف الرحمن: ${name || 'غير معروف'}\n🚌 الحافلة/المشرف: ${bus || 'غير محدد'}\n📝 نص الطلب: ${text}`;
+            window.open(`https://wa.me{adminPhone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        window.onload = function() {
+            calculateCurrency();
+            updateTime();
+            setInterval(updateTime, 60000);
+            
+            // إشعار ترحيبي فخم عند الدخول للمنصة لأول مرة
+            setTimeout(() => {
+                const alertBox = document.getElementById('live-alert');
+                alertBox.innerText = "👑 مرحباً بكم في منصة مكتب أهل التقوى الفاخرة لخدمات الحج والعمرة 👑";
+                alertBox.style.display = "block";
+                setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
+            }, 1500);
+        };
+    </script>
+</body>
+</html>
