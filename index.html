@@ -62,15 +62,15 @@
         <!-- التبويب 2 -->
         <div id="tab-program" class="tab-content">
             <div class="card">
-                <h3>📋 تفاصيل برنامج رحلة الشهر التاسع</h3>
+                <h3>📋 تفاصيل برنامج رحلة الشهر التاسع (حملة التقوى)</h3>
                 <div class="zkr-item">
                     • <b>المدة:</b> 8 ليالي في مكة المكرمة و ٣ ليالي في المدينة المنورة.<br>
                     • <b>الإقامة:</b> في فنادق جيدة ونظيفة بالقرب من الحرم مع تأمين المواصلات للحرم مجاناً.<br>
                     • <b>البرنامج يشمل:</b> الفيزا - المزارات بمكة والمدينة - الإرشاد الديني والنقل.<br>
                     • <b>الأسعار الفاخرة للرحلة:</b><br>
-                    &nbsp;&nbsp; 🛌 غرفة ثنائية: <span style="color:var(--royal-gold)">600$</span><br>
-                    &nbsp;&nbsp; 🛌 غرفة ثلاثية: <span style="color:var(--royal-gold)">500$</span><br>
-                    &nbsp;&nbsp; 🛌 غرفة رباعية: <span style="color:var(--royal-gold)">450$</span>
+                    &nbsp;&nbsp; 🛌 غرفة ثنائية: <span style="color:var(--royal-gold); font-weight:bold;">600$</span><br>
+                    &nbsp;&nbsp; 🛌 غرفة ثلاثية: <span style="color:var(--royal-gold); font-weight:bold;">500$</span><br>
+                    &nbsp;&nbsp; 🛌 غرفة رباعية: <span style="color:var(--royal-gold); font-weight:bold;">450$</span>
                 </div>
                 <div class="zkr-item" style="border-right-color: var(--royal-gold);">
                     🎁 <b>هدايا مجانية لكل معتمر:</b> طقم إحرام للرجال | فولار فاخر للنساء | حقيبة كتف مخصصة.
@@ -87,8 +87,8 @@
             </div>
             <div class="card">
                 <h3>🧔 كادر الإدارة ومشرِفي الرحلات</h3>
-                <div class="zkr-item"><b>المشرف:</b> الحاج ابوناصر قيصر - 📞 0933264630</div>
-                <div class="zkr-item"><b>المشرف:</b> الأستاذ اسامة قيصر - 📞 0938756892</div>
+                <div class="zkr-item"><b>المشرف المسؤول:</b> الحاج ابوناصر قيصر - 📞 0933264630</div>
+                <div class="zkr-item"><b>المشرف نائب:</b> الأستاذ اسامة قيصر - 📞 0938756892</div>
                 <div class="zkr-item"><b>منسق الرحلة العام:</b> يوسف قيصر - 📞 0993485374</div>
                 <div class="zkr-item" style="border-right-color: var(--royal-gold);">
                     📍 <b>موقع المكتب:</b> دمشق - ميدان - مسطبة سعد الدين - جانب حلويات مشمش.
@@ -106,3 +106,102 @@
             </div>
         </div>
         <!-- التبويب 4 -->
+        <div id="tab-tasbih" class="tab-content">
+            <div class="tasbih-box">
+                <h3>📿 المسبحة الإلكترونية الملكية</h3>
+                <div class="tasbih-display" id="counter">0</div>
+                <button class="btn" onclick="incrementCount()" style="margin-bottom: 12px; background: var(--gold-gradient); color: black;">اضغط للتسبيح</button>
+                <button class="btn" onclick="resetCount()" style="background: #e53e3e; font-size: 0.85rem; padding: 8px;">تصفير</button>
+            </div>
+        </div>
+        <!-- التبويب 5 -->
+        <div id="tab-currency" class="tab-content">
+            <div class="card">
+                <h3>💵 حاسبة أسعار الصرف الحية للرحلات</h3>
+                <input type="number" id="currency-amount" value="100" oninput="calculateCurrency()">
+                <select id="from-currency" onchange="calculateCurrency()"><option value="SAR">ريال سعودي (SAR)</option><option value="USD">دولار أمريكي (USD)</option></select>
+                <div id="currency-results" style="font-size: 1rem; line-height: 2; font-weight: bold;"></div>
+            </div>
+        </div>
+        <!-- التبويب 6 -->
+        <div id="tab-complaints" class="tab-content">
+            <div class="card">
+                <h3>✍️ صندوق الاستقبال المباشر والاستفسارات</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 15px; color: #718096;">يسعدنا استقبال اتصالاتكم على أرقام المكتب: 0993485374 / 0949276956 / 0118839270 أو راسلنا فوراً بطلبك:</p>
+                <input type="text" id="comp-name" placeholder="اسم المعتمر الكريم">
+                <input type="text" id="comp-bus" placeholder="رقم الحافلة أو المشرف">
+                <textarea id="comp-text" rows="4" placeholder="اكتب تفاصيل طلبك هنا..."></textarea>
+                <button class="btn" onclick="sendComplaint()">إرسال فوري إلى واتساب الإدارة</button>
+            </div>
+        </div>
+    </div>
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('tab-search', this)">🔍 استعلام</button>
+        <button class="tab-btn" onclick="switchTab('tab-program', this)">📅 البرنامج</button>
+        <button class="tab-btn" onclick="switchTab('tab-azkar', this)">🕋 مناسك</button>
+        <button class="tab-btn" onclick="switchTab('tab-tasbih', this)">📿 مسبحة</button>
+        <button class="tab-btn" onclick="switchTab('tab-currency', this)">💵 عملات</button>
+        <button class="tab-btn" onclick="switchTab('tab-complaints', this)">✍️ تواصل</button>
+    </nav>
+    <script>
+        // قاعدة البيانات الإلكترونية لمؤسسة أهل التقوى (نوع السكن ورقم الغرفة)
+        const pilgrimsDatabase = {
+            "N12345": { name: "محمد أحمد العلي", visa: "جاهزة ومطبوعة مسبقاً ✅", bus: "الحافلة الملكية 1 (مقعد 12)", roomType: "غرفة ثنائية VIP 🛌", roomNo: "غرفة رقم 402", account: "خالص المدفوعات 0\$", supervisor: "ابوناصر" },
+            "N67890": { name: "خديجة عمر الحمصي", visa: "قيد الإصدار في السفارة ⏳", bus: "الحافلة الملكية 2 (مقعد 5)", roomType: "غرفة رباعية مريحة 🛌", roomNo: "غرفة رقم 108", account: "متبقي ذمة بقيمة 50\$", supervisor: "اسامة" }
+        };
+        const exchangeRates = { USD_TO_SYP: 15000, SAR_TO_SYP: 4000, USD_TO_SAR: 3.75 };
+        
+        function switchTab(t, b) {
+            document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+            document.getElementById(t).classList.add('active'); b.classList.add('active');
+        }
+        function toggleAccordion(h) {
+            let c = h.nextElementSibling; let v = c.style.display === 'block';
+            document.querySelectorAll('.accordion-content').forEach(x => x.style.display = 'none');
+            c.style.display = v ? 'none' : 'block';
+        }
+        function checkPassport() {
+            let input = document.getElementById('passport-input').value.trim();
+            let res = document.getElementById('search-result');
+            if(!input) { res.innerHTML = "⚠️ أدخل رقم الجواز أو اسم المشرف."; res.className = "result-box error"; res.style.display = "block"; return; }
+            if(pilgrimsDatabase[input.toUpperCase()]) {
+                let d = pilgrimsDatabase[input.toUpperCase()];
+                res.innerHTML = `<div style='font-size:1.05rem; border-bottom:1px solid var(--royal-gold); padding-bottom:5px; margin-bottom:8px; color:var(--royal-dark)'>👑 <b>بيانات المعتمر:</b></div><b>👤 الاسم:</b> ${d.name}<br><b>🎫 الفيزا:</b> ${d.visa}<br><b>🏨 نوع التسكين:</b> ${d.roomType}<br><b>🔑 رقم الغرفة:</b> <span style='color:var(--royal-gold); font-weight:bold'>${d.roomNo}</span><br><b>🚌 الباص:</b> ${d.bus}<br><b>🧔 المشرف:</b> الحاج ${d.supervisor}<br><b>💰 الوضع المالي:</b> ${d.account}`;
+                res.className = "result-box"; res.style.display = "block"; return;
+            }
+            let html = ""; for (let k in pilgrimsDatabase) { if (pilgrimsDatabase[k].supervisor.includes(input)) { html += `<div style='margin-bottom:8px; border-bottom:1px dashed #cbd5e0; padding-bottom:5px;'><b>👤 معتمر:</b> ${pilgrimsDatabase[k].name}<br><b>🛌 الغرفة:</b> ${pilgrimsDatabase[k].roomType} (${pilgrimsDatabase[k].roomNo})<br><b>🚌 باص:</b> ${pilgrimsDatabase[k].bus}</div>`; } }
+            if(html !== "") { res.innerHTML = `<h4 style='color:var(--royal-gold); margin-bottom:8px;'>📋 المعتمرون التابعون للمشرف (${input}):</h4>` + html; res.className = "result-box"; } 
+            else { res.innerHTML = "❌ لم نجد بيانات لرقم الجواز أو المشرف."; res.className = "result-box error"; }
+            res.style.display = "block";
+        }
+        let count = 0; function incrementCount() { count++; document.getElementById('counter').innerText = count; }
+        function resetCount() { count = 0; document.getElementById('counter').innerText = count; }
+        function calculateCurrency() {
+            let val = parseFloat(document.getElementById('currency-amount').value) || 0;
+            let from = document.getElementById('from-currency').value;
+            let res = document.getElementById('currency-results');
+            let sy = from==='SAR'?val*exchangeRates.SAR_TO_SYP:val*exchangeRates.USD_TO_SYP;
+            let sa = from==='SAR'?val:val*exchangeRates.USD_TO_SAR;
+            res.innerHTML = `🇸🇦 بالريال: ${sa.toFixed(2)} | 🇸🇾 بالليرة: ${sy.toLocaleString()}`;
+        }
+        function updateTime() {
+            let options = { hour: '2-digit', minute: '2-digit', hour12: false };
+            let s = new Date().toLocaleTimeString('ar-SA', { ...options, timeZone: 'Asia/Riyadh' });
+            document.getElementById('time-sa').innerText = s + " بتوقيت مكة";
+            document.getElementById('time-sy').innerText = s + " بتوقيت دمشق وعمّان";
+        }
+        function testAdhan() {
+            let box = document.getElementById('live-alert'); box.innerText = "🕌 حان الآن موعد الأذان لبيت الله الحرام 🕌"; box.style.display = "block";
+            new Audio('https://quranicaudio.com').play().catch(e => { alert("🔊 تم تفعيل إشعار الأذان الحركي!"); });
+            setTimeout(() => { box.style.display = 'none'; }, 5000);
+        }
+        function sendComplaint() {
+            let n = document.getElementById('comp-name').value; let b = document.getElementById('comp-bus').value; let t = document.getElementById('comp-text').value;
+            if(!t) { alert("اكتب نص طلبك أولاً."); return; }
+            window.open(`https://wa.me{encodeURIComponent('📝 استفسار جديد لـ مؤسسة أهل التقوى:\n👤 الاسم: '+n+'\n🚌 المشرف/الباص: '+b+'\n💬 النص: '+t)}`, '_blank');
+        }
+        window.onload = function() { calculateCurrency(); updateTime(); setInterval(updateTime, 60000); setTimeout(() => { let box = document.getElementById('live-alert'); box.style.display = "block"; setTimeout(() => box.style.display='none', 4000); }, 1000); };
+    </script>
+</body>
+</html>
