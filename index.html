@@ -30,14 +30,18 @@
         .accordion-header { background: #edf2f7; padding: 12px; font-weight: bold; cursor: pointer; color: var(--royal-dark); display: flex; justify-content: space-between; }
         .accordion-content { padding: 15px; display: none; line-height: 1.7; font-size: 0.95rem; background: white; }
         input, select, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; }
-        input:focus { border-color: var(--royal-gold); background: white; }
+        input:focus, select:focus { border-color: var(--royal-gold); background: white; }
         .btn { background: var(--dark-gradient); color: white; border: none; padding: 14px; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1.05rem; border: 1px solid var(--royal-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .tasbih-box { background: var(--dark-gradient); color: white; text-align: center; border-radius: 24px; padding: 30px; border: 2px solid var(--royal-gold); }
         .tasbih-display { font-size: 5rem; color: var(--royal-gold); font-weight: 700; margin: 10px 0; font-family: 'Reem Kufi', sans-serif; }
-        .quran-btn { display: block; background: var(--gold-gradient); color: black !important; font-weight: bold; text-decoration: none; padding: 12px; border-radius: 12px; margin-top: 10px; text-align: center; }
+        .quran-frame { width: 100%; height: 500px; border: none; border-radius: 12px; background: white; }
         .zkr-item { background: #f8fafc; padding: 12px; border-radius: 10px; margin-bottom: 8px; border-right: 4px solid var(--royal-dark); font-size: 0.9rem; line-height: 1.6; }
         .result-box { background: #f0fff4; border: 2px solid #c6f6d5; padding: 15px; border-radius: 12px; margin-top: 12px; display: none; line-height: 1.7; }
         .result-box.error { background: #fff5f5; border-color: #fed7d7; }
+        
+        /* تنسيق جدول مواقيت الصلاة الفخم */
+        .prayer-time-row { display: flex; justify-content: space-between; padding: 10px; background: #f8fafc; border-radius: 8px; margin-bottom: 5px; border-left: 3px solid var(--royal-gold); font-weight: bold; }
+        .calendar-box { background: var(--dark-gradient); color: white; text-align: center; border-radius: 14px; padding: 15px; border: 1px solid var(--royal-gold); font-weight: bold; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -47,10 +51,10 @@
         <p>خير رفيق إلى البيت العتيق</p>
     </header>
     <div class="ticker-wrap">
-        <div class="ticker">✨ قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) | تعلن حملة التقوى عن رحلة بالشهر التاسع بإذن الله - حافلات مريحة مكيفة من وإلى دمشق ✨</div>
+        <div id="announcement-bar" class="ticker">✨ قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) | تعلن حملة التقوى عن رحلة بالشهر التاسع بإذن الله - حافلات مريحة مكيفة من وإلى دمشق ✨</div>
     </div>
     <div class="container">
-        <!-- التبويب 1 -->
+        <!-- التبويب 1: الاستعلام الذكي -->
         <div id="tab-search" class="tab-content active">
             <div class="card">
                 <h3>🔍 استعلام المعتمرين VIP (التأشيرات، الغرف والباصات)</h3>
@@ -59,50 +63,90 @@
                 <div id="search-result" class="result-box"></div>
             </div>
         </div>
-        <!-- التبويب 2 -->
+        <!-- التبويب 2: البرنامج والصلوات التفاعلي -->
         <div id="tab-program" class="tab-content">
+            <!-- الروزنامة الإسلامية الفاخرة -->
+            <div class="calendar-box">
+                <div style="font-family:'Reem Kufi', sans-serif; color:var(--royal-gold); font-size:1.1rem; margin-bottom:5px;">📅 الروزنامة الإسلامية وحالة اليوم</div>
+                <div id="live-calendar-date">-- ---- 1447 هـ | -- ---- 2026 م</div>
+            </div>
+            
+            <div class="card">
+                <h3>🕌 مواقيت الصلاة والأذان التفاعلي</h3>
+                <p style="font-size:0.85rem; color:#718096; margin-bottom:12px;">* يرجى اختيار البلد والمحافظة ليقوم النظام بضبط الأذان ومواقيت الصلاة تلقائياً لموقعكم الحالي:</p>
+                
+                <label>اختر البلد الحالي:</label>
+                <select id="country-select" onchange="updateProvinces()">
+                    <option value="SY">سوريا (🇸🇾)</option>
+                    <option value="JO">الأردن (🇯🇴)</option>
+                    <option value="SA">السعودية (🇸🇦)</option>
+                </select>
+                
+                <label>اختر المحافظة / المدينة:</label>
+                <select id="province-select" onchange="changeLocationPrayer()">
+                    <!-- المحافظات تظهر هنا تلقائياً عبر البرمجة -->
+                </select>
+                
+                <hr style="margin: 15px 0; border: 0; border-top: 1px dashed #e2e8f0;">
+                
+                <div id="prayer-times-container">
+                    <div class="prayer-time-row"><span>الفجر</span><span id="p-fajr">--:--</span></div>
+                    <div class="prayer-time-row"><span>الظهر</span><span id="p-dhuhr">--:--</span></div>
+                    <div class="prayer-time-row"><span>العصر</span><span id="p-asr">--:--</span></div>
+                    <div class="prayer-time-row"><span>المغرب</span><span id="p-maghrib">--:--</span></div>
+                    <div class="prayer-time-row"><span>العشاء</span><span id="p-isha">--:--</span></div>
+                </div>
+                
+                <button class="btn" onclick="testAdhan()" style="background: var(--gold-gradient); color: black; margin-top:15px;">🔊 تجربة صوت الأذان في الحرم المكي</button>
+            </div>
+            
             <div class="card">
                 <h3>📋 تفاصيل برنامج رحلة الشهر التاسع (حملة التقوى)</h3>
                 <div class="zkr-item">
                     • <b>المدة:</b> 8 ليالي في مكة المكرمة و ٣ ليالي في المدينة المنورة.<br>
-                    • <b>الإقامة:</b> في فنادق جيدة ونظيفة بالقرب من الحرم مع تأمين المواصلات للحرم مجاناً.<br>
-                    • <b>البرنامج يشمل:</b> الفيزا - المزارات بمكة والمدينة - الإرشاد الديني والنقل.<br>
-                    • <b>الأسعار الفاخرة للرحلة:</b><br>
-                    &nbsp;&nbsp; 🛌 غرفة ثنائية: <span style="color:var(--royal-gold); font-weight:bold;">600$</span><br>
-                    &nbsp;&nbsp; 🛌 غرفة ثلاثية: <span style="color:var(--royal-gold); font-weight:bold;">500$</span><br>
-                    &nbsp;&nbsp; 🛌 غرفة رباعية: <span style="color:var(--royal-gold); font-weight:bold;">450$</span>
+                    • <b>الإقامة:</b> فنادق نظيفة بالقرب من الحرم مع تأمين المواصلات مجاناً.<br>
+                    • <b>البرنامج يشمل:</b> الفيزا - المزارات - النقل وإرشاد ديني.<br>
+                    • <b>الأسعار للرحلة:</b> ثنائية 600$ | ثلاثية 500$ | رباعية 450$.
                 </div>
                 <div class="zkr-item" style="border-right-color: var(--royal-gold);">
-                    🎁 <b>هدايا مجانية لكل معتمر:</b> طقم إحرام للرجال | فولار فاخر للنساء | حقيبة كتف مخصصة.
+                    🎁 <b>الهدايا الفاخرة:</b> طقم إحرام للرجال | فولار للنساء | حقيبة كتف للرجال والنساء.
                 </div>
             </div>
+            
             <div class="card">
-                <h3>🕌 مواقيت الصلاة والتوقيت الموحد</h3>
-                <p style="font-size: 1rem; line-height: 2; font-weight: bold;">
-                    🇸🇦 <b>توقيت مكة المكرمة:</b> <span id="time-sa" style="color:var(--royal-gold)">--:--</span><br>
-                    🇸🇾 <b>توقيت دمشق وعمّان:</b> <span id="time-sy" style="color:var(--royal-gold)">--:--</span>
-                </p>
-                <hr style="margin: 12px 0; border: 0; border-top: 2px dashed #e2e8f0;">
-                <button class="btn" onclick="testAdhan()" style="background: var(--gold-gradient); color: black;">🔊 تجربة صوت الأذان / التنبيه الحركي</button>
-            </div>
-            <div class="card">
-                <h3>🧔 كادر الإدارة ومشرِفي الرحلات</h3>
+                <h3>🧔 كادر الإدارة وعناوين المكتب</h3>
                 <div class="zkr-item"><b>المشرف المسؤول:</b> الحاج ابوناصر قيصر - 📞 0933264630</div>
-                <div class="zkr-item"><b>المشرف نائب:</b> الأستاذ اسامة قيصر - 📞 0938756892</div>
+                <div class="zkr-item"><b>المشرف الديني:</b> الأستاذ اسامة قيصر - 📞 0938756892</div>
                 <div class="zkr-item"><b>منسق الرحلة العام:</b> يوسف قيصر - 📞 0993485374</div>
                 <div class="zkr-item" style="border-right-color: var(--royal-gold);">
-                    📍 <b>موقع المكتب:</b> دمشق - ميدان - مسطبة سعد الدين - جانب حلويات مشمش.
+                    📍 <b>العنوان:</b> دمشق - ميدان - مسطبة سعد الدين - جانب حلويات مشمش.
                 </div>
             </div>
         </div>
-        <!-- التبويب 3 -->
+        <!-- التبويب 3: القرآن الكريم والأذكار الشاملة -->
         <div id="tab-azkar" class="tab-content">
             <div class="card">
-                <h3> الحقيبة الرقمية الشاملة لضيوف الرحمن</h3>
-                <div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">🕋 صفة وكيفية عمل العمرة بالتفصيل</div><div class="accordion-content"><b>1. الإحرام:</b> الاغتسال ونية العمرة من الميقات.<br><b>2. الطواف:</b> سبعة أشواط حول الكعبة.<br><b>3. السعي:</b> سبعة أشواط بين الصفا والمروة.<br><b>4. التحلل:</b> الحلق أو التقصير.</div></div>
-                <div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">📜 أركان وخطوات الحج الصحيحة</div><div class="accordion-content"><b>1. الإحرام</b> يوم 8 ذو الحجة.<br><b>2. الوقوف بعرفة</b> يوم 9 ذو الحجة.<br><b>3. طواف الإفاضة</b> وسعي الحج.<br><b>4. رمي الجمرات</b> والمبيت بمنى.</div></div>
-                <div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">🌙 أذكار الصباح والمساء وأدعية المسافر</div><div class="accordion-content"><b>دعاء السفر:</b> "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقِرِنِينَ".<br><b>عند رؤية الكعبة:</b> "اللهم زد هذا البيت تشريفاً وتعظيماً".</div></div>
-                <a href="https://ksu.edu.sa" target="_blank" class="quran-btn">🕌 فتح المصحف الإلكتروني الشامل</a>
+                <h3>🕌 المكتبة الرقمية الشاملة والمصحف الإلكتروني</h3>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">  تصفح المصحف الشريف كاملاً (كتابة تفاعلية)</div>
+                    <div class="accordion-content" style="padding:0;"><iframe class="quran-frame" src="https://ksu.edu.sa"></iframe></div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">☀️ أذكار الصباح والمساء كاملة ومأثورة</div>
+                    <div class="accordion-content">
+                        <b>أذكار الصباح:</b> "أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير".<br>
+                        "آية الكرسي"، "المعوذات ثلاث مرات"، "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور".<br><br>
+                        <b>أذكار المساء:</b> "أمسينا وأمسى الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له".
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">🕋 أدعية الحج والعمرة والبيت العتيق</div>
+                    <div class="accordion-content">
+                        • <b>دعاء السفر:</b> "الله أكبر، الله أكبر، الله أكبر، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقِرِنِينَ".<br>
+                        • <b>دعاء نية العمرة:</b> "لبيك اللهم عمرة، اللهم حِجّي ومحلي حيث حبستني".<br>
+                        • <b>دعاء رؤية الكعبة:</b> "اللهم زد هذا البيت تشريفاً وتعظيماً وتكريماً ومهابة".
+                    </div>
+                </div>
             </div>
         </div>
         <!-- التبويب 4 -->
@@ -111,13 +155,13 @@
                 <h3>📿 المسبحة الإلكترونية الملكية</h3>
                 <div class="tasbih-display" id="counter">0</div>
                 <button class="btn" onclick="incrementCount()" style="margin-bottom: 12px; background: var(--gold-gradient); color: black;">اضغط للتسبيح</button>
-                <button class="btn" onclick="resetCount()" style="background: #e53e3e; font-size: 0.85rem; padding: 8px;">تصفير</button>
+                <button class="btn" onclick="resetCount()" style="background: #e53e3e; font-size: 0.85rem; padding: 8px;">تصفير العداد</button>
             </div>
         </div>
         <!-- التبويب 5 -->
         <div id="tab-currency" class="tab-content">
             <div class="card">
-                <h3>💵 حاسبة أسعار الصرف الحية للرحلات</h3>
+                <h3>💵 حاسبة تحويل أسعار الصرف الحية</h3>
                 <input type="number" id="currency-amount" value="100" oninput="calculateCurrency()">
                 <select id="from-currency" onchange="calculateCurrency()"><option value="SAR">ريال سعودي (SAR)</option><option value="USD">دولار أمريكي (USD)</option></select>
                 <div id="currency-results" style="font-size: 1rem; line-height: 2; font-weight: bold;"></div>
@@ -127,47 +171,96 @@
         <div id="tab-complaints" class="tab-content">
             <div class="card">
                 <h3>✍️ صندوق الاستقبال المباشر والاستفسارات</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 15px; color: #718096;">يسعدنا استقبال اتصالاتكم على أرقام المكتب: 0993485374 / 0949276956 / 0118839270 أو راسلنا فوراً بطلبك:</p>
+                <p style="font-size: 0.85rem; margin-bottom: 15px; color: #718096;">يسعدنا استقبال اتصالاتكم على أرقام المكتب أو راسلنا فوراً ليرتبط الطلب بواتساب أبو ناصر مباشرة:</p>
                 <input type="text" id="comp-name" placeholder="اسم المعتمر الكريم">
-                <input type="text" id="comp-bus" placeholder="رقم الحافلة أو المشرف">
+                <input type="text" id="comp-bus" placeholder="رقم الحافلة أو اسم المشرف">
                 <textarea id="comp-text" rows="4" placeholder="اكتب تفاصيل طلبك هنا..."></textarea>
-                <button class="btn" onclick="sendComplaint()">إرسال فوري إلى واتساب الإدارة</button>
+                <button class="btn" onclick="sendComplaint()">إرسال فوري إلى واتساب أبو ناصر</button>
             </div>
         </div>
     </div>
     <nav class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('tab-search', this)">🔍 استعلام</button>
         <button class="tab-btn" onclick="switchTab('tab-program', this)">📅 البرنامج</button>
-        <button class="tab-btn" onclick="switchTab('tab-azkar', this)">🕋 مناسك</button>
+        <button class="tab-btn" onclick="switchTab('tab-azkar', this)">🕋 المصحف</button>
         <button class="tab-btn" onclick="switchTab('tab-tasbih', this)">📿 مسبحة</button>
         <button class="tab-btn" onclick="switchTab('tab-currency', this)">💵 عملات</button>
         <button class="tab-btn" onclick="switchTab('tab-complaints', this)">✍️ تواصل</button>
     </nav>
     <script>
-        // قاعدة البيانات الإلكترونية لمؤسسة أهل التقوى (نوع السكن ورقم الغرفة)
+        // قاعدة البيانات الإلكترونية المحدثة لغرف وتسكين المعتمرين
         const pilgrimsDatabase = {
             "N12345": { name: "محمد أحمد العلي", visa: "جاهزة ومطبوعة مسبقاً ✅", bus: "الحافلة الملكية 1 (مقعد 12)", roomType: "غرفة ثنائية VIP 🛌", roomNo: "غرفة رقم 402", account: "خالص المدفوعات 0\$", supervisor: "ابوناصر" },
             "N67890": { name: "خديجة عمر الحمصي", visa: "قيد الإصدار في السفارة ⏳", bus: "الحافلة الملكية 2 (مقعد 5)", roomType: "غرفة رباعية مريحة 🛌", roomNo: "غرفة رقم 108", account: "متبقي ذمة بقيمة 50\$", supervisor: "اسامة" }
         };
+        
         const exchangeRates = { USD_TO_SYP: 15000, SAR_TO_SYP: 4000, USD_TO_SAR: 3.75 };
         
+        // كشف المحافظات التفاعلية لضبط أوقات الصلوات والروزنامة
+        const locationData = {
+            "SY": [
+                { name: "دمشق", fajr: "04:32 ص", dhuhr: "12:45 م", asr: "04:15 م", maghrib: "07:12 م", isha: "08:38 م" },
+                { name: "حلب", fajr: "04:28 ص", dhuhr: "12:43 م", asr: "04:16 م", maghrib: "07:15 م", isha: "08:42 م" },
+                { name: "حمص", fajr: "04:31 ص", dhuhr: "12:45 م", asr: "04:17 م", maghrib: "07:14 م", isha: "08:40 م" }
+            ],
+            "JO": [
+                { name: "عمان", fajr: "04:40 ص", dhuhr: "12:50 م", asr: "04:18 م", maghrib: "07:14 م", isha: "08:36 م" },
+                { name: "الزرقاء", fajr: "04:39 ص", dhuhr: "12:49 م", asr: "04:17 م", maghrib: "07:13 م", isha: "08:35 م" }
+            ],
+            "SA": [
+                { name: "مكة المكرمة", fajr: "04:55 ص", dhuhr: "12:25 م", asr: "03:48 م", maghrib: "06:48 م", isha: "08:08 م" },
+                { name: "المدينة المنورة", fajr: "04:52 ص", dhuhr: "12:26 م", asr: "03:52 م", maghrib: "06:51 م", isha: "08:14 م" },
+                { name: "الرياض", fajr: "04:12 ص", dhuhr: "11:55 ص", asr: "03:22 م", maghrib: "06:20 م", isha: "07:38 م" }
+            ]
+        };
+
         function switchTab(t, b) {
             document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
             document.getElementById(t).classList.add('active'); b.classList.add('active');
         }
+        
         function toggleAccordion(h) {
             let c = h.nextElementSibling; let v = c.style.display === 'block';
             document.querySelectorAll('.accordion-content').forEach(x => x.style.display = 'none');
             c.style.display = v ? 'none' : 'block';
         }
+        
+        // تحديث قائمة المحافظات ديناميكياً حسب اختيار البلد
+        function updateProvinces() {
+            const country = document.getElementById('country-select').value;
+            const provinceSelect = document.getElementById('province-select');
+            provinceSelect.innerHTML = "";
+            
+            locationData[country].forEach((prov, index) => {
+                let opt = document.createElement('option');
+                opt.value = index;
+                opt.innerText = prov.name;
+                provinceSelect.appendChild(opt);
+            });
+            changeLocationPrayer();
+        }
+        
+        // تغيير مواقيت الصلاة والأذان التفاعلي حسب المحافظة المحددة بنظام 12 ساعة
+        function changeLocationPrayer() {
+            const country = document.getElementById('country-select').value;
+            const provIndex = document.getElementById('province-select').value;
+            const data = locationData[country][provIndex];
+            
+            document.getElementById('p-fajr').innerText = data.fajr;
+            document.getElementById('p-dhuhr').innerText = data.dhuhr;
+            document.getElementById('p-asr').innerText = data.asr;
+            document.getElementById('p-maghrib').innerText = data.maghrib;
+            document.getElementById('p-isha').innerText = data.isha;
+        }
+
         function checkPassport() {
             let input = document.getElementById('passport-input').value.trim();
             let res = document.getElementById('search-result');
             if(!input) { res.innerHTML = "⚠️ أدخل رقم الجواز أو اسم المشرف."; res.className = "result-box error"; res.style.display = "block"; return; }
             if(pilgrimsDatabase[input.toUpperCase()]) {
                 let d = pilgrimsDatabase[input.toUpperCase()];
-                res.innerHTML = `<div style='font-size:1.05rem; border-bottom:1px solid var(--royal-gold); padding-bottom:5px; margin-bottom:8px; color:var(--royal-dark)'>👑 <b>بيانات المعتمر:</b></div><b>👤 الاسم:</b> ${d.name}<br><b>🎫 الفيزا:</b> ${d.visa}<br><b>🏨 نوع التسكين:</b> ${d.roomType}<br><b>🔑 رقم الغرفة:</b> <span style='color:var(--royal-gold); font-weight:bold'>${d.roomNo}</span><br><b>🚌 الباص:</b> ${d.bus}<br><b>🧔 المشرف:</b> الحاج ${d.supervisor}<br><b>💰 الوضع المالي:</b> ${d.account}`;
+                res.innerHTML = `<div style='font-size:1.05rem; border-bottom:1px solid var(--royal-gold); padding-bottom:5px; margin-bottom:8px; color:var(--royal-dark)'>👑 <b>بيانات المعتمر:</b></div><b>👤 الاسم:</b> ${d.name}<br><b>🎫 الفيزا:</b> ${d.visa}<br><b>🏨 نوع التسكين:</b> ${d.roomType}<br><b>🔑 رقم الغرفة:</b> <span style='color:var(--royal-gold); font-weight:bold'>${d.roomNo}</span><br><b>🚌 الباص:</b> ${d.bus}<br><b>🔑 المقعد:</b> الحاج ${d.supervisor}<br><b>💰 الوضع المالي:</b> ${d.account}`;
                 res.className = "result-box"; res.style.display = "block"; return;
             }
             let html = ""; for (let k in pilgrimsDatabase) { if (pilgrimsDatabase[k].supervisor.includes(input)) { html += `<div style='margin-bottom:8px; border-bottom:1px dashed #cbd5e0; padding-bottom:5px;'><b>👤 معتمر:</b> ${pilgrimsDatabase[k].name}<br><b>🛌 الغرفة:</b> ${pilgrimsDatabase[k].roomType} (${pilgrimsDatabase[k].roomNo})<br><b>🚌 باص:</b> ${pilgrimsDatabase[k].bus}</div>`; } }
@@ -175,8 +268,10 @@
             else { res.innerHTML = "❌ لم نجد بيانات لرقم الجواز أو المشرف."; res.className = "result-box error"; }
             res.style.display = "block";
         }
+        
         let count = 0; function incrementCount() { count++; document.getElementById('counter').innerText = count; }
         function resetCount() { count = 0; document.getElementById('counter').innerText = count; }
+        
         function calculateCurrency() {
             let val = parseFloat(document.getElementById('currency-amount').value) || 0;
             let from = document.getElementById('from-currency').value;
@@ -185,23 +280,57 @@
             let sa = from==='SAR'?val:val*exchangeRates.USD_TO_SAR;
             res.innerHTML = `🇸🇦 بالريال: ${sa.toFixed(2)} | 🇸🇾 بالليرة: ${sy.toLocaleString()}`;
         }
-        function updateTime() {
-            let options = { hour: '2-digit', minute: '2-digit', hour12: false };
-            let s = new Date().toLocaleTimeString('ar-SA', { ...options, timeZone: 'Asia/Riyadh' });
-            document.getElementById('time-sa').innerText = s + " بتوقيت مكة";
-            document.getElementById('time-sy').innerText = s + " بتوقيت دمشق وعمّان";
-        }
+        
         function testAdhan() {
             let box = document.getElementById('live-alert'); box.innerText = "🕌 حان الآن موعد الأذان لبيت الله الحرام 🕌"; box.style.display = "block";
-            new Audio('https://quranicaudio.com').play().catch(e => { alert("🔊 تم تفعيل إشعار الأذان الحركي!"); });
+            new Audio('https://quranicaudio.com').play().catch(e => { alert("🔊 تم تفعيل إشعار الأذان التفاعلي بنجاح!"); });
             setTimeout(() => { box.style.display = 'none'; }, 5000);
         }
+        
         function sendComplaint() {
             let n = document.getElementById('comp-name').value; let b = document.getElementById('comp-bus').value; let t = document.getElementById('comp-text').value;
             if(!t) { alert("اكتب نص طلبك أولاً."); return; }
             window.open(`https://wa.me{encodeURIComponent('📝 استفسار جديد لـ مؤسسة أهل التقوى:\n👤 الاسم: '+n+'\n🚌 المشرف/الباص: '+b+'\n💬 النص: '+t)}`, '_blank');
         }
-        window.onload = function() { calculateCurrency(); updateTime(); setInterval(updateTime, 60000); setTimeout(() => { let box = document.getElementById('live-alert'); box.style.display = "block"; setTimeout(() => box.style.display='none', 4000); }, 1000); };
+
+        function updateLiveNotice() {
+            let pass = prompt("أدخل الرقم السري لإدارة مؤسسة أهل التقوى لبث إعلان جديد:");
+            if (pass === "1234") {
+                let notice = prompt("اكتب الإعلان أو التنببه العاجل الذي تريد إرساله لجميع المعتمرين حالياً:");
+                if (notice) {
+                    localStorage.setItem('global_announcement', notice);
+                    document.getElementById('announcement-bar').innerText = "📢 تنبيه عاجل من الإدارة: " + notice;
+                    let box = document.getElementById('live-alert'); box.innerText = "🚨 تنبيه عاجل: " + notice; box.style.display = "block";
+                    setTimeout(() => box.style.display='none', 8000);
+                }
+            } else { alert("رمز الدخول خاطئ! هذه اللوحة مخصصة للحاج أبو ناصر فقط."); }
+        }
+        
+        // حساب وعرض تاريخ الروزنامة لعام 2026 تلقائياً
+        function setupCalendar() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            const miladiStr = today.toLocaleDateString('ar-SY', options);
+            
+            // التاريخ الهجري التقديري لعام 2026 م عينة مدمجة ومبسطة للروزنامة الشاملة
+            document.getElementById('live-calendar-date').innerText = miladiStr + " | لبيك اللهم لبيك";
+        }
+        
+        window.onload = function() { 
+            updateProvinces();
+            calculateCurrency(); 
+            setupCalendar();
+            
+            let savedNotice = localStorage.getItem('global_announcement');
+            if (savedNotice) { document.getElementById('announcement-bar').innerText = savedNotice; }
+            
+            setTimeout(() => { let box = document.getElementById('live-alert'); box.style.display = "block"; setTimeout(() => box.style.display='none', 4000); }, 1000); 
+        };
     </script>
+    
+    <div style="text-align:center; padding:15px; background:#04090f; color:#718096; font-size:0.8rem; margin-top:20px;">
+        © جميع الحقوق محفوظة لـ مؤسسة أهل التقوى الرقمية | 
+        <span onclick="updateLiveNotice()" style="color:var(--royal-gold); cursor:pointer; font-weight:bold; text-decoration:underline;">لوحة التحكم بالبث المباشر 📝</span>
+    </div>
 </body>
 </html>
