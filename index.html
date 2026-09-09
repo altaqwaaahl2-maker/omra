@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة مؤسسة أهل التقوى لخدمات الحج والعمرة</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- استيراد الخطوط الفاخرة -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Amiri&family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
         :root { 
             --royal-dark: #0a1118; 
@@ -21,8 +25,8 @@
         header p { font-family: 'Amiri', serif; font-size: 1.3rem; opacity: 0.9; color: #f3e5ab; }
         
         .ticker-wrap { background: var(--gold-gradient); color: #0a1118; padding: 12px; font-size: 0.95rem; font-weight: bold; overflow: hidden; white-space: nowrap; box-shadow: 0 4px 20px rgba(214,175,55,0.3); }
-        .ticker { display: inline-block; animation: marquee 30s linear infinite; }
-        @keyframes marquee { 0% { transform: translate3d(100%, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        .ticker { display: inline-block; padding-left: 100%; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(100%, 0, 0); } }
         
         #live-alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #111d26; color: var(--royal-gold); padding: 14px 28px; border-radius: 50px; font-weight: bold; border: 2px solid var(--royal-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 2000; display: none; text-align: center; }
         
@@ -39,298 +43,230 @@
         .card::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--gold-gradient); }
         .card h3 { color: var(--royal-gold); margin-bottom: 18px; font-size: 1.35rem; font-family: 'Reem Kufi', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
         
-        .accordion-item { background: #162633; border-radius: 14px; margin-bottom: 12px; border: 1px solid rgba(214,175,55,0.1); overflow: hidden; }
-        .accordion-header { background: #1c2f3f; padding: 14px; font-weight: bold; cursor: pointer; color: white; display: flex; justify-content: space-between; }
-        .accordion-content { padding: 18px; display: none; line-height: 1.8; font-size: 0.95rem; background: #111d26; border-top: 1px solid rgba(214,175,55,0.1); }
+        input, select { width: 100%; padding: 14px; margin-bottom: 14px; border: 2px solid #1c2f3f; border-radius: 14px; font-size: 0.95rem; outline: none; background: #0a1118; color: white; font-weight: 600; text-align: center; }
+        input:focus, select:focus { border-color: var(--royal-gold); box-shadow: 0 0 12px rgba(214,175,55,0.3); background: #111d26; }
         
-        input, select, textarea { width: 100%; padding: 14px; margin-bottom: 14px; border: 2px solid #1c2f3f; border-radius: 14px; font-size: 0.95rem; outline: none; background: #0a1118; color: white; font-weight: 600; }
-        input:focus, select:focus, textarea:focus { border-color: var(--royal-gold); box-shadow: 0 0 12px rgba(214,175,55,0.3); background: #111d26; }
-        
-        .btn { background: var(--gold-gradient); color: #070b10; border: none; padding: 15px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(214,175,55,0.2); }
+        .btn { background: var(--gold-gradient); color: #070b10; border: none; padding: 15px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(214,175,55,0.2); letter-spacing: 0.5px; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(214,175,55,0.4); }
         
-        .quran-frame { width: 100%; height: 550px; border: none; border-radius: 16px; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
         .zkr-item { background: #162633; padding: 14px; border-radius: 12px; margin-bottom: 10px; border-right: 4px solid var(--royal-gold); font-size: 0.95rem; line-height: 1.7; color: #e2e8f0; }
-        .result-box { background: rgba(47, 133, 90, 0.15); border: 2px solid #2f855a; padding: 20px; border-radius: 16px; margin-top: 15px; display: none; line-height: 1.8; color: #e6fffa; }
-        .result-box.error { background: rgba(197, 48, 48, 0.15); border-color: #c53030; color: #fff5f5; }
+        
+        .result-box { background: rgba(17, 29, 38, 0.95); border: 2px solid var(--royal-gold); padding: 25px; border-radius: 20px; margin-top: 20px; display: none; line-height: 1.9; color: #e2e8f0; box-shadow: 0 10px 35px rgba(0,0,0,0.6); }
+        .result-box.error { background: rgba(197, 48, 48, 0.15); border-color: #c53030; color: #fff5f5; text-align: center; }
+        
+        .vip-badge { background: var(--gold-gradient); color: #070b10; padding: 3px 10px; border-radius: 30px; font-size: 0.75rem; font-weight: bold; display: inline-block; margin-bottom: 10px; }
         .prayer-time-row { display: flex; justify-content: space-between; padding: 12px; background: #162633; border-radius: 10px; margin-bottom: 6px; border-left: 4px solid var(--royal-gold); font-weight: bold; }
         .calendar-box { background: var(--dark-gradient); color: white; text-align: center; border-radius: 16px; padding: 18px; border: 2px solid var(--royal-gold); font-weight: bold; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         
-        /* تأثيرات الالعاب النارية للمفاجأة الملكية */
-        #celebration-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none; }
+        .driver-card { background: #162633; padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(214,175,55,0.2); margin-top: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .driver-title { color: var(--royal-gold); font-weight: bold; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <canvas id="celebration-canvas"></canvas>
     <div id="live-alert">👑 مرحباً بكم في منصة مؤسسة أهل التقوى الفاخرة لخدمات العمرة 👑</div>
+    
     <header>
         <h1>مؤسسة أهل التقوى للحج والعمرة</h1>
         <p>خير رفيق إلى البيت العتيق</p>
     </header>
+    
     <div class="ticker-wrap">
-        <div id="announcement-bar" class="ticker">✨ قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) | تعلن حملة التقوى عن رحلة بالشهر التاسع بإذن الله - حافلات مريحة مكيفة من وإلى دمشق ✨</div>
+        <div id="announcement-bar" class="ticker">✨ قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) | تعلن حملة التقوى عن انطلاق حافلاتها المريحة والمكيفة من دمشق إلى مكة المكرمة مباشرة ✨</div>
     </div>
+    
     <div class="container">
-        <!-- التبويب 1: الاستعلام الذكي والمفاجأة -->
+        <!-- التبويب 1: الاستعلام الرقمي الفخم -->
         <div id="tab-search" class="tab-content active">
             <div class="card">
-                <h3>🔍 استعلام المعتمرين VIP (التأشيرات، الغرف والباصات)</h3>
-                <input type="text" id="passport-input" placeholder="أدخل رقم الجواز أو اسم المشرف (مثال: N12345 أو ابوناصر)">
-                <button class="btn" onclick="checkPassport()">تشغيل الاستعلام الذكي</button>
+                <h3>🔍 المنصة الذكية لاستعلام المعتمرين VIP</h3>
+                <p style="font-size:0.85rem; color:#a0aec0; margin-bottom:15px; text-align: center;">اكتب اسمك الكريم، كنيتك، أو رقم جواز سفرك لمعاينة بيانات الرحلة والفيزا فوراً</p>
+                <input type="text" id="search-input" placeholder="مثال: أسامة، النشواتي، 02828836...">
+                <button class="btn" onclick="checkPilgrim()">تشغيل الاستعلام الذكي</button>
                 <div id="search-result" class="result-box"></div>
             </div>
+            
+            <!-- معلومات الكادر القيادي للباص -->
+            <div class="card">
+                <h3>🚌 كادر الرحلة (خط سير: دمشق - مكة)</h3>
+                <div class="driver-card">
+                    <span class="driver-title">👤 السائق الأول:</span>
+                    <span>جاهز ومثبت كابتن 1 ✅</span>
+                </div>
+                <div class="driver-card">
+                    <span class="driver-title">👤 السائق الثاني:</span>
+                    <span>جاهز ومثبت كابتن 2 ✅</span>
+                </div>
+            </div>
         </div>
+
         <!-- التبويب 2: البرنامج والصلوات -->
         <div id="tab-program" class="tab-content">
             <div class="calendar-box">
                 <div style="font-family:'Reem Kufi', sans-serif; color:var(--royal-gold); font-size:1.1rem; margin-bottom:5px;">📅 الروزنامة الإسلامية وحالة اليوم</div>
-                <div id="live-calendar-date">-- ---- 1447 هـ | -- ---- 2026 م</div>
+                <div id="live-calendar-date">27 ربيع الأول 1448 هـ | 9 سبتمبر 2026 م</div>
             </div>
             
             <div class="card">
                 <h3>🕌 مواقيت الصلاة والأذان التفاعلي</h3>
-                <p style="font-size:0.85rem; color:#a0aec0; margin-bottom:12px;">* يرجى اختيار البلد والمحافظة ليقوم النظام بضبط ومزامنة مواقيت الصلاة تلقائياً:</p>
-                
                 <label>اختر البلد الحالي:</label>
                 <select id="country-select" onchange="updateProvinces()">
                     <option value="SY">سوريا (🇸🇾)</option>
                     <option value="JO">الأردن (🇯🇴)</option>
-                    <option value="SA">السعودية (🇸🇦)</option>
                 </select>
-                
-                <label>اختر المحافظة / المدينة:</label>
-                <select id="province-select" onchange="changeLocationPrayer()">
-                    <!-- يتم تعبئتها برمجياً -->
+
+                <label>اختر المحافظة:</label>
+                <select id="province-select" onchange="updatePrayerTimes()">
                 </select>
-                
-                <hr style="margin: 15px 0; border: 0; border-top: 2px dashed rgba(214,175,55,0.2);">
-                
+
                 <div id="prayer-times-container">
-                    <div class="prayer-time-row"><span>الفجر</span><span id="p-fajr">--:--</span></div>
-                    <div class="prayer-time-row"><span>الظهر</span><span id="p-dhuhr">--:--</span></div>
-                    <div class="prayer-time-row"><span>العصر</span><span id="p-asr">--:--</span></div>
-                    <div class="prayer-time-row"><span>المغرب</span><span id="p-maghrib">--:--</span></div>
-                    <div class="prayer-time-row"><span>العشاء</span><span id="p-isha">--:--</span></div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>📋 تفاصيل برنامج رحلة الشهر التاسع (حملة التقوى)</h3>
-                <div class="zkr-item">
-                    • <b>المدة:</b> 8 ليالي في مكة المكرمة و ٣ ليالي في المدينة المنورة.<br>
-                    • <b>الإقامة:</b> فنادق نظيفة وقريبة من الحرم مع تأمين المواصلات مجاناً.<br>
-                    • <b>البرنامج يشمل:</b> الفيزا - المزارات بمكة والمدينة - الإرشاد الديني والنقل.<br>
-                    • <b>الأسعار الفاخرة للرحلة:</b><br>
-                    &nbsp;&nbsp; 🛌 غرفة ثنائية: <span style="color:var(--royal-gold); font-weight:bold;">600$</span><br>
-                    &nbsp;&nbsp; 🛌 غرفة ثلاثية: <span style="color:var(--royal-gold); font-weight:bold;">500$</span><br>
-                    &nbsp;&nbsp; 🛌 غرفة رباعية: <span style="color:var(--royal-gold); font-weight:bold;">450$</span>
-                </div>
-                <div class="zkr-item" style="border-right-color: var(--royal-gold);">
-                    🎁 <b>هدايا مجانية لكل معتمر:</b> طقم إحرام للرجال | فولار فاخر للنساء | حقيبة كتف مخصصة.
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>🧔 كادر الإدارة ومشرِفي الرحلات</h3>
-                <div class="zkr-item"><b>المشرف المسؤول:</b> الحاج ابوناصر قيصر - 📞 0933264630</div>
-                <div class="zkr-item"><b>المشرف الديني:</b> الأستاذ اسامة قيصر - 📞 0938756892</div>
-                <div class="zkr-item"><b>منسق الرحلة العام:</b> يوسف قيصر - 📞 0993485374</div>
-                <div class="zkr-item" style="border-right-color: var(--royal-gold);">
-                    📍 <b>موقع المكتب:</b> دمشق - ميدان - مسطبة سعد الدين - جانب حلويات مشمش.
                 </div>
             </div>
         </div>
-        <!-- التبويب 3: القرآن الكريم كامل بدون خروج من الموقع -->
-        <div id="tab-azkar" class="tab-content">
+
+        <!-- التبويب 3: أذكار إيمانية -->
+        <div id="tab-zkr" class="tab-content">
             <div class="card">
-                <h3>🕌 المكتبة الرقمية والمصحف الشريف الكامل</h3>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">📖 قراءة وتصفح المصحف الشريف كاملاً من قلب الموقع</div>
-                    <div class="accordion-content" style="padding:0;"><iframe class="quran-frame" src="https://ksu.edu.sa"></iframe></div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">☀️ موسوعة أذكار الصباح والمساء كاملة</div>
-                    <div class="accordion-content">
-                        <b>أذكار الصباح كاملة:</b> "أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير". آية الكرسي، وسورة الإخلاص والمعوذتين (3 مرات)، "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور".<br><br>
-                        <b>أذكار المساء كاملة:</b> "أمسينا وأمسي الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير".
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">🕋 أدعية الحج والعمرة والزيارة المأثورة</div>
-                    <div class="accordion-content">
-                        • <b>دعاء السفر:</b> "الله أكبر، الله أكبر، الله أكبر، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقِرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ".<br>
-                        • <b>عند الإحرام وتلبية العمرة:</b> "لَبَّيْكَ اللَّهُمَّ عُمْرَةً، لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لا شَرِيكَ لَكَ".<br>
-                        • <b>عند رؤية الكعبة المشرفة:</b> "اللهم زد هذا البيت تشريفاً وتعظيماً وتكريماً ومهابة، وزد من شرفه وكرمه ممن حجه أو اعتمره تشريفاً وتكريماً وبراً".
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- التبويب 5: صندوق الشكاوى المطور -->
-        <div id="tab-complaints" class="tab-content">
-            <div class="card">
-                <h3>✍️ صندوق الاستقبال المباشر والاستفسارات للإدارة</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 15px; color: #a0aec0;">بمجرد الضغط على إرسال، سيقوم النظام بفتح محادثة واتساب فورية ومباشرة مع الحاج أبو ناصر لاستلاف الطلب بلحظتها:</p>
-                <input type="text" id="comp-name" placeholder="اسم المعتمر الكريم">
-                <input type="text" id="comp-bus" placeholder="رقم الحافلة أو اسم المشرف">
-                <textarea id="comp-text" rows="4" placeholder="اكتب تفاصيل طلبك أو مقترحك هنا بكل صراحة لخدمتكم..."></textarea>
-                <button class="btn" onclick="sendComplaint()">إرسال فوري ومباشر إلى الحاج أبو ناصر</button>
+                <h3>📿 أدعية وأذكار المعتمر</h3>
+                <div class="zkr-item"><b>تلبية العمرة:</b> لَبَّيْكَ اللَّهُمَّ عُمْرَةً، لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لا شَرِيكَ لَكَ لَبَّيْكَ.</div>
+                <div class="zkr-item"><b>عند رؤية الكعبة:</b> اللَّهُمَّ زِدْ هَذَا الْبَيْتَ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَمَهَابَةً.</div>
+                <div class="zkr-item"><b>بين الركن اليماني والحجر الأسود:</b> رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.</div>
             </div>
         </div>
     </div>
+
+    <!-- شريط التنقل السفلي الفخم -->
     <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('tab-search', this)">🔍 استعلام</button>
-        <button class="tab-btn" onclick="switchTab('tab-program', this)">📅 البرنامج</button>
-        <button class="tab-btn" onclick="switchTab('tab-azkar', this)">🕋 المصحف</button>
-        <button class="tab-btn" onclick="switchTab('tab-complaints', this)">✍️ تواصل</button>
+        <button class="tab-btn active" onclick="switchTab('tab-search', this)">🔍 بوابتك الرقمية</button>
+        <button class="tab-btn" onclick="switchTab('tab-program', this)">🕌 مواقيت الصلاة</button>
+        <button class="tab-btn" onclick="switchTab('tab-zkr', this)">📿 أدعية المعتمر</button>
     </nav>
     <script>
-        // قاعدة البيانات الإلكترونية المحدثة لغرف وتسكين معتمري مؤسسة أهل التقوى
-        const pilgrimsDatabase = {
-            "N12345": { name: "محمد أحمد العلي", visa: "جاهزة ومطبوعة مسبقاً ✅", bus: "الحافلة الملكية 1 (مقعد 12)", roomType: "غرفة ثنائية VIP 🛌", roomNo: "غرفة رقم 402", account: "خالص المدفوعات 0\$", supervisor: "ابوناصر" },
-            "N67890": { name: "خديجة عمر الحمصي", visa: "قيد الإصدار في السفارة ⏳", bus: "الحافلة الملكية 2 (مقعد 5)", roomType: "غرفة رباعية مريحة 🛌", roomNo: "غرفة رقم 108", account: "متبقي ذمة بقيمة 50\$", supervisor: "اسامة" }
-        };
-        
-        const locationData = {
-            "SY": [
-                { name: "دمشق", fajr: "04:32 ص", dhuhr: "12:45 م", asr: "04:15 م", maghrib: "07:12 م", isha: "08:38 م" },
-                { name: "حلب", fajr: "04:28 ص", dhuhr: "12:43 م", asr: "04:16 م", maghrib: "07:15 م", isha: "08:42 م" },
-                { name: "حمص", fajr: "04:31 ص", dhuhr: "12:45 م", asr: "04:17 م", maghrib: "07:14 م", isha: "08:40 م" }
-            ],
-            "JO": [
-                { name: "عمان", fajr: "04:40 ص", dhuhr: "12:50 م", asr: "04:18 م", maghrib: "07:14 م", isha: "08:36 م" },
-                { name: "الزرقاء", fajr: "04:39 ص", dhuhr: "12:49 م", asr: "04:17 م", maghrib: "07:13 م", isha: "08:35 م" }
-            ],
-            "SA": [
-                { name: "مكة المكرمة", fajr: "04:55 ص", dhuhr: "12:25 م", asr: "03:48 م", maghrib: "06:48 م", isha: "08:08 م" },
-                { name: "المدينة المنورة", fajr: "04:52 ص", dhuhr: "12:26 م", asr: "03:52 م", maghrib: "06:51 م", isha: "08:14 م" }
-            ]
+        // ======================== [ قاعدة البيانات الملكية للمعتمرين ] ========================
+        const pilgrimsDatabase = [
+            { name: "أسامة قيسر", father: "محمد ثابت", mother: "رنده", dob: "1996-08-31", nat: "سورية", passport: "02828836", dest: "مكة", note: "متميز" },
+            { name: "محمد الديك", father: "علي", mother: "سمية", dob: "1992-07-20", nat: "فلسطين", passport: "000401704", dest: "مكة", note: "-" },
+            { name: "مرح النشواتي", father: "محمد فايز", mother: "شهناز", dob: "1997-01-01", nat: "سورية", passport: "04099876", dest: "مكة", note: "-" },
+            { name: "محمد طجها", father: "بدر الدين", mother: "منى", dob: "2011-01-07", nat: "سورية", passport: "04101681", dest: "مكة", note: "-" },
+            { name: "منى السبيناتي", father: "عيسى", mother: "رقيه", dob: "1990-01-20", nat: "سورية", passport: "04099906", dest: "مكة", note: "-" },
+            { name: "مريم خليل", father: "محمد", mother: "امنه", dob: "1986-07-28", nat: "سورية", passport: "017093704", dest: "مكة", note: "-" },
+            { name: "روعه الزين", father: "محمود", mother: "هدى", dob: "1989-01-04", nat: "سورية", passport: "016152367", dest: "مكة", note: "-" },
+            { name: "يوسف عجوز", father: "عمر", mother: "اوميا", dob: "1999-05-08", nat: "سورية", passport: "03943613", dest: "مكة", note: "-" },
+            { name: "عبير طعمه", father: "بشير", mother: "سهام", dob: "1977-04-20", nat: "سورية", passport: "01167754", dest: "مكة", note: "-" },
+            { name: "امنه خليل", father: "خليل", mother: "غاده", dob: "1968-08-06", nat: "سورية", passport: "016868524", dest: "مكة", note: "-" },
+            { name: "ندى خليل", father: "خليل", mother: "غاده", dob: "1974-01-12", nat: "سورية", passport: "04080983", dest: "مكة", note: "-" },
+            { name: "محمد فهد المصري", father: "عمر", mother: "ندى", dob: "1994-01-10", nat: "سورية", passport: "04095608", dest: "مكة", note: "-" },
+            { name: "منار المصري", father: "عمر", mother: "ندى", dob: "2008-01-15", nat: "سورية", passport: "04080977", dest: "مكة", note: "-" },
+            { name: "منى خليل", father: "خليل", mother: "غاده", dob: "1977-01-01", nat: "سورية", passport: "00862438", dest: "مكة", note: "-" },
+            { name: "حلا طجها", father: "وليد", mother: "منى", dob: "2001-03-20", nat: "سورية", passport: "04092182", dest: "مكة", note: "-" },
+            { name: "ساريه طجها", father: "وليد", mother: "منى", dob: "2003-07-20", nat: "سورية", passport: "04092125", dest: "مكة", note: "-" },
+            { name: "يزده خليل", father: "ايمن", mother: "هبا", dob: "2005-03-21", nat: "سورية", passport: "04088232", dest: "مكة", note: "-" },
+            { name: "هنا خليل", father: "خليل", mother: "غاده", dob: "1982-02-20", nat: "سورية", passport: "04080854", dest: "مكة", note: "-" },
+            { name: "رغد حامد", father: "محمود", mother: "هنا", dob: "2009-01-01", nat: "سورية", passport: "04080860", dest: "مكة", note: "-" },
+            { name: "هبا خليل", father: "خليل", mother: "غاده", dob: "1975-06-08", nat: "سورية", passport: "04081108", dest: "مكة", note: "-" },
+            { name: "غيداء شياح", father: "نادر", mother: "امر", dob: "1998-01-01", nat: "سورية", passport: "00513229", dest: "مكة", note: "-" },
+            { name: "سندس شياح", father: "محمد عيد", mother: "حياة", dob: "1992-12-15", nat: "سورية", passport: "015367391", dest: "مكة", note: "-" },
+            { name: "عامر عقاد", father: "جمال", mother: "ايمان", dob: "1988-01-01", nat: "سورية", passport: "00513186", dest: "مكة", note: "-" },
+            { name: "نادر شياح", father: "مصطفى", mother: "عربيه", dob: "1967-10-20", nat: "سورية", passport: "00660787", dest: "مكة", note: "-" },
+            { name: "امر الشياح", father: "محمد", mother: "صباح", dob: "1972-04-20", nat: "سورية", passport: "00661058", dest: "مكة", note: "-" },
+            { name: "نبيل عثمان", father: "محمود", mother: "عائده", dob: "1962-09-15", nat: "سورية", passport: "016077780", dest: "مكة", note: "-" },
+            { name: "عبدالله حسن العبود", father: "عبد", mother: "هنديه", dob: "1959-01-17", nat: "سورية", passport: "02783731", dest: "مكة", note: "-" },
+            { name: "فاطمه العبود الخضر", father: "عبد", mother: "هنديه", dob: "1961-01-27", nat: "سورية", passport: "00950514", dest: "مكة", note: "-" },
+            { name: "زبيده الخباز", father: "بشير", mother: "دلال", dob: "1970-01-03", nat: "سورية", passport: "00294223", dest: "مكة", note: "-" },
+            { name: "خالد عثمان", father: "نبيل", mother: "زبيده", dob: "2000-10-01", nat: "سورية", passport: "04071481", dest: "مكة", note: "-" },
+            { name: "شهناز شحاده", father: "حسن", mother: "سلمى", dob: "1967-09-20", nat: "سورية", passport: "04113880", dest: "مكة", note: "-" }
+        ];
+        window.onload = function() {
+            const alertBox = document.getElementById('live-alert');
+            alertBox.style.display = 'block';
+            setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+            updateProvinces();
         };
 
-        function switchTab(t, b) {
-            document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-            document.getElementById(t).classList.add('active'); b.classList.add('active');
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
         }
-        
-        function toggleAccordion(h) {
-            let c = h.nextElementSibling; let v = c.style.display === 'block';
-            document.querySelectorAll('.accordion-content').forEach(x => x.style.display = 'none');
-            c.style.display = v ? 'none' : 'block';
+
+        function checkPilgrim() {
+            const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+            const resultBox = document.getElementById('search-result');
+            
+            if(!searchInput) {
+                resultBox.className = "result-box error";
+                resultBox.innerHTML = "⚠️ يرجى إدخال الاسم أو الكنية أو رقم الجواز لتفعيل الاستعلام الذكي.";
+                resultBox.style.display = "block";
+                return;
+            }
+
+            resultBox.style.display = "block";
+            
+            const found = pilgrimsDatabase.filter(p => 
+                p.name.toLowerCase().includes(searchInput) || 
+                p.passport.toLowerCase() === searchInput
+            );
+
+            if(found.length > 0) {
+                resultBox.className = "result-box";
+                let htmlResults = "";
+                
+                found.forEach(p => {
+                    htmlResults += `
+                    <div style="margin-bottom: 10px; padding-bottom: 10px;">
+                        <div class="vip-badge">بطاقة المعتمر الفاخرة VIP ✨</div><br>
+                        🕋 <b>الاسم الثلاثي:</b> ${p.name} بن ${p.father}<br>
+                        👵 <b>اسم الأم:</b> ${p.mother}<br>
+                        📅 <b>التولد:</b> ${p.dob} (${p.nat})<br>
+                        🛂 <b>رقم الجواز:</b> ${p.passport}<br>
+                        🟢 <b>حالة التأشيرة:</b> صالحة ومربوطة بالمسار الإلكتروني<br>
+                        📍 <b>الوجهة والملاحظات:</b> من دمشق إلى ${p.dest} ${p.note !== '-' ? `(${p.note})` : ''}<br>
+                    </div>`;
+                });
+                resultBox.innerHTML = htmlResults;
+            } else {
+                resultBox.className = "result-box error";
+                resultBox.innerHTML = `❌ عذراً، لم نجد بيانات تطابق: "<b>${searchInput}</b>"<br><span style="font-size:0.85rem; color:#ffa7a7;">تأكد من كتابة الحروف بشكل صحيح أو جرب كتابة جزء من الاسم.</span>`;
+            }
         }
-        
+
+        const dataPlaces = {
+            SY: ["دمشق", "حلب", "حمص", "اللاذقية"],
+            JO: ["عمان", "الزرقاء", "إربد", "العقبة"]
+        };
+
         function updateProvinces() {
             const country = document.getElementById('country-select').value;
             const provinceSelect = document.getElementById('province-select');
             provinceSelect.innerHTML = "";
-            locationData[country].forEach((prov, index) => {
-                let opt = document.createElement('option'); opt.value = index; opt.innerText = prov.name; provinceSelect.appendChild(opt);
+            
+            dataPlaces[country].forEach(p => {
+                let opt = document.createElement('option');
+                opt.value = p;
+                opt.innerText = p;
+                provinceSelect.appendChild(opt);
             });
-            changeLocationPrayer();
-        }
-        
-        function changeLocationPrayer() {
-            const country = document.getElementById('country-select').value;
-            const provIndex = document.getElementById('province-select').value;
-            const data = locationData[country][provIndex];
-            document.getElementById('p-fajr').innerText = data.fajr;
-            document.getElementById('p-dhuhr').innerText = data.dhuhr;
-            document.getElementById('p-asr').innerText = data.asr;
-            document.getElementById('p-maghrib').innerText = data.maghrib;
-            document.getElementById('p-isha').innerText = data.isha;
+            updatePrayerTimes();
         }
 
-        function checkPassport() {
-            let input = document.getElementById('passport-input').value.trim();
-            let res = document.getElementById('search-result');
-            if(!input) { res.innerHTML = "⚠️ أدخل رقم الجواز أو اسم المشرف لتشغيل النظام."; res.className = "result-box error"; res.style.display = "block"; return; }
-            if(pilgrimsDatabase[input.toUpperCase()]) {
-                let d = pilgrimsDatabase[input.toUpperCase()];
-                res.innerHTML = `<div style='font-size:1.05rem; border-bottom:1px solid var(--royal-gold); padding-bottom:5px; margin-bottom:8px; color:white'>👑 <b>بيانات ضيف الرحمن المعتمر:</b></div><b>👤 الاسم:</b> ${d.name}<br><b>🎫 الفيزا التأشيرة:</b> <span style='color:#48bb78; font-weight:bold;'>${d.visa}</span><br><b>🏨 نوع التسكين بالفندق:</b> ${d.roomType}<br><b>🔑 رقم الغرفة المخصصة:</b> <span style='color:var(--royal-gold); font-weight:bold'>${d.roomNo}</span><br><b>🚌 الحافلة الباص:</b> ${d.bus}<br><b>🧔 المشرف المتابع:</b> الحاج ${d.supervisor}<br><b>💰 الوضع المالي:</b> ${d.account}`;
-                res.className = "result-box"; res.style.display = "block";
-                
-                // تشغيل المفاجأة الاحتفالية والألعاب النارية فوراً
-                startCelebration();
-                return;
-            }
-            let html = ""; for (let k in pilgrimsDatabase) { if (pilgrimsDatabase[k].supervisor.includes(input)) { html += `<div style='margin-bottom:8px; border-bottom:1px dashed rgba(214,175,55,0.2); padding-bottom:5px;'><b>👤 معتمر:</b> ${pilgrimsDatabase[k].name}<br><b>🛌 الغرفة:</b> ${pilgrimsDatabase[k].roomType} (${pilgrimsDatabase[k].roomNo})<br><b>🚌 باص:</b> ${pilgrimsDatabase[k].bus}</div>`; } }
-            if(html !== "") { res.innerHTML = `<h4 style='color:var(--royal-gold); margin-bottom:8px; font-family:"Reem Kufi",sans-serif;'>📋 المعتمرون التابعون للمشرف (${input}):</h4>` + html; res.className = "result-box"; } 
-            else { res.innerHTML = "❌ لم نجد بيانات مطابقة لرقم الجواز أو اسم المشرف."; res.className = "result-box error"; }
-            res.style.display = "block";
-        }
-
-        function sendComplaint() {
-            let n = document.getElementById('comp-name').value; let b = document.getElementById('comp-bus').value; let t = document.getElementById('comp-text').value;
-            if(!t) { alert("يرجى كتابة تفاصيل طلبك أو استفسارك أولاً لخدمتك."); return; }
-            let message = `📝 استفسار/طلب جديد من منصة مؤسسة أهل التقوى:\n👤 اسم معتمر: ${n || 'غير معروف'}\n🚌 المشرف/الباص: ${b || 'غير محدد'}\n💬 نص الاستفسار: ${t}`;
-            window.open(`https://wa.me{encodeURIComponent(message)}`, '_blank');
-        }
-
-        function updateLiveNotice() {
-            let pass = prompt("أدخل الرقم السري لإدارة مؤسسة أهل التقوى لبث إعلان جديد للكل:");
-            if (pass === "yusuf") {
-                let notice = prompt("اكتب التنبيه العاجل الذي تريد بثه لجميع المعتمرين الآن:");
-                if (notice) {
-                    localStorage.setItem('global_announcement_taqwa', notice);
-                    document.getElementById('announcement-bar').innerText = "📢 تنبيه عاجل من الإدارة: " + notice;
-                    let box = document.getElementById('live-alert'); box.innerText = "🚨 تنبيه عاجل: " + notice; box.style.display = "block";
-                    setTimeout(() => box.style.display='none', 8000);
-                }
-            } else { alert("رمز الدخول خاطئ! هذه اللوحة مخصصة لإدارة المؤسسة فقط."); }
-        }
-        
-        function setupCalendar() {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const today = new Date();
-            const miladiStr = today.toLocaleDateString('ar-SY', options);
-            document.getElementById('live-calendar-date').innerText = miladiStr + " | تقبل الله طاعاتكم";
-        }
-
-        // نظام محاكاة الألعاب النارية والاحتفالية للمفاجأة الملكية
-        function startCelebration() {
-            const canvas = document.getElementById('celebration-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.style.display = 'block';
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function updatePrayerTimes() {
+            const province = document.getElementById('province-select').value;
+            const container = document.getElementById('prayer-times-container');
             
-            let particles = [];
-            for (let i = 0; i < 100; i++) {
-                particles.push({
-                    x: canvas.width / 2, y: canvas.height / 2,
-                    vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10,
-                    color: `hsl(${Math.random() * 360}, 100%, 50%)`, size: Math.random() * 4 + 2, alpha: 1
-                });
+            const dummyTimes = {
+                "الفجر": "04:32 ص",
+                "الظهر": "12:45 م",
+                "العصر": "04:15 م",
+                "المغرب": "07:10 م",
+                "العشاء": "08:35 م"
+            };
+
+            let html = `<p style="margin: 10px 0; color:var(--royal-gold); text-align:center;">📍 مواقيت الصلاة لمدينة <b>${province}</b>:</p>`;
+            for(let prayer in dummyTimes) {
+                html += `<div class="prayer-time-row"><span>${prayer}</span><span>${dummyTimes[prayer]}</span></div>`;
             }
-            
-            let count = 0;
-            function animate() {
-                if (count > 60) { canvas.style.display = 'none'; return; }
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    p.x += p.vx; p.y += p.vy; p.vy += 0.1; p.alpha -= 0.015;
-                    ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color;
-                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
-                });
-                count++; requestAnimationFrame(animate);
-            }
-            animate();
+            container.innerHTML = html;
         }
-        
-        window.onload = function() { 
-            updateProvinces(); setupCalendar();
-            let savedNotice = localStorage.getItem('global_announcement_taqwa');
-            if (savedNotice) { document.getElementById('announcement-bar').innerText = "📢 تنبيه من الإدارة: " + savedNotice; }
-            setTimeout(() => { 
-                let box = document.getElementById('live-alert'); 
-                box.innerText = "👑 مرحباً بكم في منصة مؤسسة أهل التقوى الفاخرة لخدمات الحج والعمرة 👑";
-                box.style.display = "block"; setTimeout(() => box.style.display='none', 5000); 
-            }, 1000); 
-        };
     </script>
-    
-    <div style="text-align:center; padding:18px; background:#04090f; color:#718096; font-size:0.8rem; margin-top:25px; border-top:1px solid rgba(214,175,55,0.1);">
-        © جميع الحقوق محفوظة لـ مؤسسة أهل التقوى الرقمية | زوارنا حالياً من: (سوريا 🇸🇾 الأردن 🇯🇴 السعودية 🇸🇦) | 
-        <span onclick="updateLiveNotice()" style="color:var(--royal-gold); cursor:pointer; font-weight:bold; text-decoration:underline;">لوحة البث والرسائل العامة 📝</span>
-    </div>
 </body>
 </html>
