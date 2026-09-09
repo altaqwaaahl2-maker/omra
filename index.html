@@ -9,17 +9,18 @@
     <link href="https://googleapis.com/css2?family=Amiri&family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg-dark: #04080e;
-            --royal-gold: #d4af37; 
-            --gold-gradient: linear-gradient(135deg, #f5e6b3, #d4af37, #aa7c11); 
-            --glass-bg: rgba(22, 38, 51, 0.45);
-            --glass-border: rgba(214, 175, 55, 0.25);
-            --text-glow: 0 0 15px rgba(214, 175, 55, 0.6);
+            --royal-bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --royal-gold: #b39245; 
+            --dark-gold: #8d6e27;
+            --border-color: rgba(179, 146, 69, 0.25);
+            --text-main: #1a2332;
+            --text-muted: #64748b;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { 
-            background: radial-gradient(circle at center, #0f2338 0%, var(--bg-dark) 100%);
-            color: #f0f4f8; 
+            background: radial-gradient(circle at center, #ffffff 0%, var(--royal-bg) 100%);
+            color: var(--text-main); 
             padding-bottom: 100px; 
             overflow-x: hidden; 
             position: relative;
@@ -28,78 +29,78 @@
         
         #celebration-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; display: none; }
 
-        header { background: linear-gradient(180deg, rgba(7,11,16,0.95) 0%, rgba(7,11,16,0) 100%); padding: 40px 20px; text-align: center; }
-        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.5rem; color: var(--royal-gold); text-shadow: 0 2px 20px rgba(214,175,55,0.5); margin-bottom: 5px; }
-        header p { font-family: 'Amiri', serif; font-size: 1.5rem; color: #f5e6b3; letter-spacing: 0.5px; }
-        .sub-header { font-size: 0.95rem; color: #cbd5e1; margin-top: 8px; font-weight: bold; background: rgba(214,175,55,0.12); display: inline-block; padding: 5px 20px; border-radius: 20px; border: 1px solid rgba(214,175,55,0.3); }
+        header { background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%); padding: 45px 20px; text-align: center; }
+        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.6rem; color: var(--dark-gold); text-shadow: 0 2px 10px rgba(141,110,39,0.15); margin-bottom: 5px; }
+        header p { font-family: 'Amiri', serif; font-size: 1.5rem; color: var(--royal-gold); letter-spacing: 0.5px; font-weight: bold; }
+        .sub-header { font-size: 0.95rem; color: var(--text-main); margin-top: 12px; font-weight: bold; background: rgba(179, 146, 69, 0.1); display: inline-block; padding: 6px 24px; border-radius: 30px; border: 1px solid var(--royal-gold); box-shadow: 0 4px 15px rgba(179,146,69,0.1); }
         
-        .ticker-wrap { background: var(--gold-gradient); color: #060b11; padding: 12px; font-size: 0.95rem; font-weight: 700; overflow: hidden; white-space: nowrap; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .ticker-wrap { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; padding: 12px; font-size: 0.95rem; font-weight: 700; overflow: hidden; white-space: nowrap; box-shadow: 0 4px 20px rgba(179,146,69,0.15); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
         .ticker { display: inline-block; padding-left: 100%; animation: marquee 35s linear infinite; }
-        @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(100%, 0, 0); } }
+        @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
         
-        .container { padding: 20px 15px; max-width: 600px; margin: 0 auto; }
+        .container { padding: 25px 15px; max-width: 600px; margin: 0 auto; }
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: glassFade 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes glassFade { from { opacity: 0; transform: scale(0.95) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .tab-content.active { display: block; animation: smoothSpawn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes smoothSpawn { from { opacity: 0; transform: scale(0.97) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         
-        .glass-card { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 28px; 
-            padding: 25px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), inset 0 1px 3px rgba(255,255,255,0.12); 
-            border: 1px solid var(--glass-border); 
-            transition: all 0.4s ease;
+        .card-3d { 
+            background: var(--card-bg);
+            border-radius: 24px; 
+            padding: 28px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 20px 40px rgba(141,110,39,0.06), 0 1px 3px rgba(0,0,0,0.02); 
+            border: 1px solid var(--border-color); 
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .glass-card:hover { border-color: rgba(214, 175, 55, 0.6); box-shadow: 0 30px 60px rgba(214,175,55,0.15); }
-        .glass-card h3 { color: var(--royal-gold); margin-bottom: 18px; font-size: 1.35rem; font-family: 'Reem Kufi', sans-serif; text-shadow: var(--text-glow); display: flex; align-items: center; gap: 10px; }
+        .card-3d:hover { 
+            transform: translateY(-5px) rotateX(4deg) rotateY(-2deg); 
+            border-color: var(--dark-gold); 
+            box-shadow: 0 30px 50px rgba(141,110,39,0.15); 
+        }
+        .card-3d h3 { color: var(--dark-gold); margin-bottom: 22px; font-size: 1.35rem; font-family: 'Reem Kufi', sans-serif; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
         
-        .countdown-container { display: flex; justify-content: space-around; margin: 15px 0; background: rgba(6,11,17,0.5); padding: 15px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.05); }
-        .countdown-item { text-align: center; }
-        .countdown-item span { display: block; font-size: 1.6rem; font-weight: bold; color: var(--royal-gold); text-shadow: var(--text-glow); }
-        .countdown-item label { font-size: 0.75rem; color: #94a3b8; }
-
-        .ticket-countdown { background: rgba(214, 175, 55, 0.1); border: 1px solid var(--royal-gold); border-radius: 14px; padding: 12px; margin-top: 15px; text-align: center; font-weight: bold; font-size: 0.95rem; color: #fff; box-shadow: 0 0 10px rgba(214,175,55,0.2); }
-        .ticket-countdown span { color: var(--royal-gold); text-shadow: var(--text-glow); font-size: 1.1rem; display: block; margin-top: 4px; }
+        .countdown-title { text-align: center; font-family: 'Amiri', serif; font-size: 1.25rem; color: var(--dark-gold); font-weight: bold; margin-bottom: 15px; line-height: 1.6; }
+        .countdown-container { display: flex; justify-content: space-around; margin: 10px 0; background: #fafafa; padding: 18px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: inset 0 2px 5px rgba(0,0,0,0.02); }
+        .countdown-item { text-align: center; flex: 1; }
+        .countdown-item span { display: block; font-size: 1.8rem; font-weight: 700; color: var(--dark-gold); }
+        .countdown-item label { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
 
         .weather-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
-        .weather-box { background: rgba(6,11,17,0.4); padding: 12px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-        .weather-temp { font-size: 1.3rem; font-weight: bold; color: #fff; margin-top: 2px; }
+        .weather-box { background: #fafafa; padding: 15px; border-radius: 14px; text-align: center; border: 1px solid var(--border-color); }
+        .weather-temp { font-size: 1.4rem; font-weight: bold; color: var(--text-main); margin-top: 2px; }
 
-        input, select { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; font-size: 1rem; outline: none; background: rgba(6, 11, 17, 0.75); color: white; font-weight: 600; text-align: center; transition: 0.3s; }
-        input:focus, select:focus { border-color: var(--royal-gold); box-shadow: 0 0 15px rgba(214,175,55,0.3); background: rgba(6, 11, 17, 0.95); }
+        input, select { width: 100%; padding: 16px; margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 14px; font-size: 1rem; outline: none; background: #ffffff; color: var(--text-main); font-weight: 600; text-align: center; transition: all 0.2s ease; }
+        input:focus, select:focus { border-color: var(--dark-gold); box-shadow: 0 0 15px rgba(141,110,39,0.1); background: #ffffff; }
         
-        .btn { background: var(--gold-gradient); color: #060b11; border: none; padding: 16px; width: 100%; border-radius: 16px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 5px 25px rgba(214,175,55,0.25); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(214,175,55,0.45); }
+        .btn { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; border: none; padding: 16px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.05rem; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(141,110,39,0.2); text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 8px 25px rgba(141,110,39,0.3); }
         
-        .vip-ticket { background: linear-gradient(135deg, rgba(24,42,59,0.95), rgba(7,11,18,0.98)); border-radius: 24px; border: 2px solid var(--royal-gold); padding: 22px; margin-top: 15px; box-shadow: 0 15px 35px rgba(214,175,55,0.2); line-height: 2.1; position: relative; overflow: hidden; animation: ticketSpawn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes ticketSpawn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .vip-ticket::after { content: 'VIP PASS'; position: absolute; top: 2px; left: -25px; background: var(--gold-gradient); color: #060b11; font-weight: 900; padding: 8px 30px; transform: rotate(-45deg); font-size: 0.7rem; letter-spacing: 1px; }
-        .ticket-row { display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.08); padding: 8px 0; font-size: 0.95rem; }
-        .ticket-row span:first-child { color: #a1b0cb; }
-        .ticket-row span:last-child { font-weight: bold; color: #fff; text-shadow: 0 0 5px rgba(255,255,255,0.2); }
+        .vip-ticket { background: linear-gradient(135deg, #ffffff, #fbfbfb); border-radius: 18px; border: 2px solid var(--dark-gold); padding: 22px; margin-top: 15px; box-shadow: 0 15px 35px rgba(141,110,39,0.1); line-height: 2.1; transform: translateZ(20px); }
+        .ticket-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 8px 0; font-size: 0.95rem; }
+        .ticket-row span:first-child { color: var(--text-muted); }
+        .ticket-row span:last-child { font-weight: bold; color: var(--text-main); }
         
-        .info-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
-        .info-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .info-table td:first-child { color: #f5e6b3; font-weight: bold; width: 38%; }
+        .info-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.95rem; }
+        .info-table td { padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.04); color: var(--text-main); }
+        .info-table td:first-child { color: var(--dark-gold); font-weight: bold; width: 35%; }
         
         .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
-        .price-badge { background: rgba(6, 11, 17, 0.65); padding: 12px; border-radius: 14px; border: 1px solid rgba(214,175,55,0.25); text-align: center; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); }
-        .price-badge div { font-size: 0.8rem; color: #94a3b8; }
-        .price-badge span { display: block; font-size: 1.25rem; font-weight: bold; color: var(--royal-gold); margin-top: 4px; }
+        .price-badge { background: #fafafa; padding: 14px; border-radius: 14px; border: 1px solid var(--border-color); text-align: center; }
+        .price-badge div { font-size: 0.8rem; color: var(--text-muted); }
+        .price-badge span { display: block; font-size: 1.25rem; font-weight: bold; color: var(--dark-gold); margin-top: 4px; }
         
-        .gift-box { background: rgba(214,175,55,0.05); border: 1px dashed rgba(214,175,55,0.45); padding: 15px; border-radius: 16px; font-size: 0.9rem; line-height: 1.8; }
-        .prayer-time-row { display: flex; justify-content: space-between; padding: 14px; background: rgba(6,11,17,0.5); border-radius: 14px; margin-bottom: 8px; border-left: 4px solid var(--royal-gold); font-weight: bold; font-size: 1rem; transition: 0.2s; }
-        .prayer-time-row:hover { background: rgba(214,175,55,0.08); transform: scale(1.02); }
+        .gift-box { background: rgba(179, 146, 69, 0.03); border: 1px dashed var(--royal-gold); padding: 15px; border-radius: 12px; font-size: 0.9rem; line-height: 1.8; color: var(--text-main); }
+        .prayer-time-row { display: flex; justify-content: space-between; padding: 15px; background: #fafafa; border-radius: 14px; margin-bottom: 8px; border-left: 4px solid var(--dark-gold); font-weight: bold; font-size: 1rem; transition: background 0.2s; border-top: 1px solid rgba(0,0,0,0.02); border-bottom: 1px solid rgba(0,0,0,0.02); }
+        .prayer-time-row:hover { background: rgba(179, 146, 69, 0.05); }
         
-        .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(6, 10, 15, 0.9); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); display: flex; justify-content: space-around; box-shadow: 0 -15px 45px rgba(0,0,0,0.7); z-index: 1000; border-top: 1px solid rgba(255,255,255,0.08); border-radius: 28px 28px 0 0; padding: 8px 0; }
-        .tab-btn { background: none; border: none; padding: 10px 5px; font-size: 0.85rem; font-weight: 700; color: #94a3b8; flex: 1; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .tab-btn.active { color: var(--royal-gold); text-shadow: var(--text-glow); transform: translateY(-2px); }
-        .tab-btn span.icon { font-size: 1.4rem; }
+        .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; box-shadow: 0 -10px 40px rgba(141,110,39,0.08); z-index: 1000; border-top: 1px solid var(--border-color); border-radius: 24px 24px 0 0; padding: 8px 0; }
+        .tab-btn { background: none; border: none; padding: 10px 5px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); flex: 1; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; transition: color 0.2s; }
+        .tab-btn.active { color: var(--dark-gold); }
+        .tab-btn span.icon { font-size: 1.3rem; }
         
-        .office-footer { text-align: center; font-size: 0.85rem; color: #94a3b8; line-height: 1.8; padding: 22px 10px; border-top: 1px solid rgba(214,175,55,0.15); margin-top: 30px; background: rgba(6,11,17,0.6); border-radius: 18px; }
+        .office-footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; padding: 22px 10px; border-top: 1px solid var(--border-color); margin-top: 30px; background: rgba(255,255,255,0.6); border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
     </style>
 </head>
 <body>
@@ -112,17 +113,18 @@
     </header>
     
     <div class="ticker-wrap">
-        <div id="announcement-bar" class="ticker">✨ تعلن حملة التقوى عن رحلة في منتصف شهر العاشر بإذن الله - حافلات مريحة ومكيفة من وإلى دمشق | قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) ✨</div>
+        <div id="announcement-bar" class="ticker">✨ تعلن حملة التقوى عن رحلة متميزة في منتصف شهر العاشر بإذن الله - حافلات مريحة ومكيفة من وإلى دمشق | قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) ✨</div>
     </div>
     
     <div class="container">
         
-        <!-- التبويب 1: الإعلانات، العداد، والاستعلام الذكي الفخم -->
+        <!-- التبويب 1: العروض والاستعلام -->
         <div id="tab-search" class="tab-content active">
             
-            <!-- لوحة العداد التنازلي الحي للرحلة القادمة -->
-            <div class="glass-card">
-                <h3>⏳ العداد التنازلي العام لإنطلاق رحلة شهر 10</h3>
+            <!-- لوحة العداد التنازلي للرحلة الحالية المباشرة -->
+            <div class="card-3d">
+                <h3>⏳ مؤقت تحرك قوافل المعتمرين الحالية</h3>
+                <div class="countdown-title">« لَبَّيْكَ اللَّهُمَّ عُمْرَةً.. متبقي على انطلاق الرحلة صباح يوم السبت المبارك بعد الفجر مباشرة: »</div>
                 <div class="countdown-container">
                     <div class="countdown-item"><span id="cd-days">00</span><label>أيام</label></div>
                     <div class="countdown-item"><span id="cd-hours">00</span><label>ساعات</label></div>
@@ -131,22 +133,21 @@
                 </div>
             </div>
 
-            <!-- لوحة الإعلانات الفاخرة لرحلة الشهر العاشر -->
-            <div class="glass-card">
+            <!-- لوحة الإعلانات المنظمة لبرنامج شهر 10 وباقاته -->
+            <div class="card-3d">
                 <h3>📢 لوحة الإعلانات وعروض الرحلات الحالية</h3>
                 <div class="ads-container">
-                    <span class="ads-badge">تفاصيل البرنامج المعتمد 🕋</span>
-                    <div class="ads-title-sub">خير رفيق إلى البيت العتيق</div>
-                    <div class="ads-hadith">عن أبي هريرة رضي الله عنه، أن رسول الله ﷺ قال: «العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا»</div>
+                    <div style="font-family: 'Amiri', serif; font-size: 1.3rem; color: var(--dark-gold); font-weight: bold; text-align: center; margin-bottom: 5px;">خير رفيق إلى البيت العتيق</div>
+                    <div style="font-family: 'Amiri', serif; font-size: 1.1rem; text-align: center; margin-bottom: 18px; color: var(--text-muted); font-style: italic;">عن أبي هريرة رضي الله عنه، أن رسول الله ﷺ قال: «العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا»</div>
                     
                     <table class="info-table">
                         <tr><td>🕋 موعد الرحلة:</td><td>منتصف شهر العاشر بإذن الله</td></tr>
-                        <tr><td>🧎‍♂️ فقه الرحلة:</td><td>إرشاد ديني فقهي متكامل طوال الرحلة</td></tr>
-                        <tr><td>📋 شمولية الحجز:</td><td>الفيزا - المزارات بمكة والمدينة المنورة - النقل</td></tr>
-                        <tr><td>🏨 مدة السكن:</td><td>8 ليالي في مكة المكرمة و 3 ليالي في المدينة المنورة</td></tr>
-                        <tr><td>🏢 الجودة والنظافة:</td><td>فنادق ممتازة ونظيفة جداً بالقرب من الحرم الشريف</td></tr>
-                        <tr><td>🚌 نوع الحافلات:</td><td>بولمانات مريحة ومكيفة حديثاً من وإلى دمشق</td></tr>
-                        <tr><td>🔄 نقل الحرم:</td><td>مؤمنة بالكامل مجاناً على مدار الساعة للزوار</td></tr>
+                        <tr><td>🧎‍♂️ فقه الحجز:</td><td>إرشاد ديني فقهي متكامل طوال الرحلة</td></tr>
+                        <tr><td>📋 باقة الخدمات:</td><td>الفيزا - المزارات بمكة والمدينة المنورة - النقل</td></tr>
+                        <tr><td>🏨 مدة الإقامة:</td><td>8 ليالي في مكة المكرمة و 3 ليالي في المدينة المنورة</td></tr>
+                        <tr><td>🏢 السكن الفندقي:</td><td>فنادق ممتازة ونظيفة جداً بالقرب من الحرم الشريف</td></tr>
+                        <tr><td>🚌 وسيلة النقل:</td><td>بولمانات مريحة ومكيفة حديثاً من وإلى دمشق</td></tr>
+                        <tr><td>🔄 النقل الداخلي:</td><td>مؤمنة بالكامل مجاناً على مدار الساعة لجميع المعتمرين</td></tr>
                     </table>
                     
                     <div class="price-grid">
@@ -161,35 +162,34 @@
                         • فولار أنيق ومناسب للنساء.<br>
                         • حقيبة كتف مخصصة للرجال والنساء.<br>
                     </div>
-                    <p style="text-align: center; margin-top: 15px; font-weight: bold; color: var(--royal-gold); font-size: 0.9rem;">
-                        📞 للاستفسار والاتصال السريع المباشر:<br>
+                    <p style="text-align: center; margin-top: 18px; font-weight: bold; color: var(--dark-gold); font-size: 0.95rem;">
+                        📞 للاستفسار والاتصال المباشر مع الإدارة:<br>
                         0993485374 / 0949276956 / 0118839270
                     </p>
                 </div>
             </div>
 
-            <!-- بوابة الاستعلام الرقمي الفخمة جداً -->
-            <div class="glass-card">
-                <h3>🔍 البوابة الذكية لاستعلام المعتمرين VIP</h3>
-                <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:15px; text-align: center;">اكتب اسمك الكريم، كنيتك، أو رقم جواز سفرك لمعاينة بطاقة صعودك الفاخرة</p>
-                <input type="text" id="search-input" placeholder="أدخل الحروف هنا للبحث...">
-                <button class="btn" onclick="checkPilgrim()">تشغيل الاستعلام والتحقق الذكي</button>
+            <!-- بوابة البحث الرقمي الـ VIP المتكاملة -->
+            <div class="card-3d">
+                <h3>🔍 المنصة الإلكترونية لاستعلام المعتمرين VIP</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px; text-align: center;">اكتب اسمك الكريم، كنيتك، أو رقم جواز سفرك لمعاينة بطاقة بياناتك فوراً</p>
+                <input type="text" id="search-input" placeholder="أدخل الاسم أو رقم الجواز للبحث...">
+                <button class="btn" onclick="checkPilgrim()">تشغيل الاستعلام الذكي</button>
                 <div id="search-result"></div>
             </div>
         </div>
 
-        <!-- التبويب 2: مواقيت الصلاة وأداة حالة الطقس الحية -->
+        <!-- التبويب 2: مواقيت الصلاة والطقس -->
         <div id="tab-program" class="tab-content">
-            <!-- أداة حالة الطقس الشغالة في الحرمين ومكة -->
-            <div class="glass-card">
-                <h3>☀️ النشرة الجوية وحالة الطقس الحالية بالديار المقدسة</h3>
+            <div class="card-3d">
+                <h3>☀️ حالة الطقس بالديار المقدسة حافلة الحرمين</h3>
                 <div class="weather-grid">
-                    <div class="weather-box">🕋 مكة المكرمة<div class="weather-temp">39° م</div><span style="font-size:0.75rem; color:#a1b0cb">صافي ومناسب للعبادة</span></div>
-                    <div class="weather-box">🕌 المدينة المنورة<div class="weather-temp">36° م</div><span style="font-size:0.75rem; color:#a1b0cb">معتدل ولطيف ليلاً</span></div>
+                    <div class="weather-box">🕋 مكة المكرمة<div class="weather-temp">39° م</div><span style="font-size:0.75rem; color:var(--text-muted)">صافي ومناسب للعبادة</span></div>
+                    <div class="weather-box">🕌 المدينة المنورة<div class="weather-temp">36° م</div><span style="font-size:0.75rem; color:var(--text-muted)">معتدل ولطيف ليلاً</span></div>
                 </div>
             </div>
 
-            <div class="glass-card">
+            <div class="card-3d">
                 <h3>🕌 مواقيت الصلاة التفاعلية للأذان</h3>
                 <label>اختر البلد الحالي:</label>
                 <select id="country-select" onchange="updateProvinces()">
@@ -204,29 +204,30 @@
             </div>
         </div>
 
-        <!-- التبويب 3: الدليل الإيماني والأذكار -->
+        <!-- التبويب 3: الدليل الإيماني -->
         <div id="tab-zkr" class="tab-content">
-            <div class="glass-card">
+            <div class="card-3d">
                 <h3>✈️ دعاء السفر المأثور</h3>
-                <div class="zkr-item" style="font-size: 1.05rem; font-weight: 600; text-align: center; border-right: none; background: rgba(6,11,17,0.3)">
-                    "الله أكبر، الله أكبر، الله أكبر، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ..."
+                <div class="zkr-item" style="font-size: 1.05rem; font-weight: 600; text-align: center; border-right: none; background-color: #fafafa; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px;">
+                    "الله أكبر، الله أكبر، الله أكبر، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبوبنَ..."
                 </div>
             </div>
-            <div class="glass-card">
-                <h3>🕋 دليل خطوات الإحرام بالتفصيل</h3>
-                <div class="step-box"><b>1. الاغتسال والتنظف:</b> يُستحب للمعتمر الاغتسال وتقليم الأظافر قبل الإحرام.</div>
-                <div class="step-box"><b>2. لبس ثياب الإحرام:</b> للرجال (إزار ورداء)، وللنساء (الملابس العادية الساترة).</div>
-                <div class="step-box"><b>3. النية والتلبية عند الميقات:</b> يقول: (لَبَّيْكَ اللَّهُمَّ عُمْرَةً).</div>
+            <div class="card-3d">
+                <h3>🕋 دليل خطوات ومناسك الإحرام</h3>
+                <div class="step-box" style="background: #fafafa; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px dashed var(--royal-gold);"><b>1. الاغتسال والتنظف:</b> يُستحب للمعتمر الاغتسال وتقليم الأظافر قبل الإحرام.</div>
+                <div class="step-box" style="background: #fafafa; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px dashed var(--royal-gold);"><b>2. لبس ثياب الإحرام:</b> للرجال (إزار ورداء)، وللنساء (الملابس العادية الساترة).</div>
+                <div class="step-box" style="background: #fafafa; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px dashed var(--royal-gold);"><b>3. النية والتلبية عند الميقات:</b> يقول: (لَبَّيْكَ اللَّهُمَّ عُمْرَةً).</div>
             </div>
         </div>
 
-        <!-- معلومات المكتب الرسمية الثابتة -->
+        <!-- معلومات الهامش الثابتة للمكتب -->
         <div class="office-footer">
             📍 <b>عنوان المكتب المعتمد:</b> دمشق - الميدان - مصطبة سعد الدين - دخلة جامع كنجلية - جانب حلويات المشش.<br>
             📞 <b>الإدارة العامة والمسؤولية:</b> الحاج أبو ناصر قيسر | خير رفيق إلى البيت العتيق
         </div>
     </div>
 
+    <!-- شريط التنقل السفلي الفخم الفاتح -->
     <nav class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('tab-search', this)"><span class="icon">🔍</span>بوابتك الرقمية</button>
         <button class="tab-btn" onclick="switchTab('tab-program', this)"><span class="icon">🕌</span>مواقيت والطقس</button>
@@ -266,8 +267,6 @@
             { name: "خالد عثمان", father: "نبيل", mother: "زبيده", dob: "2000-10-01", nat: "سورية", passport: "04071481" },
             { name: "شهناز شحاده", father: "حسن", mother: "سلمى", dob: "1967-09-20", nat: "سورية", passport: "04113880" }
         ];
-        let activeInterval = null;
-
         window.onload = function() {
             handleSiteCounter();
             updateProvinces();
@@ -289,12 +288,18 @@
         }
 
         function startCountdown() {
-            const targetDate = new Date("October 15, 2026 08:00:00").getTime();
-            setInterval(function() {
-                const now = new Date().getTime();
-                const difference = targetDate - now;
-                if(difference < 0) return;
+            function updateTimer() {
+                const now = new Date();
+                const nextSaturday = new Date();
                 
+                nextSaturday.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
+                nextSaturday.setHours(5, 0, 0, 0);
+
+                if (now.getTime() > nextSaturday.getTime()) {
+                    nextSaturday.setDate(nextSaturday.getDate() + 7);
+                }
+
+                const difference = nextSaturday.getTime() - now.getTime();
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
@@ -304,45 +309,16 @@
                 document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
                 document.getElementById("cd-minutes").innerText = minutes.toString().padStart(2, '0');
                 document.getElementById("cd-seconds").innerText = seconds.toString().padStart(2, '0');
-            }, 1000);
-        }
-
-        // دالة العداد التنازلي التلقائي الذكي والمدقق مئة بالمئة ليوم السبت صباحاً الساعة 5:00
-        function startTripCountdown() {
-            if (activeInterval) clearInterval(activeInterval);
-
-            function updateTripTimer() {
-                const now = new Date();
-                const nextSaturday = new Date();
-                
-                // حساب وضبط توقيت السبت القادم المحسوب بدقة هندسية
-                nextSaturday.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
-                nextSaturday.setHours(5, 0, 0, 0);
-
-                if (now.getTime() > nextSaturday.getTime()) {
-                    nextSaturday.setDate(nextSaturday.getDate() + 7);
-                }
-
-                const diff = nextSaturday.getTime() - now.getTime();
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                const timerEl = document.getElementById("trip-timer");
-                if (timerEl) {
-                    timerEl.innerHTML = `<span>${days}</span> يوم و <span>${hours}</span> ساعة و <span>${minutes}</span> دقيقة و <span>${seconds}</span> ثانية`;
-                }
             }
-
-            updateTripTimer();
-            activeInterval = setInterval(updateTripTimer, 1000);
+            updateTimer();
+            setInterval(updateTimer, 1000);
         }
 
         const globalPrayerTimes = {
             SY: {
                 "دمشق": { "الفجر": "04:42 ص", "الظهر": "12:35 م", "العصر": "04:10 م", "المغرب": "06:55 م", "العشاء": "08:20 م" },
-                "حلب": { "الفجر": "04:38 ص", "الظهر": "12:33 م", "العصر": "04:08 م", "المغرب": "06:53 م", "العشاء": "08:18 م" }
+                "حلب": { "الفجر": "04:38 ص", "الظهر": "12:33 م", "العصر": "04:08 م", "المغرب": "06:53 م", "العشاء": "08:18 م" },
+                "حمص": { "الفجر": "04:40 ص", "الظهر": "12:34 م", "العصر": "04:09 م", "المغرب": "06:54 م", "العشاء": "08:19 م" }
             },
             JO: { "عمان": { "الفجر": "04:45 ص", "الظهر": "12:38 م", "العصر": "04:12 م", "المغرب": "06:58 م", "العشاء": "08:23 م" } },
             SA: {
@@ -368,7 +344,7 @@
             const container = document.getElementById('prayer-times-container');
             if (!provinceKey) return;
             const cityData = globalPrayerTimes[countryKey][provinceKey];
-            let html = `<p style="margin: 12px 0; color:var(--royal-gold); text-align:center; font-weight:bold;">📍 أوقات الصلاة الحالية في (${provinceKey}):</p>`;
+            let html = `<p style="margin: 12px 0; color:var(--dark-gold); text-align:center; font-weight:bold;">📍 أوقات الصلاة الحالية في (${provinceKey}):</p>`;
             for(let prayer in cityData) { html += `<div class="prayer-time-row"><span>${prayer}</span><span>${cityData[prayer]}</span></div>`; }
             container.innerHTML = html;
         }
@@ -376,11 +352,11 @@
         function checkPilgrim() {
             const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
             const resultBox = document.getElementById('search-result');
-            if(!searchInput) { resultBox.innerHTML = `<div class="result-box error" style="display:block; margin-top:15px;">⚠️ يرجى كتابة الاسم أو رقم الجواز لتفعيل الاستعلام أولاً.</div>`; return; }
+            if(!searchInput) { resultBox.innerHTML = `<div style="background-color:rgba(197,48,48,0.1); border:1px solid #c53030; padding:12px; border-radius:12px; text-align:center; margin-top:15px; color:#c53030; font-weight:700;">⚠️ يرجى كتابة الاسم أو رقم الجواز لتفعيل الاستعلام أولاً.</div>`; return; }
             
             if (searchInput === 'admin' || searchInput === 'مدير') {
                 let totalVisits = localStorage.getItem('site_visits_count') || 142;
-                resultBox.innerHTML = `<div class="vip-ticket" style="border-color: #3182ce; text-align: center;">👑 <b>لوحة تحكم الإدارة السرية</b> 👑<br><br>📊 إجمالي عدد الزوار الفعليين المحققين حتى الآن هو:<br><span style="font-size: 1.8rem; color: var(--royal-gold); font-weight: bold;">${totalVisits}</span> زائر فريد وموثق 100%.</div>`;
+                resultBox.innerHTML = `<div class="vip-ticket" style="border-color: #3182ce; text-align: center;">👑 <b>لوحة تحكم الإدارة السرية</b> 👑<br><br>📊 إجمالي عدد الزوار الفعليين المحققين حتى الآن هو:<br><span style="font-size: 1.8rem; color: var(--dark-gold); font-weight: bold;">${totalVisits}</span> زائر فريد وموثق 100%.</div>`;
                 triggerCelebration(); playSound(); return;
             }
             
@@ -388,13 +364,12 @@
             if(found.length > 0) {
                 let htmlResults = "";
                 found.forEach(p => {
-                    htmlResults += `<div class="vip-ticket"><div class="ticket-row"><span>🕋 الاسم الثلاثي:</span><span>${p.name} بن ${p.father}</span></div><div class="ticket-row"><span>👵 اسم الأم الكريم:</span><span>${p.mother}</span></div><div class="ticket-row"><span>📅 التولد والجنسية:</span><span>${p.dob} (${p.nat})</span></div><div class="ticket-row"><span>🛂 رقم جواز السفر:</span><span>${p.passport}</span></div><div class="ticket-row"><span>🟢 حالة الفيزا والتأشيرة:</span><span style="color: #23c55e;">صادرة وجاهزة على المسار الإلكتروني ✅</span></div><div class="ticket-row"><span>🤵 مشرف الرحلة المتابع:</span><span>أسامة قيسر</span></div><div class="ticket-row"><span>🕌 المرشد الديني للرحلة:</span><span>الشيخ محمد الديك</span></div><div class="ticket-countdown">🏁 متبقي على إقلاع رحلتك (صباح السبت بعد الفجر):<br><span id="trip-timer">جاري الحساب...</span></div></div>`;
+                    htmlResults += `<div class="vip-ticket"><div class="ticket-row"><span>🕋 الاسم الثلاثي:</span><span>${p.name} بن ${p.father}</span></div><div class="ticket-row"><span>👵 اسم الأم الكريم:</span><span>${p.mother}</span></div><div class="ticket-row"><span>📅 التولد والجنسية:</span><span>${p.dob} (${p.nat})</span></div><div class="ticket-row"><span>🛂 رقم جواز السفر:</span><span>${p.passport}</span></div><div class="ticket-row"><span>🟢 حالة الفيزا والتأشيرة:</span><span style="color: #23c55e;">صادرة وجاهزة على المسار الإلكتروني ✅</span></div><div class="ticket-row"><span>🤵 مشرف الرحلة المتابع:</span><span>أسامة قيسر</span></div><div class="ticket-row"><span>🕌 المرشد الديني للرحلة:</span><span>الشيخ محمد الديك</span></div></div>`;
                 });
                 resultBox.innerHTML = htmlResults;
                 triggerCelebration(); playSound();
-                startTripCountdown();
             } else {
-                resultBox.innerHTML = `<div class="result-box error" style="display:block; margin-top:15px;">❌ لم نجد بيانات تطابق: "${searchInput}"</div>`;
+                resultBox.innerHTML = `<div style="background-color:rgba(197,48,48,0.1); border:1px solid #c53030; padding:12px; border-radius:12px; text-align:center; margin-top:15px; color:#c53030; font-weight:700;">❌ لم نجد بيانات تطابق: "${searchInput}"</div>`;
             }
         }
 
@@ -411,9 +386,15 @@
             const canvas = document.getElementById('celebration-canvas'); const ctx = canvas.getContext('2d');
             canvas.style.display = 'block'; canvas.width = window.innerWidth; canvas.height = window.innerHeight;
             let particles = [];
-            for (let i = 0; i < 80; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 12, vy: (Math.random() - 0.5) * 12, alpha: 1, color: `hsl(${Math.random() * 40 + 35}, 100%, 60%)` }); }
+            for (let i = 0; i < 80; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 12, vy: (Math.random() - 0.5) * 12, alpha: 1, color: `hsl(${Math.random() * 40 + 35}, 100%, 50%)` }); }
             let animationFrame;
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height); let alive = false;
                 particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.alpha -= 0.015; if (p.alpha > 0) { alive = true; ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill(); } });
                 if (alive) { animationFrame = requestAnimationFrame(animate); } else { canvas.style.display = 'none'; cancelAnimationFrame(animationFrame); }
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
