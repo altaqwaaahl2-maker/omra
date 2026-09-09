@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة مؤسسة أهل التقوى لخدمات الحج والعمرة</title>
-    <!-- استيراد الخطوط الفاخرة -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Amiri&family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://googleapis.com/css2 family=Amiri&family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { 
             --royal-dark: #0a1118; 
@@ -18,20 +16,22 @@
             --glass-bg: rgba(17, 29, 38, 0.95);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-        body { background-color: #070b10; color: #e2e8f0; padding-bottom: 90px; overflow-x: hidden; }
+        body { background-color: #070b10; color: #e2e8f0; padding-bottom: 90px; overflow-x: hidden; position: relative; }
         
-        header { background: var(--dark-gradient); color: white; padding: 45px 20px; text-align: center; border-bottom: 4px solid var(--royal-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
-        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.4rem; color: var(--royal-gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin-bottom: 8px; letter-spacing: 1px; }
-        header p { font-family: 'Amiri', serif; font-size: 1.3rem; opacity: 0.9; color: #f3e5ab; }
+        /* شاشة الألعاب النارية السرية والمفاجأة */
+        #celebration-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; display: none; }
+
+        header { background: var(--dark-gradient); color: white; padding: 40px 20px; text-align: center; border-bottom: 4px solid var(--royal-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.2rem; color: var(--royal-gold); text-shadow: 0 4px 10px rgba(0,0,0,0.8); margin-bottom: 8px; }
+        header p { font-family: 'Amiri', serif; font-size: 1.3rem; color: #f3e5ab; }
+        .sub-header { font-size: 0.95rem; color: #a0aec0; margin-top: 5px; font-weight: bold; }
         
-        .ticker-wrap { background: var(--gold-gradient); color: #0a1118; padding: 12px; font-size: 0.95rem; font-weight: bold; overflow: hidden; white-space: nowrap; box-shadow: 0 4px 20px rgba(214,175,55,0.3); }
-        .ticker { display: inline-block; padding-left: 100%; animation: marquee 30s linear infinite; }
+        .ticker-wrap { background: var(--gold-gradient); color: #0a1118; padding: 12px; font-size: 0.95rem; font-weight: bold; overflow: hidden; white-space: nowrap; }
+        .ticker { display: inline-block; padding-left: 100%; animation: marquee 35s linear infinite; }
         @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(100%, 0, 0); } }
         
-        #live-alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #111d26; color: var(--royal-gold); padding: 14px 28px; border-radius: 50px; font-weight: bold; border: 2px solid var(--royal-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 2000; display: none; text-align: center; }
-        
         .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: var(--glass-bg); backdrop-filter: blur(10px); display: flex; justify-content: space-around; box-shadow: 0 -10px 40px rgba(0,0,0,0.5); z-index: 1000; border-top: 2px solid var(--royal-gold); border-radius: 20px 20px 0 0; }
-        .tab-btn { background: none; border: none; padding: 18px 5px; font-size: 0.9rem; font-weight: 700; color: #a0aec0; flex: 1; text-align: center; cursor: pointer; transition: 0.3s; }
+        .tab-btn { background: none; border: none; padding: 15px 5px; font-size: 0.85rem; font-weight: 700; color: #a0aec0; flex: 1; text-align: center; cursor: pointer; transition: 0.3s; }
         .tab-btn.active { color: white; background: linear-gradient(to top, rgba(214,175,55,0.15), transparent); border-top: 4px solid var(--royal-gold); text-shadow: 0 0 10px var(--royal-gold); }
         
         .container { padding: 25px 15px; max-width: 650px; margin: 0 auto; }
@@ -39,109 +39,146 @@
         .tab-content.active { display: block; animation: fadeInUp 0.5s ease; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .card { background: #111d26; border-radius: 24px; padding: 28px; margin-bottom: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid rgba(214,175,55,0.15); position: relative; overflow: hidden; }
+        .card { background: #111d26; border-radius: 24px; padding: 25px; margin-bottom: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid rgba(214,175,55,0.15); position: relative; overflow: hidden; }
         .card::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--gold-gradient); }
-        .card h3 { color: var(--royal-gold); margin-bottom: 18px; font-size: 1.35rem; font-family: 'Reem Kufi', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .card h3 { color: var(--royal-gold); margin-bottom: 15px; font-size: 1.3rem; font-family: 'Reem Kufi', sans-serif; border-bottom: 1px solid rgba(214,175,55,0.15); padding-bottom: 8px; }
         
-        input, select { width: 100%; padding: 14px; margin-bottom: 14px; border: 2px solid #1c2f3f; border-radius: 14px; font-size: 0.95rem; outline: none; background: #0a1118; color: white; font-weight: 600; text-align: center; }
-        input:focus, select:focus { border-color: var(--royal-gold); box-shadow: 0 0 12px rgba(214,175,55,0.3); background: #111d26; }
+        input, select, textarea { width: 100%; padding: 14px; margin-bottom: 14px; border: 2px solid #1c2f3f; border-radius: 14px; font-size: 0.95rem; outline: none; background: #0a1118; color: white; font-weight: 600; text-align: center; }
+        input:focus, select:focus, textarea:focus { border-color: var(--royal-gold); box-shadow: 0 0 12px rgba(214,175,55,0.3); background: #111d26; }
         
-        .btn { background: var(--gold-gradient); color: #070b10; border: none; padding: 15px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(214,175,55,0.2); letter-spacing: 0.5px; }
+        .btn { background: var(--gold-gradient); color: #070b10; border: none; padding: 14px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(214,175,55,0.2); }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(214,175,55,0.4); }
         
         .zkr-item { background: #162633; padding: 14px; border-radius: 12px; margin-bottom: 10px; border-right: 4px solid var(--royal-gold); font-size: 0.95rem; line-height: 1.7; color: #e2e8f0; }
+        .step-box { background: #0a1118; padding: 12px; border-radius: 10px; margin-bottom: 8px; border: 1px dashed rgba(214,175,55,0.3); }
         
-        .result-box { background: rgba(17, 29, 38, 0.95); border: 2px solid var(--royal-gold); padding: 25px; border-radius: 20px; margin-top: 20px; display: none; line-height: 1.9; color: #e2e8f0; box-shadow: 0 10px 35px rgba(0,0,0,0.6); }
+        .result-box { background: rgba(17, 29, 38, 0.95); border: 2px solid var(--royal-gold); padding: 22px; border-radius: 20px; margin-top: 15px; display: none; line-height: 1.9; color: #e2e8f0; box-shadow: 0 10px 35px rgba(0,0,0,0.6); }
         .result-box.error { background: rgba(197, 48, 48, 0.15); border-color: #c53030; color: #fff5f5; text-align: center; }
         
-        .vip-badge { background: var(--gold-gradient); color: #070b10; padding: 3px 10px; border-radius: 30px; font-size: 0.75rem; font-weight: bold; display: inline-block; margin-bottom: 10px; }
+        .vip-badge { background: var(--gold-gradient); color: #070b10; padding: 3px 10px; border-radius: 30px; font-size: 0.75rem; font-weight: bold; display: inline-block; margin-bottom: 8px; }
         .prayer-time-row { display: flex; justify-content: space-between; padding: 12px; background: #162633; border-radius: 10px; margin-bottom: 6px; border-left: 4px solid var(--royal-gold); font-weight: bold; }
-        .calendar-box { background: var(--dark-gradient); color: white; text-align: center; border-radius: 16px; padding: 18px; border: 2px solid var(--royal-gold); font-weight: bold; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         
-        .driver-card { background: #162633; padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(214,175,55,0.2); margin-top: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .driver-title { color: var(--royal-gold); font-weight: bold; font-size: 0.9rem; }
+        .ads-container { background: #162633; padding: 15px; border-radius: 14px; border: 1px solid rgba(214,175,55,0.2); margin-bottom: 12px; }
+        .ads-badge { background: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; display: inline-block; margin-bottom: 8px; }
+        .ads-text { font-size: 0.95rem; line-height: 1.6; color: #edf2f7; }
+        
+        .quran-frame-container { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); margin-top: 15px; height: 500px; }
+        iframe { width: 100%; height: 100%; border: none; }
+        audio { width: 100%; margin-top: 10px; outline: none; }
+        
+        .office-footer { text-align: center; font-size: 0.85rem; color: #a0aec0; line-height: 1.6; padding: 20px 10px; border-top: 1px solid rgba(214,175,55,0.15); margin-top: 20px; background: #0a1118; border-radius: 16px; }
     </style>
 </head>
 <body>
-    <div id="live-alert">👑 مرحباً بكم في منصة مؤسسة أهل التقوى الفاخرة لخدمات العمرة 👑</div>
-    
+    <!-- مساحة عرض الألعاب النارية والمفاجأة الحية -->
+    <canvas id="celebration-canvas"></canvas>
+
     <header>
         <h1>مؤسسة أهل التقوى للحج والعمرة</h1>
         <p>خير رفيق إلى البيت العتيق</p>
+        <div class="sub-header">👑 بإشراف الحاج أبو ناصر قيسر 👑</div>
     </header>
     
     <div class="ticker-wrap">
-        <div id="announcement-bar" class="ticker">✨ قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) | تعلن حملة التقوى عن انطلاق حافلاتها المريحة والمكيفة من دمشق إلى مكة المكرمة مباشرة ✨</div>
+        <div id="announcement-bar" class="ticker">✨ قال ﷺ: (العُمْرَةُ إِلَى العُمْرَةِ كَفَّارَةٌ لِمَا بَيْنَهُمَا) | حملة مؤسسة أهل التقوى ترحب بضيوف بيت الله الحرام ✨</div>
     </div>
     
     <div class="container">
-        <!-- التبويب 1: الاستعلام الرقمي الفخم -->
+        
+        <!-- التبويب 1: الاستعلام ولوحة الإعلانات -->
         <div id="tab-search" class="tab-content active">
+            <!-- لوحة الإعلانات ونشر العروض -->
+            <div class="card">
+                <h3>📢 لوحة الإعلانات وعروض الرحلات الحالية</h3>
+                <div class="ads-container">
+                    <span class="ads-badge">إعلان هام 🆕</span>
+                    <p class="ads-text">تعلن المؤسسة عن تسيير رحلتها القادمة إلى الديار المقدسة عبر حافلاتنا الفاخرة والمكيفة. يرجى من المعتمرين مراجعة لوحة الاستعلام أدناه للتحقق من صدور تأشيراتهم.</p>
+                </div>
+            </div>
+
+            <!-- بوابة الاستعلام الرقمي للفيزا والبيانات -->
             <div class="card">
                 <h3>🔍 المنصة الذكية لاستعلام المعتمرين VIP</h3>
-                <p style="font-size:0.85rem; color:#a0aec0; margin-bottom:15px; text-align: center;">اكتب اسمك الكريم، كنيتك، أو رقم جواز سفرك لمعاينة بيانات الرحلة والفيزا فوراً</p>
-                <input type="text" id="search-input" placeholder="مثال: أسامة، النشواتي، 02828836...">
+                <p style="font-size:0.85rem; color:#a0aec0; margin-bottom:15px; text-align: center;">اكتب اسمك الكريم، كنيتك، أو رقم جواز سفرك لمعاينة البيانات فوراً</p>
+                <input type="text" id="search-input" placeholder="مثال: أسامة، الحمصي، الزين...">
                 <button class="btn" onclick="checkPilgrim()">تشغيل الاستعلام الذكي</button>
                 <div id="search-result" class="result-box"></div>
             </div>
             
-            <!-- معلومات الكادر القيادي للباص -->
+            <!-- صندوق المقترحات والشكاوي المباشر للواتساب -->
             <div class="card">
-                <h3>🚌 كادر الرحلة (خط سير: دمشق - مكة)</h3>
-                <div class="driver-card">
-                    <span class="driver-title">👤 السائق الأول:</span>
-                    <span>جاهز ومثبت كابتن 1 ✅</span>
-                </div>
-                <div class="driver-card">
-                    <span class="driver-title">👤 السائق الثاني:</span>
-                    <span>جاهز ومثبت كابتن 2 ✅</span>
-                </div>
+                <h3>✍️ صندوق المقترحات والشكاوي المباشر لإدارة المكتب</h3>
+                <input type="text" id="complainant-name" placeholder="أدخل اسمك الكريم">
+                <textarea id="complaint-text" rows="3" placeholder="اكتب شكواك أو اقتراحك هنا بكل وضوح..."></textarea>
+                <button class="btn" style="background: linear-gradient(135deg, #25D366, #128C7E); color: white;" onclick="sendComplaintToWhatsApp()">إرسال الشكوى عبر WhatsApp دغري</button>
             </div>
         </div>
 
-        <!-- التبويب 2: البرنامج والصلوات -->
+        <!-- التبويب 2: مواقيت الصلاة في السعودية -->
         <div id="tab-program" class="tab-content">
-            <div class="calendar-box">
-                <div style="font-family:'Reem Kufi', sans-serif; color:var(--royal-gold); font-size:1.1rem; margin-bottom:5px;">📅 الروزنامة الإسلامية وحالة اليوم</div>
-                <div id="live-calendar-date">27 ربيع الأول 1448 هـ | 9 سبتمبر 2026 م</div>
-            </div>
-            
             <div class="card">
-                <h3>🕌 مواقيت الصلاة والأذان التفاعلي</h3>
-                <label>اختر البلد الحالي:</label>
-                <select id="country-select" onchange="updateProvinces()">
-                    <option value="SY">سوريا (🇸🇾)</option>
-                    <option value="JO">الأردن (🇯🇴)</option>
+                <h3>🕌 مواقيت الصلاة في المملكة العربية السعودية</h3>
+                <label>اختر المدينة الحالية:</label>
+                <select id="saudi-city" onchange="updateSaudiPrayerTimes()">
+                    <option value="ME">مكة المكرمة (🕋)</option>
+                    <option value="MA">المدينة المنورة (🕌)</option>
+                    <option value="JE">جدة (✈️)</option>
+                    <option value="RI">الرياض (🇸🇦)</option>
                 </select>
-
-                <label>اختر المحافظة:</label>
-                <select id="province-select" onchange="updatePrayerTimes()">
-                </select>
-
-                <div id="prayer-times-container">
-                </div>
+                <div id="prayer-times-container"></div>
             </div>
         </div>
 
-        <!-- التبويب 3: أذكار إيمانية -->
+        <!-- التبويب 3: الدليل الإيماني، الأذكار، والمصحف الشريف كاملاً -->
         <div id="tab-zkr" class="tab-content">
+            <!-- المصحف الشريف كامل صوت وقراءة -->
             <div class="card">
-                <h3>📿 أدعية وأذكار المعتمر</h3>
-                <div class="zkr-item"><b>تلبية العمرة:</b> لَبَّيْكَ اللَّهُمَّ عُمْرَةً، لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لا شَرِيكَ لَكَ لَبَّيْكَ.</div>
-                <div class="zkr-item"><b>عند رؤية الكعبة:</b> اللَّهُمَّ زِدْ هَذَا الْبَيْتَ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَمَهَابَةً.</div>
-                <div class="zkr-item"><b>بين الركن اليماني والحجر الأسود:</b> رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.</div>
+                <h3>📖 المصحف الشريف كاملاً (صوت وقراءة المعتمر)</h3>
+                <p style="font-size:0.85rem; color:#a0aec0; margin-bottom:12px; text-align: center;">استمع تلاوة مباركة بصوت فضيلة الشيخ عبد الرحمن السديس (إمام الحرم):</p>
+                
+                <label>اختر سورة القرآن الكريم:</label>
+                <select id="quran-surah-select" onchange="playAndReadSurah()">
+                    <!-- يتم بناؤها بواسطة JS -->
+                </select>
+
+                <audio id="quran-audio-player" controls></audio>
+                
+                <p style="font-size:0.85rem; color:#a0aec0; margin: 15px 0 5px 0; text-align: center;">📖 لتصفح وقراءة المصحف الورقي الشريف إلكترونياً بدقة عالية:</p>
+                <div class="quran-frame-container">
+                    <iframe id="quran-reading-iframe" src="https://quran.com"></iframe>
+                </div>
             </div>
+
+            <!-- أذكار ودعاء السفر -->
+            <div class="card">
+                <h3>✈️ دعاء السفر المأثور</h3>
+                <div class="zkr-item" style="font-size: 1.05rem; font-weight: 600; text-align: center;">
+                    "الله أكبر، الله أكبر، الله أكبر، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ..."
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🕋 دليل خطوات الإحرام بالتفصيل</h3>
+                <div class="step-box"><b>1. الاغتسال والتنظف:</b> يُستحب للمعتمر الاغتسال وتقليم الأظافر قبل الإحرام.</div>
+                <div class="step-box"><b>2. لبس ثياب الإحرام:</b> للرجال (إزار ورداء)، وللنساء (الملابس العادية الساترة).</div>
+                <div class="step-box"><b>3. النية والتلبية عند الميقات:</b> يقول: (لَبَّيْكَ اللَّهُمَّ عُمْرَةً).</div>
+            </div>
+        </div>
+
+        <!-- معلومات المكتب الرسمية الثابتة -->
+        <div class="office-footer">
+            📍 <b>عنوان المكتب المعتمد:</b> دمشق - الميدان - مصطبة سعد الدين - دخلة جامع كنجلية - جانب حلويات المشش.<br>
+            📞 <b>الإدارة العامة والمسؤولية:</b> الحاج أبو ناصر قيسر | خير رفيق إلى البيت العتيق
         </div>
     </div>
 
     <!-- شريط التنقل السفلي الفخم -->
     <nav class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('tab-search', this)">🔍 بوابتك الرقمية</button>
-        <button class="tab-btn" onclick="switchTab('tab-program', this)">🕌 مواقيت الصلاة</button>
-        <button class="tab-btn" onclick="switchTab('tab-zkr', this)">📿 أدعية المعتمر</button>
+        <button class="tab-btn" onclick="switchTab('tab-program', this)">🕌 مواقيت السعودية</button>
+        <button class="tab-btn" onclick="switchTab('tab-zkr', this)">📿 الدليل الإيماني والمصحف</button>
     </nav>
     <script>
-        // ======================== [ قاعدة البيانات الملكية للمعتمرين ] ========================
         const pilgrimsDatabase = [
             { name: "أسامة قيسر", father: "محمد ثابت", mother: "رنده", dob: "1996-08-31", nat: "سورية", passport: "02828836", dest: "مكة", note: "متميز" },
             { name: "محمد الديك", father: "علي", mother: "سمية", dob: "1992-07-20", nat: "فلسطين", passport: "000401704", dest: "مكة", note: "-" },
@@ -175,11 +212,12 @@
             { name: "خالد عثمان", father: "نبيل", mother: "زبيده", dob: "2000-10-01", nat: "سورية", passport: "04071481", dest: "مكة", note: "-" },
             { name: "شهناز شحاده", father: "حسن", mother: "سلمى", dob: "1967-09-20", nat: "سورية", passport: "04113880", dest: "مكة", note: "-" }
         ];
+        const surahsList = ["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازحات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
+
         window.onload = function() {
-            const alertBox = document.getElementById('live-alert');
-            alertBox.style.display = 'block';
-            setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
-            updateProvinces();
+            updateSaudiPrayerTimes();
+            handleSiteCounter();
+            buildQuranSelect();
         };
 
         function switchTab(tabId, btn) {
@@ -189,82 +227,135 @@
             btn.classList.add('active');
         }
 
+        function handleSiteCounter() {
+            let totalVisits = localStorage.getItem('site_visits_count');
+            if (totalVisits === null) { totalVisits = 142; } 
+            else { totalVisits = parseInt(totalVisits) + 1; }
+            localStorage.setItem('site_visits_count', totalVisits);
+        }
+
+        function buildQuranSelect() {
+            const select = document.getElementById('quran-surah-select');
+            select.innerHTML = "";
+            surahsList.forEach((surahName, index) => {
+                let surahNum = (index + 1).toString().padStart(3, '0');
+                let opt = document.createElement('option');
+                opt.value = surahNum;
+                opt.innerText = `سورة ${surahName}`;
+                select.appendChild(opt);
+            });
+            playAndReadSurah();
+        }
+
+        function playAndReadSurah() {
+            const surahNum = document.getElementById('quran-surah-select').value;
+            const audioPlayer = document.getElementById('quran-audio-player');
+            const iframe = document.getElementById('quran-reading-iframe');
+            
+            audioPlayer.src = `https://mp3quran.net{surahNum}.mp3`;
+            iframe.src = `https://quran.com{parseInt(surahNum)}`;
+        }
+
         function checkPilgrim() {
             const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
             const resultBox = document.getElementById('search-result');
             
             if(!searchInput) {
                 resultBox.className = "result-box error";
-                resultBox.innerHTML = "⚠️ يرجى إدخال الاسم أو الكنية أو رقم الجواز لتفعيل الاستعلام الذكي.";
+                resultBox.innerHTML = "⚠️ يرجى كتابة الاسم أو رقم الجواز لتشغيل النظام.";
                 resultBox.style.display = "block";
                 return;
             }
-
             resultBox.style.display = "block";
             
-            const found = pilgrimsDatabase.filter(p => 
-                p.name.toLowerCase().includes(searchInput) || 
-                p.passport.toLowerCase() === searchInput
-            );
-
+            if (searchInput === 'admin' || searchInput === 'مدير') {
+                let totalVisits = localStorage.getItem('site_visits_count') || 142;
+                resultBox.className = "result-box";
+                resultBox.innerHTML = `<div style="text-align: center; border: 1px solid var(--royal-gold); padding: 10px; border-radius: 12px; background: rgba(214,175,55,0.05)">👑 <b>لوحة تحكم المدير السرية</b> 👑<br><br>📊 إجمالي عدد الزوار حتى الآن هو: <span style="font-size: 1.8rem; color: var(--royal-gold); font-weight: bold;">${totalVisits}</span> زائر.</div>`;
+                triggerCelebration(); // تفعيل المفاجأة
+                return;
+            }
+            
+            const found = pilgrimsDatabase.filter(p => p.name.toLowerCase().includes(searchInput) || p.passport.toLowerCase() === searchInput);
             if(found.length > 0) {
                 resultBox.className = "result-box";
                 let htmlResults = "";
-                
                 found.forEach(p => {
-                    htmlResults += `
-                    <div style="margin-bottom: 10px; padding-bottom: 10px;">
-                        <div class="vip-badge">بطاقة المعتمر الفاخرة VIP ✨</div><br>
-                        🕋 <b>الاسم الثلاثي:</b> ${p.name} بن ${p.father}<br>
-                        👵 <b>اسم الأم:</b> ${p.mother}<br>
-                        📅 <b>التولد:</b> ${p.dob} (${p.nat})<br>
-                        🛂 <b>رقم الجواز:</b> ${p.passport}<br>
-                        🟢 <b>حالة التأشيرة:</b> صالحة ومربوطة بالمسار الإلكتروني<br>
-                        📍 <b>الوجهة والملاحظات:</b> من دمشق إلى ${p.dest} ${p.note !== '-' ? `(${p.note})` : ''}<br>
-                    </div>`;
+                    htmlResults += `<div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed rgba(214,175,55,0.2);"><div class="vip-badge">بطاقة بيانات معتمر VIP ✨</div><br>🕋 <b>الاسم الثلاثي:</b> ${p.name} بن ${p.father}<br>👵 <b>اسم الأم:</b> ${p.mother}<br>📅 <b>المواليد والجنسية:</b> ${p.dob} (${p.nat})<br>🛂 <b>رقم الجواز:</b> ${p.passport}<br>🟢 <b>حالة الفيزا:</b> صالحة ومربوطة بالمسار الإلكتروني جاهزة تماماً<br>📌 <b>المشرف المتابع للرحلة:</b> أسامة قيسر<br>🕌 <b>المرشد الديني المعتمد:</b> الشيخ محمد الديك<br></div>`;
                 });
                 resultBox.innerHTML = htmlResults;
+                triggerCelebration(); // تفعيل المفاجأة للمعتمر
             } else {
                 resultBox.className = "result-box error";
-                resultBox.innerHTML = `❌ عذراً، لم نجد بيانات تطابق: "<b>${searchInput}</b>"<br><span style="font-size:0.85rem; color:#ffa7a7;">تأكد من كتابة الحروف بشكل صحيح أو جرب كتابة جزء من الاسم.</span>`;
+                resultBox.innerHTML = `❌ لم نجد بيانات تطابق: "<b>${searchInput}</b>"`;
             }
         }
 
-        const dataPlaces = {
-            SY: ["دمشق", "حلب", "حمص", "اللاذقية"],
-            JO: ["عمان", "الزرقاء", "إربد", "العقبة"]
+        // محرك تشغيل مفاجأة الألعاب النارية
+        function triggerCelebration() {
+            const canvas = document.getElementById('celebration-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.style.display = 'block';
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            let particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    vx: (Math.random() - 0.5) * 10,
+                    vy: (Math.random() - 0.5) * 10,
+                    alpha: 1,
+                    color: `hsl(${Math.random() * 40 + 35}, 100%, 60%)` // لون ذهبي مبهج
+                });
+            }
+            
+            let animationFrame;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = false;
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.1; // تأثير الجاذبية لأسفل
+                    p.alpha -= 0.015;
+                    if (p.alpha > 0) {
+                        alive = true;
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                });
+                if (alive) { animationFrame = requestAnimationFrame(animate); } 
+                else { canvas.style.display = 'none'; cancelAnimationFrame(animationFrame); }
+            }
+            animate();
+        }
+
+        function sendComplaintToWhatsApp() {
+            const name = document.getElementById('complainant-name').value.trim();
+            const text = document.getElementById('complaint-text').value.trim();
+            if(!name || !text) { alert("يرجى ملء خانة الاسم ونص الرسالة أولاً."); return; }
+            const myNumber = "0993485374"; 
+            window.open(`https://wa.me{myNumber}?text=${encodeURIComponent(`🚨 *شكوى من المنصة الإلكترونية*:\n\n👤 *المرسل:* ${name}\n📝 *الرسالة:* ${text}`)}`, '_blank');
+        }
+
+        const saudiTimes = {
+            ME: { name: "مكة المكرمة", "الفجر": "05:01 ص", "الظهر": "12:22 م", "العصر": "03:44 م", "المغرب": "06:14 م", "العشاء": "07:44 م" },
+            MA: { name: "المدينة المنورة", "الفجر": "05:03 ص", "الظهر": "12:23 م", "العصر": "03:47 م", "المغرب": "06:14 م", "العشاء": "07:44 م" },
+            JE: { name: "جدة", "الفجر": "05:05 ص", "الظهر": "12:25 م", "العصر": "03:48 م", "المغرب": "06:18 م", "العشاء": "07:48 م" },
+            RI: { name: "الرياض", "الفجر": "04:35 ص", "الظهر": "11:57 ص", "العصر": "03:22 م", "المغرب": "05:51 م", "العشاء": "07:21 م" }
         };
 
-        function updateProvinces() {
-            const country = document.getElementById('country-select').value;
-            const provinceSelect = document.getElementById('province-select');
-            provinceSelect.innerHTML = "";
-            
-            dataPlaces[country].forEach(p => {
-                let opt = document.createElement('option');
-                opt.value = p;
-                opt.innerText = p;
-                provinceSelect.appendChild(opt);
-            });
-            updatePrayerTimes();
-        }
-
-        function updatePrayerTimes() {
-            const province = document.getElementById('province-select').value;
+        function updateSaudiPrayerTimes() {
+            const cityKey = document.getElementById('saudi-city').value;
             const container = document.getElementById('prayer-times-container');
-            
-            const dummyTimes = {
-                "الفجر": "04:32 ص",
-                "الظهر": "12:45 م",
-                "العصر": "04:15 م",
-                "المغرب": "07:10 م",
-                "العشاء": "08:35 م"
-            };
-
-            let html = `<p style="margin: 10px 0; color:var(--royal-gold); text-align:center;">📍 مواقيت الصلاة لمدينة <b>${province}</b>:</p>`;
-            for(let prayer in dummyTimes) {
-                html += `<div class="prayer-time-row"><span>${prayer}</span><span>${dummyTimes[prayer]}</span></div>`;
-            }
+            const cityData = saudiTimes[cityKey];
+            let html = `<p style="margin: 12px 0; color:var(--royal-gold); text-align:center; font-weight:bold;">📍 أوقات الصلاة الحالية في ${cityData.name}:</p>`;
+            for(let prayer in cityData) { if(prayer !== "name") { html += `<div class="prayer-time-row"><span>${prayer}</span><span>${cityData[prayer]}</span></div>`; } }
             container.innerHTML = html;
         }
     </script>
