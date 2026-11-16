@@ -21,51 +21,52 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { background: radial-gradient(circle at center, #ffffff 0%, var(--royal-bg) 100%); color: var(--text-main); padding-bottom: 100px; min-height: 100vh; }
         #celebration-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; display: none; }
-        header { padding: 40px 20px 30px; text-align: center; }
-        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.5rem; color: var(--dark-gold); text-shadow: 0 2px 10px rgba(141,110,39,0.15); margin-bottom: 5px; }
-        header p { font-family: 'Amiri', serif; font-size: 1.45rem; color: var(--royal-gold); letter-spacing: 0.5px; font-weight: bold; }
-        .sub-header { font-size: 0.95rem; color: var(--text-main); margin-top: 12px; font-weight: bold; background: rgba(179, 146, 69, 0.1); display: inline-block; padding: 6px 24px; border-radius: 30px; border: 1px solid var(--royal-gold); }
-        .ticker-wrap { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; padding: 12px; font-size: 0.95rem; font-weight: 700; overflow: hidden; white-space: nowrap; box-shadow: 0 4px 20px rgba(179,146,69,0.15); }
+        header { padding: 35px 20px 25px; text-align: center; }
+        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.4rem; color: var(--dark-gold); text-shadow: 0 2px 10px rgba(141,110,39,0.15); margin-bottom: 5px; }
+        header p { font-family: 'Amiri', serif; font-size: 1.4rem; color: var(--royal-gold); font-weight: bold; }
+        .sub-header { font-size: 0.9rem; color: var(--text-main); margin-top: 10px; font-weight: bold; background: rgba(179, 146, 69, 0.1); display: inline-block; padding: 6px 22px; border-radius: 30px; border: 1px solid var(--royal-gold); }
+        .ticker-wrap { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; padding: 11px; font-size: 0.92rem; font-weight: 700; overflow: hidden; white-space: nowrap; }
         .ticker { display: inline-block; padding-left: 100%; animation: marquee 38s linear infinite; }
         @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-        .container { padding: 25px 15px; max-width: 650px; margin: 0 auto; }
+        .container { padding: 20px 15px; max-width: 650px; margin: 0 auto; }
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: smoothSpawn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes smoothSpawn { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .card-3d { background: var(--card-bg); border-radius: 24px; padding: 25px; margin-bottom: 25px; box-shadow: 0 15px 35px rgba(141,110,39,0.06), 0 1px 3px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
-        .card-3d h3 { color: var(--dark-gold); margin-bottom: 18px; font-size: 1.3rem; font-family: 'Reem Kufi', sans-serif; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
-        .countdown-title { text-align: center; font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--dark-gold); font-weight: bold; margin-bottom: 15px; line-height: 1.6; }
-        .countdown-container { display: flex; justify-content: space-around; margin: 10px 0; background: #fafafa; padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); }
+        .tab-content.active { display: block; animation: smoothSpawn 0.4s ease; }
+        @keyframes smoothSpawn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card-3d { background: var(--card-bg); border-radius: 22px; padding: 22px; margin-bottom: 22px; box-shadow: 0 12px 30px rgba(141,110,39,0.06); border: 1px solid var(--border-color); }
+        .card-3d h3 { color: var(--dark-gold); margin-bottom: 16px; font-size: 1.25rem; font-family: 'Reem Kufi', sans-serif; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .countdown-title { text-align: center; font-family: 'Amiri', serif; font-size: 1.15rem; color: var(--dark-gold); font-weight: bold; margin-bottom: 12px; }
+        .countdown-container { display: flex; justify-content: space-around; background: #fafafa; padding: 14px; border-radius: 14px; border: 1px solid var(--border-color); }
         .countdown-item { text-align: center; flex: 1; }
-        .countdown-item span { display: block; font-size: 1.75rem; font-weight: 700; color: var(--dark-gold); }
+        .countdown-item span { display: block; font-size: 1.65rem; font-weight: 700; color: var(--dark-gold); }
         .countdown-item label { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
         .premium-banner-container { width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); background-color: #ffffff; }
         .premium-banner { width: 100%; height: auto; display: block; object-fit: contain; }
-        input, select { width: 100%; padding: 15px; margin-bottom: 14px; border: 1px solid var(--border-color); border-radius: 14px; font-size: 1rem; outline: none; background: #ffffff; color: var(--text-main); font-weight: 600; text-align: center; }
+        input, select { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid var(--border-color); border-radius: 14px; font-size: 1rem; outline: none; background: #ffffff; color: var(--text-main); font-weight: 600; text-align: center; }
         input:focus, select:focus { border-color: var(--dark-gold); box-shadow: 0 0 12px rgba(141,110,39,0.12); }
-        .btn { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; border: none; padding: 15px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.05rem; box-shadow: 0 5px 20px rgba(141,110,39,0.2); text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .btn:hover { filter: brightness(1.05); }
-        .vip-ticket { background: #ffffff; border-radius: 18px; border: 2px solid var(--dark-gold); padding: 20px; margin-top: 15px; box-shadow: 0 15px 35px rgba(141,110,39,0.1); line-height: 2; }
-        .ticket-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 7px 0; font-size: 0.95rem; }
+        .btn { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; border: none; padding: 15px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.05rem; box-shadow: 0 5px 18px rgba(141,110,39,0.2); text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .btn-reset { background: #f1f5f9; color: var(--text-muted); border: 1px solid #cbd5e1; padding: 10px; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.9rem; margin-top: 10px; }
+        .counter-box { background: #fffcf5; border: 2px solid var(--royal-gold); border-radius: 18px; padding: 20px; text-align: center; margin-bottom: 15px; }
+        .counter-number { font-size: 3.5rem; font-weight: 700; color: var(--dark-gold); line-height: 1.2; }
+        .counter-label { font-size: 1rem; color: var(--text-muted); font-weight: bold; margin-bottom: 12px; }
+        .active-dua-card { background: #ffffff; border-right: 4px solid #16a34a; padding: 15px; border-radius: 12px; text-align: right; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        .vip-ticket { background: #ffffff; border-radius: 18px; border: 2px solid var(--dark-gold); padding: 18px; margin-top: 15px; box-shadow: 0 15px 35px rgba(141,110,39,0.1); line-height: 2; }
+        .ticket-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 6px 0; font-size: 0.95rem; }
         .ticket-row span:first-child { color: var(--text-muted); }
         .ticket-row span:last-child { font-weight: bold; }
-        .prayer-time-row { display: flex; justify-content: space-between; padding: 14px; background: #fafafa; border-radius: 14px; margin-bottom: 8px; border-left: 4px solid var(--dark-gold); font-weight: bold; font-size: 1rem; }
-        .quran-text-area { font-family: 'Amiri', serif; font-size: 1.55rem; line-height: 2.4; text-align: justify; color: #111; max-height: 450px; overflow-y: auto; padding: 18px; background: #fffcf5; border-radius: 14px; border: 1px dashed var(--border-color); margin-top: 12px; direction: rtl; }
-        .guide-section { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); }
-        .guide-step { background: #fafafa; border-right: 4px solid var(--dark-gold); padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 0.95rem; line-height: 1.8; }
-        .guide-step b { color: var(--dark-gold); }
+        .guide-step { background: #fafafa; border-right: 4px solid var(--dark-gold); padding: 14px 16px; border-radius: 10px; margin-bottom: 12px; font-size: 1rem; line-height: 1.9; }
+        .guide-step b { color: var(--dark-gold); font-size: 1.05rem; }
+        .dua-text { font-family: 'Amiri', serif; font-size: 1.35rem; color: #1a2332; display: block; margin-top: 6px; line-height: 2.1; }
         .alert-note { background: rgba(220, 38, 38, 0.06); border: 1px solid rgba(220, 38, 38, 0.3); color: #991b1b; padding: 14px; border-radius: 12px; font-size: 0.92rem; font-weight: 600; line-height: 1.7; margin-top: 10px; }
         .checklist-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #fafafa; border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 600; font-size: 0.95rem; }
-        .checklist-item input[type="checkbox"] { width: 20px; height: 20px; margin: 0; accent-color: var(--dark-gold); cursor: pointer; }
+        .checklist-item input[type="checkbox"] { width: 20px; height: 20px; margin: 0; accent-color: var(--dark-gold); }
         .checklist-item.checked { text-decoration: line-through; color: var(--text-muted); background: #f1f5f9; }
-        .currency-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center; }
-        .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; box-shadow: 0 -10px 40px rgba(141,110,39,0.08); z-index: 1000; border-top: 1px solid var(--border-color); border-radius: 22px 22px 0 0; padding: 8px 0; }
-        .tab-btn { background: none; border: none; padding: 8px 4px; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); flex: 1; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(20px); display: flex; justify-content: space-around; box-shadow: 0 -10px 40px rgba(141,110,39,0.08); z-index: 1000; border-top: 1px solid var(--border-color); border-radius: 22px 22px 0 0; padding: 8px 0; }
+        .tab-btn { background: none; border: none; padding: 8px 2px; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); flex: 1; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .tab-btn.active { color: var(--dark-gold); }
         .tab-btn span.icon { font-size: 1.25rem; }
         .admin-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8fafc; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; font-size: 0.9rem; font-weight: bold; }
         .btn-del { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; }
-        .office-footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; padding: 22px 12px; border-top: 1px solid var(--border-color); margin-top: 25px; background: rgba(255,255,255,0.75); border-radius: 16px; }
+        .office-footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; padding: 20px 12px; border-top: 1px solid var(--border-color); margin-top: 25px; background: rgba(255,255,255,0.75); border-radius: 16px; }
     </style>
 </head>
 <body>
@@ -78,15 +79,23 @@
     </header>
     
     <div class="ticker-wrap">
-        <div class="ticker">🕋 تعلن حملة التقوى عن تسيير رحلة عمرة في شهر كانون الأول (12/12) بعد صلاة الفجر مباشرة بإذن الله - موافقة إعلان رقم (س د ش 3838) 🕋</div>
+        <div class="ticker">🕋 رحلة عمرة شهر كانون الأول (12/12) بعد صلاة الفجر مباشرة - لمعرفة رقم البولمان والمقعد ابحث باسمك أدناه 🕋</div>
     </div>
     
     <div class="container">
         
         <div id="tab-search" class="tab-content active">
             <div class="card-3d">
-                <h3>⏳ مؤقت انطلاق قوافل رحلة 12/12 المباركة</h3>
-                <div class="countdown-title">« متبقي على تحرك حافلات المعتمرين لرحلة شهر كانون الأول (12/12) بعد صلاة الفجر مباشرة: »</div>
+                <h3>🔍 استعلم عن بطاقتك (رقم البولمان والمقعد)</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align: center;">اكتب اسمك الكريم أو رقم جوازك لمعرفة حالة التأشيرة ورقم باصك ومقعدك:</p>
+                <input type="text" id="search-input" placeholder="أدخل الاسم أو رقم الجواز...">
+                <button class="btn" onclick="checkPilgrim()">عرض بطاقة المعتمر VIP</button>
+                <div id="search-result"></div>
+            </div>
+
+            <div class="card-3d">
+                <h3>⏳ مؤقت انطلاق رحلة 12/12 المباركة</h3>
+                <div class="countdown-title">« متبقي على تحرك البولمانات (12/12 بعد الفجر مباشرة): »</div>
                 <div class="countdown-container">
                     <div class="countdown-item"><span id="cd-days">00</span><label>أيام</label></div>
                     <div class="countdown-item"><span id="cd-hours">00</span><label>ساعات</label></div>
@@ -98,128 +107,92 @@
             <div class="card-3d">
                 <h3>📢 برنامج رحلة شهر كانون الأول (12)</h3>
                 <div class="premium-banner-container">
-                    <img id="main-ads-banner" src="program12.jpg" class="premium-banner" alt="برنامج رحلة أهل التقوى شهر كانون الأول 12">
+                    <img id="main-ads-banner" src="program12.jpg" class="premium-banner" alt="برنامج رحلة أهل التقوى">
                 </div>
             </div>
-
+        </div>
+        <div id="tab-manasik" class="tab-content">
+            <!-- عداد الطواف التفاعلي -->
             <div class="card-3d">
-                <h3>🔍 المنصة الإلكترونية لاستعلام المعتمرين VIP</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px; text-align: center;">اكتب اسمك الكريم أو رقم جواز سفرك لمعاينة بطاقة بياناتك فوراً</p>
-                <input type="text" id="search-input" placeholder="أدخل الاسم أو رقم الجواز للبحث...">
-                <button class="btn" onclick="checkPilgrim()">تشغيل الاستعلام الذكي</button>
-                <div id="search-result"></div>
+                <h3>🕋 عدّاد وأدعية الطواف (7 أشواط)</h3>
+                <div class="counter-box">
+                    <div class="counter-label">أنت الآن في شوط الطواف رقم:</div>
+                    <div class="counter-number" id="tawaf-count">1</div>
+                    <div style="font-size:0.85rem; color:var(--royal-gold); font-weight:bold; margin-bottom:15px;">من أصل 7 أشواط حول الكعبة</div>
+                    <button class="btn" id="tawaf-btn" onclick="nextTawaf()">➕ أتممت الشوط، انتقل للشوط التالي</button>
+                    <button class="btn-reset" onclick="resetTawaf()">🔄 إعادة الطواف من الشوط الأول</button>
+                    
+                    <div class="active-dua-card">
+                        <b style="color:#16a34a;" id="tawaf-dua-title">🤲 دعاء الشوط الأول:</b>
+                        <span class="dua-text" id="tawaf-dua-text">"سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ. اللَّهُمَّ إِيمَانًا بِكَ، وَتَصْدِيقًا بِكِتَابِكَ، وَوَفَاءً بِعَهْدِكَ، وَاتِّبَاعًا لِسُنَّةِ نَبِيِّكَ مُحَمَّدٍ ﷺ".</span>
+                    </div>
+                </div>
+                <div class="guide-step" style="border-right-color: #16a34a; background: #f0fdf4;"><b>✨ بين الركن اليماني والحجر الأسود (في كل شوط):</b><span class="dua-text">"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ".</span></div>
+            </div>
+
+            <!-- عداد السعي التفاعلي -->
+            <div class="card-3d">
+                <h3>🏃‍♂️ عدّاد وأدعية السعي (الصفا والمروة)</h3>
+                <div class="counter-box">
+                    <div class="counter-label">أنت الآن في شوط السعي رقم:</div>
+                    <div class="counter-number" id="sai-count">1</div>
+                    <div style="font-size:0.85rem; color:var(--royal-gold); font-weight:bold; margin-bottom:15px;" id="sai-direction">📍 من الصفا إلى المروة (شوط 1 من 7)</div>
+                    <button class="btn" id="sai-btn" onclick="nextSai()">➕ أتممت الشوط، انتقل للشوط التالي</button>
+                    <button class="btn-reset" onclick="resetSai()">🔄 إعادة السعي من الشوط الأول</button>
+                    
+                    <div class="active-dua-card">
+                        <b style="color:#16a34a;">🤲 دعاء السعي المستحب:</b>
+                        <span class="dua-text">"رَبِّ اغْفِرْ وَارْحَمْ، وَاعْفُ عَمَّا تَعْلَمْ، وَأَنْتَ الْأَعَزُّ الْأَكْرَمُ. اللَّهُمَّ آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى".</span>
+                    </div>
+                </div>
+                <div class="guide-step"><b>📍 عند الوقوف على الصفا والمروة (في كل شوط):</b><span class="dua-text">"إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ.. لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزَابَ وَحْدَهُ" (تُقال 3 مرات ويدعو بينها).</span></div>
             </div>
         </div>
         <div id="tab-guide" class="tab-content">
             <div class="card-3d">
                 <h3>🕌 دَلِيلُ أَدْعِيَةِ وَآدَابِ السَّفَرِ وَالْإِحْرَامِ</h3>
-                <p style="text-align:center; font-size:0.85rem; color:var(--royal-gold); font-weight:bold; margin-bottom:15px;">✍️ إعداد: يوسف قيسر | مكتب أهل التقوى لخدمات العمرة والسفر</p>
+                <p style="text-align:center; font-size:0.85rem; color:var(--royal-gold); font-weight:bold; margin-bottom:15px;">✍️ إعداد: يوسف قيسر | مكتب أهل التقوى</p>
 
-                <div class="guide-section">
-                    <h4 style="color:var(--dark-gold); margin-bottom:12px;">🕌 أولاً: آداب السفر قبل وعند الخروج من المنزل</h4>
-                    <div class="guide-step"><b>1️⃣ الوصية والحقوق:</b> أن يوصي بما يحتاج به ويُشهد على وصيته، ويستحل من كل من بينه وبينه معاملة، ويقضي الديون والحقوق، ويتوب إلى الله، ويتعلم ما يحتاج في سفره.</div>
-                    <div class="guide-step"><b>2️⃣ وداع الأهل:</b> يقول لأهله: <i>"أستودعكم الله الذي لا تضيع ودائعه"</i>.</div>
-                    <div class="guide-step"><b>3️⃣ صلاة ركعتين:</b> يقرأ في الأولى بعد الفاتحة (سورة الكافرون) وفي الثانية (سورة الإخلاص)، ويدعو في سجوده بالتوفيق والعودة سالماً غانماً مع الصحة والعافية.</div>
-                    <div class="guide-step"><b>4️⃣ دعاء بعد الصلاة:</b><br><i>"الحمد لله رب العالمين، والصلاة والسلام على سيدنا محمد وعلى آله وصحبه أجمعين. اللهم ذلل لي صعوبة أمري وسهل علي مشقة سفري وارزقني من الخير أكثر مما أطلب، واصرف عني كل شر، رب اشرح لي صدري ويسر لي أمري، اللهم إني أستحفظك وأستودعك نفسي وديني وأهلي وأقاربي وكل ما أنعمت علي به فاحفظنا أجمعين من كل سوء يا كريم"</i>.<br><b>ثم ينهض ويقول:</b> <i>"اللهم إليك توجهت وبك اعتصمت، اللهم اكفني ما همني وما لا أهتم له، اللهم زودني التقوى واغفر لي ذنبي ووجهني للخير أينما توجهت"</i>.</div>
-                    <div class="guide-step"><b>5️⃣ عند الخروج من المنزل:</b> يقرأ (آية الكرسي وسورة قريش) ثم يقول:<br><i>"اللهم إني أعوذ بك أن أضل أو أُضل، أو أَزل أو أُزل، أو أَظلم أو أُظلم، أو أَجهل أو يُجهل عليّ، اللهم إني أعوذ بك من الضيقة في السفر والكآبة في المنقلب، اللهم اقبض لنا الأرض وهون علينا السفر. باسم الله توكلت على الله ولا حول ولا قوة إلا بالله"</i>.</div>
-                    <div class="guide-step"><b>6️⃣ الصدقة:</b> أن يتصدق بصدقة بنية تيسير السفر ودفع البلاء.</div>
-                    <div class="alert-note">⚠️ <b>ملحوظة هامة:</b> يرجى اصطحاب الرداء والإزار والنعلين إلى مكان جلوسك في البولمان من أجل الإحرام من الميقات.</div>
-                </div>
+                <div class="guide-step"><b>🕌 أولاً: قبل الخروج من المنزل:</b><br>1. الوصية وقضاء الديون والاستحلال.<br>2. وداع الأهل: <i>"أستودعكم الله الذي لا تضيع ودائعه"</i>.<br>3. صلاة ركعتين (الكافرون والإخلاص) ثم الدعاء: <i>"اللهم ذلل لي صعوبة أمري وسهل علي مشقة سفري..."</i>.<br>4. عند الخروج يقرأ (آية الكرسي وسورة قريش) ويقول: <i>"باسم الله توكلت على الله ولا حول ولا قوة إلا بالله"</i>.<br>5. الصدقة بنية تيسير السفر.</div>
+                
+                <div class="alert-note">⚠️ <b>ملحوظة هامة:</b> يرجى اصطحاب الرداء والإزار والنعلين إلى مكان جلوسك في البولمان من أجل الإحرام من الميقات.</div>
 
-                <div class="guide-section">
-                    <h4 style="color:var(--dark-gold); margin-bottom:12px;">🚌 ثانياً: عند ركوب الراحلة والآداب في الطريق</h4>
-                    <div class="guide-step"><b>1️⃣ عند الركوب:</b> بسم الله الرحمن الرحيم <i>﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ﴾</i>.</div>
-                    <div class="guide-step"><b>2️⃣ الحمد لله</b> (3 مرات) &nbsp;|&nbsp; <b>3️⃣ الله أكبر</b> (3 مرات).</div>
-                    <div class="guide-step"><b>4️⃣ دعاء السفر:</b><br><i>"اللهم إنا نسألك في سفرنا هذا البر والتقوى ومن العمل ما تحب وترضى، اللهم هون علينا سفرنا هذا واطو عنا بعده، اللهم أنت الصاحب في السفر والخليفة في الأهل، اللهم إني أعوذ بك من وعثاء السفر وكآبة المنظر، وسوء المنقلب في المال والأهل"</i> وصلى الله على سيدنا محمد وعلى آله وصحبه وسلم.</div>
-                    <div class="guide-step"><b>5️⃣ الأذكار المستمرة في الطريق:</b><br>• يقرأ آية الكرسي، الإخلاص، والمعوذتين، ويلتزم الذكر وتلاوة القرآن.<br>• 🔺 <b>في حالة الصعود:</b> الله أكبر &nbsp;|&nbsp; 🔻 <b>في حالة النزول:</b> سبحان الله.<br>• 🏡 <b>عند رؤية قرية:</b> <i>"اللهم رب السموات السبع وما أظللن، والأرضين السبع وما أقللن، ورب الشياطين وما أضللن، ورب الرياح وما ذرين، أسألك خير هذه القرية وخير ما فيها، ونعوذ بك من شرها وشر أهلها وشر ما فيها"</i>.<br>• 🌃 <b>إذا أقبل الليل:</b> <i>"يا أرض ربي وربك الله، أعوذ بالله من شرك وشر ما فيك، وشر ما خلق فيك، وشر ما يدب عليك، أعوذ بك من أسد وأسود، ومن الحية والعقرب، ومن ساكن البلد، ومن والد وما ولد"</i>.</div>
-                </div>
+                <div class="guide-step" style="margin-top:12px;"><b>🚌 ثانياً: عند ركوب البولمان والطريق:</b><br>1. <i>"سبحان الذي سخر لنا هذا وما كنا له مقرنين وإنا إلى ربنا لمنقلبون"</i>.<br>2. الحمد لله (3) | الله أكبر (3).<br>3. دعاء السفر: <i>"اللهم إنا نسألك في سفرنا هذا البر والتقوى ومن العمل ما تحب وترضى، اللهم هون علينا سفرنا هذا واطو عنا بعده..."</i>.<br>4. الصعود: الله أكبر | النزول: سبحان الله.</div>
 
-                <div>
-                    <h4 style="color:var(--dark-gold); margin-bottom:12px;">🕋 ثالثاً: الإحرام وسننه</h4>
-                    <div class="guide-step"><b>1️⃣</b> الغسل للإحرام (مستحب) &nbsp;|&nbsp; <b>2️⃣</b> الوضوء.</div>
-                    <div class="guide-step"><b>3️⃣</b> لبس الرداء (على الكتفين) والإزار (من السرة إلى ما دون الركبة "المناشف").</div>
-                    <div class="guide-step"><b>4️⃣</b> لبس نعلين لا يستران أصابع القدمين ولا الكعبين.</div>
-                    <div class="guide-step"><b>5️⃣ ركعتا سنة الإحرام:</b> يقرأ في الأولى (الكافرون) وفي الثانية (الإخلاص) ثم يدعو بما شاء.</div>
-                    <div class="guide-step"><b>6️⃣ النية:</b> <i>"اللهم إني نويت العمرة وأحرمت بها لله تعالى فأعني عليها وتقبلها مني"</i>.</div>
-                    <div class="guide-step"><b>7️⃣ التلبية:</b> <i>"لبيك اللهم بعمرة. لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك، لا شريك لك"</i> (3 مرات).</div>
-                    <div class="guide-step"><b>8️⃣</b> الصلاة الإبراهيمية على النبي ﷺ، ثم يقول: <i>"اللهم إني أسألك رضاك والجنة، وأعوذ بك من سخطك والنار"</i>، ويدعو لنفسه ولوالديه ومن أحب.</div>
-                    <div class="alert-note">🛑 <b>تنبيه هام جداً للمعتمرين:</b> يُسمح العودة إلى دمشق لكل معتمر بحقيبة واحدة فقط، بالإضافة إلى عبوة مياه زمزم.</div>
-                </div>
+                <div class="guide-step"><b>🕋 ثالثاً: الإحرام وسننه:</b><br>1. الغسل والوضوء ولبس الإزار والرداء ونعلين يكشفان الأصابع والكعبين.<br>2. ركعتا سنة الإحرام (الكافرون والإخلاص).<br>3. <b>النية:</b> <i>"اللهم إني نويت العمرة وأحرمت بها لله تعالى فأعني عليها وتقبلها مني"</i>.<br>4. <b>التلبية:</b> <i>"لبيك اللهم بعمرة. لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك، لا شريك لك"</i> (3 مرات).</div>
+
+                <div class="alert-note">🛑 <b>تنبيه هام جداً للمعتمرين:</b> يُسمح العودة إلى دمشق لكل معتمر بحقيبة واحدة فقط، بالإضافة إلى عبوة مياه زمزم.</div>
             </div>
-        </div>
-        <div id="tab-tools" class="tab-content">
+
             <div class="card-3d">
                 <h3>🎒 حقيبة المعتمر الذكية (تأكد من أغراضك)</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align:center;">اضغط على كل غرض لتضع علامة (✓) وتحفظ تجهيزاتك:</p>
                 <div id="packing-list"></div>
-            </div>
-
-            <div class="card-3d">
-                <h3>💱 محوّل العملات السريع (دولار ↔ ريال سعودي)</h3>
-                <div class="currency-box">
-                    <div>
-                        <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:5px;">المبلغ بالدولار ($)</label>
-                        <input type="number" id="usd-input" placeholder="100" oninput="convertCurrency('USD')">
-                    </div>
-                    <div>
-                        <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:5px;">بالريال السعودي (SAR)</label>
-                        <input type="number" id="sar-input" placeholder="375" oninput="convertCurrency('SAR')">
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-3d">
-                <h3>📿 سور مختارة للمطالعة في الطريق (بدون إنترنت)</h3>
-                <select id="local-surah-select" onchange="readLocalSurah()">
-                    <option value="fatiha">1. سُورَةُ الْفَاتِحَةِ كاملة</option>
-                    <option value="quraish">2. سُورَةُ قُرَيْشٍ (تُقرأ عند الخروج)</option>
-                    <option value="kursi">3. آيَةُ الْكُرْسِيِّ الشَّرِيفَةِ</option>
-                    <option value="kafirun">4. سُورَةُ الْكَافِرُونَ (ركعتي السفر والإحرام)</option>
-                    <option value="ikhlas">5. سُورَةُ الإخْلَاصِ وَالْمُعَوِّذَاتِ</option>
-                </select>
-                <div class="quran-text-area" id="local-quran-box"></div>
-            </div>
-
-            <div class="card-3d">
-                <h3>🕌 مواقيت الصلاة في دمشق والحرمين</h3>
-                <select id="country-select" onchange="updateProvinces()">
-                    <option value="SY">سوريا (🇸🇾)</option>
-                    <option value="JO">الأردن (🇯🇴)</option>
-                    <option value="SA">المملكة العربية السعودية (🇸🇦)</option>
-                </select>
-                <select id="province-select" onchange="updatePrayerTimes()"></select>
-                <div id="prayer-times-container"></div>
             </div>
         </div>
 
         <div id="tab-admin" class="tab-content">
             <div class="card-3d" id="admin-login-box">
-                <h3>🔒 تسجيل الدخول لغرفة الإدارة السرية للمكتب</h3>
+                <h3>🔒 غرفة الإدارة السرية للمكتب</h3>
                 <input type="password" id="admin-pass" placeholder="أدخل كلمة المرور السرية (1234)...">
-                <button class="btn" onclick="loginAdmin()">دخول برمز الإدارة</button>
+                <button class="btn" onclick="loginAdmin()">دخول</button>
             </div>
 
             <div class="card-3d" id="admin-panel-box" style="display: none;">
                 <h3>👑 لوحة تحكم حملة أهل التقوى</h3>
-                
-                <h4 style="color:var(--dark-gold); margin-bottom:10px;">🖼️ تحديث رابط صورة برنامج الرحلة:</h4>
-                <input type="text" id="adm-banner-url" placeholder="رابط صورة الإعلان (أو اتركه program12.jpg)">
-                <button class="btn" onclick="saveMediaFromAdmin()" style="margin-bottom: 25px;">تحديث وتثبيت الصورة</button>
+                <input type="text" id="adm-banner-url" placeholder="رابط صورة الإعلان (program12.jpg)">
+                <button class="btn" onclick="saveMediaFromAdmin()" style="margin-bottom: 20px;">تحديث الصورة</button>
 
-                <h4 style="color:var(--dark-gold); margin-bottom:10px;">👤 إضافة معتمر جديد لرحلة 12/12:</h4>
+                <h4 style="color:var(--dark-gold); margin-bottom:10px;">👤 إضافة معتمر وتحديد باصه ومقعده:</h4>
                 <input type="text" id="p-name" placeholder="اسم المعتمر الثلاثي">
                 <input type="text" id="p-father" placeholder="اسم الأب">
-                <input type="text" id="p-mother" placeholder="اسم الأم">
-                <input type="text" id="p-dob" placeholder="المواليد (مثال: 1995)">
-                <input type="text" id="p-nat" placeholder="الجنسية">
                 <input type="text" id="p-passport" placeholder="رقم جواز السفر">
+                <input type="text" id="p-bus" placeholder="رقم البولمان (مثال: بولمان 1)">
+                <input type="text" id="p-seat" placeholder="رقم المقعد (مثال: مقعد 14)">
                 <select id="p-status">
                     <option value="صادرة وجاهزة على المسار الإلكتروني ✅">فيزا صادرة وجاهزة ✅</option>
-                    <option value="قيد المعالجة والربط الذكي ⏳">قيد المعالجة والربط ⏳</option>
+                    <option value="قيد المعالجة ⏳">قيد المعالجة ⏳</option>
                 </select>
-                <button class="btn" onclick="addPilgrimFromAdmin()" style="margin-bottom: 20px;">حفظ المعتمر بالنظام</button>
-                
-                <h4 style="margin-bottom: 10px; color: var(--dark-gold);">📊 قائمة المعتمرين المسجلين:</h4>
+                <button class="btn" onclick="addPilgrimFromAdmin()" style="margin-bottom: 20px;">حفظ المعتمر</button>
                 <div id="admin-pilgrims-list"></div>
             </div>
         </div>
@@ -232,19 +205,69 @@
     </div>
 
     <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('tab-search', this)"><span class="icon">🔍</span>البوابة</button>
-        <button class="tab-btn" onclick="switchTab('tab-guide', this)"><span class="icon">🕌</span>دليل السفر</button>
-        <button class="tab-btn" onclick="switchTab('tab-tools', this)"><span class="icon">🎒</span>المصحف والأدوات</button>
+        <button class="tab-btn active" onclick="switchTab('tab-search', this)"><span class="icon">🔍</span>بطاقتك</button>
+        <button class="tab-btn" onclick="switchTab('tab-manasik', this)"><span class="icon">🕋</span>الطواف والسعي</button>
+        <button class="tab-btn" onclick="switchTab('tab-guide', this)"><span class="icon">🚌</span>دليل السفر</button>
         <button class="tab-btn" onclick="switchTab('tab-admin', this)"><span class="icon">🔒</span>الإدارة</button>
     </nav>
     <script>
-        const localQuranData = {
-            fatiha: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿٢﴾ الرَّحْمَٰنِ الرَّحِيمِ ﴿٣﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٤﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٦﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٧﴾",
-            quraish: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. لِإِيلَافِ قُرَيْشٍ ﴿١﴾ إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ ﴿٢﴾ فَلْيَعْبُدُوا رَبَّ هَٰذَا الْبَيْتِ ﴿٣﴾ الَّذِي أَطْعَمَهُم مِّن جُوعٍ وَآمَنَهُم مِّن خَوْفٍ ﴿٤﴾",
-            kursi: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ ﴿٢٥٥﴾",
-            kafirun: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ يَا أَيُّهَا الْكَافِرُونَ ﴿١﴾ لَا أَعْبُدُ مَا تَعْبُدُونَ ﴿٢﴾ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ﴿٣﴾ وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ ﴿٤﴾ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ﴿٥﴾ لَكُمْ دِينُكُمْ وَلِيَ دِينِ ﴿٦﴾",
-            ikhlas: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ ﴿١﴾ اللَّهُ الصَّمَدُ ﴿٢﴾ لَمْ يَلِدْ وَلَمْ يُولَدْ ﴿٣﴾ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ ﴿٤﴾ \n\n بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ﴿١﴾ مِن شَرِّ مَا خَلَقَ ﴿٢﴾ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٣﴾ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٤﴾ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٥﴾ \n\n بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴿١﴾ مَلِكِ النَّاسِ ﴿٢﴾ إِلَٰهِ النَّاسِ ﴿٣﴾ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٤﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٥﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٦﴾"
-        };
+        const tawafDuas = [
+            { title: "🤲 دعاء الشوط الأول:", text: "«سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ. اللَّهُمَّ إِيمَانًا بِكَ، وَتَصْدِيقًا بِكِتَابِكَ، وَوَفَاءً بِعَهْدِكَ، وَاتِّبَاعًا لِسُنَّةِ نَبِيِّكَ مُحَمَّدٍ ﷺ»." },
+            { title: "🤲 دعاء الشوط الثاني:", text: "«اللَّهُمَّ إِنَّ هَذَا الْبَيْتَ بَيْتُكَ، وَالْحَرَمَ حَرَمُكَ، وَالْأَمْنَ أَمْنُكَ، وَهَذَا مَقَامُ الْعَائِذِ بِكَ مِنَ النَّارِ، فَحَرِّمْ لُحُومَنَا وَبَشَرَنَا عَلَى النَّارِ»." },
+            { title: "🤲 دعاء الشوط الثالث:", text: "«اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الشَّكِّ وَالشِّرْكِ وَالشِّقَاقِ وَالنِّفَاقِ وَسُوءِ الْأَخْلَاقِ، وَسُوءِ الْمَنْظَرِ فِي الْأَهْلِ وَالْمَالِ وَالْوَلَدِ»." },
+            { title: "🤲 دعاء الشوط الرابع:", text: "«اللَّهُمَّ اجْعَلْهُ حَجًّا مَبْرُورًا وَعُمْرَةً مَقْبُولَةً، وَسَعْيًا مَشْكُورًا، وَذَنْبًا مَغْفُورًا، وَعَمَلًا صَالِحًا مَقْبُولًا، وَتِجَارَةً لَنْ تَبُورَ»." },
+            { title: "🤲 دعاء الشوط الخامس:", text: "«اللَّهُمَّ أَظِلَّنِي تَحْتَ ظِلِّ عَرْشِكَ يَوْمَ لَا ظِلَّ إِلَّا ظِلُّكَ وَلَا بَاقِيَ إِلَّا وَجْهُكَ، وَاسْقِنِي مِنْ حَوْضِ نَبِيِّكَ مُحَمَّدٍ ﷺ شَرْبَةً هَنِيئَةً مَرِيئَةً لَا أَظْمَأُ بَعْدَهَا أَبَدًا»." },
+            { title: "🤲 دعاء الشوط السادس:", text: "«اللَّهُمَّ إِنَّ لَكَ عَلَيَّ حُقُوقًا كَثِيرَةً فِيمَا بَيْنِي وَبَيْنَكَ، وَحُقُوقًا كَثِيرَةً فِيمَا بَيْنِي وَبَيْنَ خَلْقِكَ، اللَّهُمَّ مَا كَانَ لَكَ مِنْهَا فَاغْفِرْهُ لِي، وَمَا كَانَ لِخَلْقِكَ فَتَحَمَّلْهُ عَنِّي»." },
+            { title: "🤲 دعاء الشوط السابع (الأخير):", text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ إِيمَانًا كَامِلًا، وَيَقِينًا صَادِقًا، وَرِزْقًا وَاسِعًا، وَقَلْبًا خَاشِعًا، وَلِسَانًا ذَاكِرًا، وَحَلَالًا طَيِّبًا، وَتَوْبَةً نَصُوحًا قَبْلَ الْمَوْتِ»." }
+        ];
+
+        let currentTawaf = 1;
+        let currentSai = 1;
+
+        function nextTawaf() {
+            if (currentTawaf < 7) {
+                currentTawaf++;
+                document.getElementById('tawaf-count').innerText = currentTawaf;
+                document.getElementById('tawaf-dua-title').innerText = tawafDuas[currentTawaf - 1].title;
+                document.getElementById('tawaf-dua-text').innerText = tawafDuas[currentTawaf - 1].text;
+                if (currentTawaf === 7) {
+                    document.getElementById('tawaf-btn').innerText = "✅ إتمام الشوط السابع والأخير";
+                }
+            } else {
+                alert("تقبل الله طوافك! 🕋 توجه الآن لصلاة ركعتين خلف مقام إبراهيم ثم اشرب من ماء زمزم.");
+                triggerCelebration();
+            }
+        }
+
+        function resetTawaf() {
+            currentTawaf = 1;
+            document.getElementById('tawaf-count').innerText = 1;
+            document.getElementById('tawaf-dua-title').innerText = tawafDuas[0].title;
+            document.getElementById('tawaf-dua-text').innerText = tawafDuas[0].text;
+            document.getElementById('tawaf-btn').innerText = "➕ أتممت الشوط، انتقل للشوط التالي";
+        }
+
+        function nextSai() {
+            if (currentSai < 7) {
+                currentSai++;
+                document.getElementById('sai-count').innerText = currentSai;
+                let dir = (currentSai % 2 === 1) ? "📍 من الصفا إلى المروة" : "📍 من المروة إلى الصفا";
+                document.getElementById('sai-direction').innerText = `${dir} (شوط ${currentSai} من 7)`;
+                if (currentSai === 7) {
+                    document.getElementById('sai-btn').innerText = "✅ إتمام الشوط السابع عند المروة";
+                }
+            } else {
+                alert("عمرة مقبولة وسعي مشكور! 🤲 توجه الآن للحلق أو التقصير للتحلل من الإحرام.");
+                triggerCelebration();
+            }
+        }
+
+        function resetSai() {
+            currentSai = 1;
+            document.getElementById('sai-count').innerText = 1;
+            document.getElementById('sai-direction').innerText = "📍 من الصفا إلى المروة (شوط 1 من 7)";
+            document.getElementById('sai-btn').innerText = "➕ أتممت الشوط، انتقل للشوط التالي";
+        }
 
         const packingItems = [
             "جواز السفر الأصلي وتأشيرة العمرة",
@@ -256,17 +279,15 @@
         ];
 
         const defaultPilgrims = [
-            { name: "أسامة قيسر", father: "محمد ثابت", mother: "رنده", dob: "1996", nat: "سورية", passport: "02828836", status: "صادرة وجاهزة على المسار الإلكتروني ✅" },
-            { name: "محمد الديك", father: "علي", mother: "سمية", dob: "1992", nat: "فلسطين", passport: "000401704", status: "صادرة وجاهزة على المسار الإلكتروني ✅" }
+            { name: "أسامة قيسر", father: "محمد ثابت", passport: "02828836", bus: "بولمان 1", seat: "مقعد 1", status: "صادرة وجاهزة على المسار الإلكتروني ✅" },
+            { name: "محمد الديك", father: "علي", passport: "000401704", bus: "بولمان 1", seat: "مقعد 2", status: "صادرة وجاهزة على المسار الإلكتروني ✅" }
         ];
 
-        if (!localStorage.getItem('pilgrims_db')) localStorage.setItem('pilgrims_db', JSON.stringify(defaultPilgrims));
+        if (!localStorage.getItem('pilgrims_db_12')) localStorage.setItem('pilgrims_db_12', JSON.stringify(defaultPilgrims));
         if (!localStorage.getItem('banner_url_12')) localStorage.setItem('banner_url_12', 'program12.jpg');
 
         window.onload = function() {
-            updateProvinces();
             startCountdown();
-            readLocalSurah();
             renderPackingList();
             refreshMediaUI();
             renderAdminList();
@@ -284,12 +305,12 @@
             const targetDate = new Date("December 12, 2026 05:00:00").getTime();
             function updateTimer() {
                 const now = new Date().getTime();
-                const difference = targetDate - now;
-                if(difference < 0) return;
-                document.getElementById("cd-days").innerText = Math.floor(difference / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-                document.getElementById("cd-hours").innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-                document.getElementById("cd-minutes").innerText = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-                document.getElementById("cd-seconds").innerText = Math.floor((difference % (1000 * 60)) / 1000).toString().padStart(2, '0');
+                const diff = targetDate - now;
+                if(diff < 0) return;
+                document.getElementById("cd-days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById("cd-hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById("cd-minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById("cd-seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
             }
             updateTimer();
             setInterval(updateTimer, 1000);
@@ -315,17 +336,6 @@
             renderPackingList();
         }
 
-        function convertCurrency(from) {
-            const usd = document.getElementById('usd-input');
-            const sar = document.getElementById('sar-input');
-            if (from === 'USD') sar.value = usd.value ? (parseFloat(usd.value) * 3.75).toFixed(2) : '';
-            else usd.value = sar.value ? (parseFloat(sar.value) / 3.75).toFixed(2) : '';
-        }
-
-        function readLocalSurah() {
-            const key = document.getElementById('local-surah-select').value;
-            document.getElementById('local-quran-box').innerText = localQuranData[key];
-        }
         function refreshMediaUI() {
             const url = localStorage.getItem('banner_url_12');
             document.getElementById('main-ads-banner').src = url;
@@ -335,7 +345,7 @@
         function saveMediaFromAdmin() {
             localStorage.setItem('banner_url_12', document.getElementById('adm-banner-url').value.trim());
             refreshMediaUI();
-            alert('✅ تم تحديث صورة برنامج الرحلة بنجاح!');
+            alert('✅ تم تحديث الصورة بنجاح!');
         }
 
         function loginAdmin() {
@@ -348,92 +358,70 @@
         function addPilgrimFromAdmin() {
             const name = document.getElementById('p-name').value.trim();
             const father = document.getElementById('p-father').value.trim();
-            const mother = document.getElementById('p-mother').value.trim();
-            const dob = document.getElementById('p-dob').value.trim();
-            const nat = document.getElementById('p-nat').value.trim();
             const passport = document.getElementById('p-passport').value.trim();
+            const bus = document.getElementById('p-bus').value.trim() || 'يحدد لاحقاً';
+            const seat = document.getElementById('p-seat').value.trim() || 'يحدد لاحقاً';
             const status = document.getElementById('p-status').value;
 
             if (!name || !passport) { alert('⚠️ يرجى إدخال الاسم ورقم الجواز!'); return; }
-            let db = JSON.parse(localStorage.getItem('pilgrims_db')) || [];
-            db.push({ name, father, mother, dob, nat, passport, status });
-            localStorage.setItem('pilgrims_db', JSON.stringify(db));
+            let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || [];
+            db.push({ name, father, passport, bus, seat, status });
+            localStorage.setItem('pilgrims_db_12', JSON.stringify(db));
             document.getElementById('p-name').value = ''; document.getElementById('p-passport').value = '';
             renderAdminList(); alert('✅ تم حفظ المعتمر بنجاح!');
         }
 
         function deletePilgrim(index) {
-            let db = JSON.parse(localStorage.getItem('pilgrims_db'));
-            db.splice(index, 1); localStorage.setItem('pilgrims_db', JSON.stringify(db));
+            let db = JSON.parse(localStorage.getItem('pilgrims_db_12'));
+            db.splice(index, 1); localStorage.setItem('pilgrims_db_12', JSON.stringify(db));
             renderAdminList();
         }
 
         function renderAdminList() {
             const container = document.getElementById('admin-pilgrims-list');
-            let db = JSON.parse(localStorage.getItem('pilgrims_db')) || []; container.innerHTML = '';
-            db.forEach((p, idx) => {
-                let div = document.createElement('div'); div.className = 'admin-item-row';
-                div.innerHTML = `<span>👤 ${p.name} (${p.passport})</span> <button class="btn-del" onclick="deletePilgrim(${idx})">حذف</button>`;
-                container.appendChild(div);
-            });
-        }
+            let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || []; container.innerHTML = '';
+db.forEach((p, idx) => {
+let div = document.createElement('div'); div.className = 'admin-item-row';
+div.innerHTML = <span>👤 ${p.name} (${p.bus} - ${p.seat})</span> <button class="btn-del" onclick="deletePilgrim(${idx})">حذف</button>;
+container.appendChild(div);
+});
+}
+function checkPilgrim() {
+const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+const resultBox = document.getElementById('search-result');
+if(!searchInput) { resultBox.innerHTML = <p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">⚠️ يرجى كتابة الاسم للبحث أولاً!</p>; return; }
+let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || [];
+const found = db.filter(p => p.name.toLowerCase().includes(searchInput) || p.passport.toLowerCase() === searchInput);
+if(found.length > 0) {
+let htmlResults = "";
+found.forEach(p => {
+htmlResults += <div class="vip-ticket"><div class="ticket-row"><span>🕋 الاسم:</span><span>${p.name} بن ${p.father || '-'}</span></div><div class="ticket-row"><span>🛂 رقم الجواز:</span><span>${p.passport}</span></div><div class="ticket-row"><span>🚌 البولمان:</span><span style="color:#8d6e27;">${p.bus}</span></div><div class="ticket-row"><span>💺 رقم المقعد:</span><span style="color:#8d6e27;">${p.seat}</span></div><div class="ticket-row"><span>🟢 التأشيرة:</span><span style="color:#23c55e;">${p.status}</span></div><div class="ticket-row"><span>🤵 المشرف:</span><span>أسامة قيسر</span></div></div>;
+});
+resultBox.innerHTML = htmlResults; triggerCelebration(); playSound();
+} else { resultBox.innerHTML = <p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">❌ لم نجد بيانات مطابقة.</p>; }
+}
+function playSound() {
+let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+let oscillator = audioCtx.createOscillator(); let gainNode = audioCtx.createGain();
+oscillator.connect(gainNode); gainNode.connect(audioCtx.destination);
+oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.3);
+}
+function triggerCelebration() {
+const canvas = document.getElementById('celebration-canvas'); const ctx = canvas.getContext('2d');
+canvas.style.display = 'block'; canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+let particles = [];
+for (let i = 0; i < 60; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10, alpha: 1, color: hsl(${Math.random() * 40 + 35}, 100%, 50%) }); }
+function animate() {
+ctx.clearRect(0, 0, canvas.width, canvas.height); let alive = false;
+particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.alpha -= 0.02; if (p.alpha > 0) { alive = true; ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill(); } });
+if (alive) requestAnimationFrame(animate); else canvas.style.display = 'none';
+}
+animate();
+}
 
-        function checkPilgrim() {
-            const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
-            const resultBox = document.getElementById('search-result');
-            if(!searchInput) { resultBox.innerHTML = `<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">⚠️ يرجى كتابة الاسم للبحث أولاً!</p>`; return; }
-            
-            let db = JSON.parse(localStorage.getItem('pilgrims_db')) || [];
-            const found = db.filter(p => p.name.toLowerCase().includes(searchInput) || p.passport.toLowerCase() === searchInput);
-            
-            if(found.length > 0) {
-                let htmlResults = "";
-                found.forEach(p => {
-                    htmlResults += `<div class="vip-ticket"><div class="ticket-row"><span>🕋 الاسم الثلاثي:</span><span>${p.name} بن ${p.father || '-'}</span></div><div class="ticket-row"><span>👵 اسم الأم الكريم:</span><span>${p.mother || '-'}</span></div><div class="ticket-row"><span>📅 المواليد والجنسية:</span><span>${p.dob || '-'} (${p.nat || '-'})</span></div><div class="ticket-row"><span>🛂 رقم جواز السفر:</span><span>${p.passport}</span></div><div class="ticket-row"><span>🟢 حالة الفيزا:</span><span style="color:#23c55e;">${p.status}</span></div><div class="ticket-row"><span>🤵 المشرف:</span><span>أسامة قيسر</span></div></div>`;
-                });
-                resultBox.innerHTML = htmlResults; triggerCelebration(); playSound();
-            } else { resultBox.innerHTML = `<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">❌ لم نجد أي بيانات مطابقة.</p>`; }
-        }
 
-        function playSound() {
-            let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            let oscillator = audioCtx.createOscillator(); let gainNode = audioCtx.createGain();
-            oscillator.connect(gainNode); gainNode.connect(audioCtx.destination);
-            oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
-            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.3);
-        }
 
-        function triggerCelebration() {
-            const canvas = document.getElementById('celebration-canvas'); const ctx = canvas.getContext('2d');
-            canvas.style.display = 'block'; canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            let particles = [];
-            for (let i = 0; i < 60; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10, alpha: 1, color: `hsl(${Math.random() * 40 + 35}, 100%, 50%)` }); }
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height); let alive = false;
-                particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.alpha -= 0.02; if (p.alpha > 0) { alive = true; ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill(); } });
-                if (alive) requestAnimationFrame(animate); else canvas.style.display = 'none';
-            }
-            animate();
-        }
-
-        const globalPrayerTimes = {
-            SY: { "دمشق": { "الفجر": "05:15 ص", "الظهر": "12:25 م", "العصر": "03:35 م", "المغرب": "06:00 م", "العشاء": "07:30 م" } },
-            JO: { "عمان": { "الفجر": "05:20 ص", "الظهر": "12:28 م", "العصر": "03:38 م", "المغرب": "06:05 م", "العشاء": "07:35 م" } },
-            SA: { "مكة المكرمة": { "الفجر": "05:30 ص", "الظهر": "12:15 م", "العصر": "03:30 م", "المغرب": "05:45 م", "العشاء": "07:15 م" } }
-        };
-
-        function updateProvinces() {
-            const countryKey = document.getElementById('country-select').value;
-            const provinceSelect = document.getElementById('province-select'); provinceSelect.innerHTML = "";
-            Object.keys(globalPrayerTimes[countryKey]).forEach(p => { let opt = document.createElement('option'); opt.value = p; opt.innerText = p; provinceSelect.appendChild(opt); });
-            updatePrayerTimes();
-        }
-        function updatePrayerTimes() {
-            const countryKey = document.getElementById('country-select').value; const provinceKey = document.getElementById('province-select').value;
-            const container = document.getElementById('prayer-times-container'); if (!provinceKey) return;
-            let html = ""; for(let prayer in globalPrayerTimes[countryKey][provinceKey]) { html += `<div class="prayer-time-row"><span>${prayer}</span><span>${globalPrayerTimes[countryKey][provinceKey][prayer]}</span></div>`; }
-            container.innerHTML = html;
-        }
-    </script>
-</body>
-</html>
+<FollowUp>
+!
+</FollowUp>
