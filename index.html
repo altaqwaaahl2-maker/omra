@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -112,9 +111,8 @@
             </div>
         </div>
         <div id="tab-manasik" class="tab-content">
-            <!-- عداد الطواف التفاعلي -->
             <div class="card-3d">
-                <h3>🕋 عدّاد وأدعية الطواف (7 أشواط)</h3>
+                <h3>🕋 عدّاد وأدعية الطواف الصحيحة (7 أشواط)</h3>
                 <div class="counter-box">
                     <div class="counter-label">أنت الآن في شوط الطواف رقم:</div>
                     <div class="counter-number" id="tawaf-count">1</div>
@@ -123,16 +121,19 @@
                     <button class="btn-reset" onclick="resetTawaf()">🔄 إعادة الطواف من الشوط الأول</button>
                     
                     <div class="active-dua-card">
-                        <b style="color:#16a34a;" id="tawaf-dua-title">🤲 دعاء الشوط الأول:</b>
-                        <span class="dua-text" id="tawaf-dua-text">"سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ. اللَّهُمَّ إِيمَانًا بِكَ، وَتَصْدِيقًا بِكِتَابِكَ، وَوَفَاءً بِعَهْدِكَ، وَاتِّبَاعًا لِسُنَّةِ نَبِيِّكَ مُحَمَّدٍ ﷺ".</span>
+                        <b style="color:#16a34a;" id="tawaf-dua-title">📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 1):</b>
+                        <span class="dua-text" id="tawaf-dua-text">لم يثبت عن النبي ﷺ دعاءٌ مخصصٌ لكل شوط، بل يُشرع للمعتمر في كل شوط أن يكثر من ذكر الله، وتلاوة القرآن، والاستغفار، والدعاء لنفسه وأهله بما شاء من خيري الدنيا والآخرة.</span>
                     </div>
                 </div>
-                <div class="guide-step" style="border-right-color: #16a34a; background: #f0fdf4;"><b>✨ بين الركن اليماني والحجر الأسود (في كل شوط):</b><span class="dua-text">"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ".</span></div>
-            </div>
 
-            <!-- عداد السعي التفاعلي -->
+                <div class="guide-step"><b>📍 1. عند محاذاة الحجر الأسود (بداية كل شوط):</b><span class="dua-text">يستقبله ويشير إليه بيده اليمنى قائلاً: «بِسْمِ اللَّهِ، وَاللَّهُ أَكْبَرُ» (ثابت عن ابن عمر رضي الله عنهما).</span></div>
+
+                <div class="guide-step" style="border-right-color: #16a34a; background: #f0fdf4;"><b>📍 2. بين الركن اليماني والحجر الأسود (في كل شوط):</b><span class="dua-text">«رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ» (رواه أبو داود وحسنه الألباني).</span></div>
+
+                <div class="guide-step"><b>📍 3. بعد إتمام الأشواط السبعة (عند مقام إبراهيم):</b><span class="dua-text">يتلو قوله تعالى: ﴿وَاتَّخِذُوا مِن مَّقَامِ إِبْرَاهِيمَ مُصَلًّى﴾، ثم يصلي ركعتين خلف المقام يقرأ في الأولى بعد الفاتحة (قُلْ يَا أَيُّهَا الْكَافِرُونَ) وفي الثانية (قُلْ هُوَ اللَّهُ أَحَدٌ)، ثم يشرب من ماء زمزم ويدعو بما شاء.</span></div>
+            </div>
             <div class="card-3d">
-                <h3>🏃‍♂️ عدّاد وأدعية السعي (الصفا والمروة)</h3>
+                <h3>🏃‍♂️ عدّاد وأدعية السعي الصحيحة (الصفا والمروة)</h3>
                 <div class="counter-box">
                     <div class="counter-label">أنت الآن في شوط السعي رقم:</div>
                     <div class="counter-number" id="sai-count">1</div>
@@ -141,25 +142,39 @@
                     <button class="btn-reset" onclick="resetSai()">🔄 إعادة السعي من الشوط الأول</button>
                     
                     <div class="active-dua-card">
-                        <b style="color:#16a34a;">🤲 دعاء السعي المستحب:</b>
-                        <span class="dua-text">"رَبِّ اغْفِرْ وَارْحَمْ، وَاعْفُ عَمَّا تَعْلَمْ، وَأَنْتَ الْأَعَزُّ الْأَكْرَمُ. اللَّهُمَّ آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى".</span>
+                        <b style="color:#16a34a;">📖 الذكر الثابت أثناء المشي في السعي:</b>
+                        <span class="dua-text">يكثر من الذكر والدعاء بما شاء، وثبت عن ابن مسعود وابن عمر رضي الله عنهم في السعي قول: «رَبِّ اغْفِرْ وَارْحَمْ، إِنَّكَ أَنْتَ الْأَعَزُّ الْأَكْرَمُ».</span>
                     </div>
                 </div>
-                <div class="guide-step"><b>📍 عند الوقوف على الصفا والمروة (في كل شوط):</b><span class="dua-text">"إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ.. لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزَابَ وَحْدَهُ" (تُقال 3 مرات ويدعو بينها).</span></div>
+
+                <div class="guide-step"><b>📍 1. عند الاقتراب من الصفا في بداية الشوط الأول فقط:</b><span class="dua-text">يقرأ قوله تعالى: ﴿إِنَّ الصَّفَا وَالْمَرْوَةَ مِن شَعَائِرِ اللَّهِ فَمَنْ حَجَّ الْبَيْتَ أَوِ اعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَن يَطَّوَّفَ بِهِمَا وَمَن تَطَوَّعَ خَيْرًا فَإِنَّ اللَّهَ شَاكِرٌ عَلِيمٌ﴾ ثم يقول: «أَبْدَأُ بِمَا بَدَأَ اللَّهُ بِهِ» (رواه مسلم).</span></div>
+
+                <div class="guide-step" style="border-right-color: #16a34a; background: #f0fdf4;"><b>📍 2. عند الوقوف على الصفا والمروة (في كل شوط):</b><span class="dua-text">يستقبل الكعبة ويرفع يديه ويكبر ويقول: «لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزَابَ وَحْدَهُ» (يقولها 3 مرات ويدعو بينها بما شاء - رواه مسلم).</span></div>
             </div>
         </div>
         <div id="tab-guide" class="tab-content">
             <div class="card-3d">
                 <h3>🕌 دَلِيلُ أَدْعِيَةِ وَآدَابِ السَّفَرِ وَالْإِحْرَامِ</h3>
-                <p style="text-align:center; font-size:0.85rem; color:var(--royal-gold); font-weight:bold; margin-bottom:15px;">✍️ إعداد: يوسف قيسر | مكتب أهل التقوى</p>
+                <p style="text-align:center; font-size:0.85rem; color:var(--royal-gold); font-weight:bold; margin-bottom:15px;">✍️ إعداد: يوسف قيسر | مكتب أهل التقوى لخدمات العمرة والسفر</p>
 
-                <div class="guide-step"><b>🕌 أولاً: قبل الخروج من المنزل:</b><br>1. الوصية وقضاء الديون والاستحلال.<br>2. وداع الأهل: <i>"أستودعكم الله الذي لا تضيع ودائعه"</i>.<br>3. صلاة ركعتين (الكافرون والإخلاص) ثم الدعاء: <i>"اللهم ذلل لي صعوبة أمري وسهل علي مشقة سفري..."</i>.<br>4. عند الخروج يقرأ (آية الكرسي وسورة قريش) ويقول: <i>"باسم الله توكلت على الله ولا حول ولا قوة إلا بالله"</i>.<br>5. الصدقة بنية تيسير السفر.</div>
+                <div class="guide-step"><b>🕌 أولاً: آداب السفر قبل وعند الخروج من المنزل:</b><br>
+                1️⃣ <b>الوصية والحقوق:</b> أن يوصي بما يحتاج به، ويقضي الديون والحقوق، ويتوب إلى الله.<br>
+                2️⃣ <b>وداع الأهل:</b> «أَسْتَوْدِعُكُمُ اللَّهَ الَّذِي لَا تَضِيعُ وَدَائِعُهُ» (رواه ابن ماجه).<br>
+                3️⃣ <b>عند الخروج من المنزل:</b> «بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أَضِلَّ أَوْ أُضَلَّ، أَوْ أَزِلَّ أَوْ أُزَلَّ، أَوْ أَظْلِمَ أَوْ أُظْلَمَ، أَوْ أَجْهَلَ أَوْ يُجْهَلَ عَلَيَّ» (رواه أبو داود والترمذي).<br>
+                4️⃣ <b>الصدقة:</b> أن يتصدق بصدقة بنية تيسير السفر.</div>
                 
                 <div class="alert-note">⚠️ <b>ملحوظة هامة:</b> يرجى اصطحاب الرداء والإزار والنعلين إلى مكان جلوسك في البولمان من أجل الإحرام من الميقات.</div>
 
-                <div class="guide-step" style="margin-top:12px;"><b>🚌 ثانياً: عند ركوب البولمان والطريق:</b><br>1. <i>"سبحان الذي سخر لنا هذا وما كنا له مقرنين وإنا إلى ربنا لمنقلبون"</i>.<br>2. الحمد لله (3) | الله أكبر (3).<br>3. دعاء السفر: <i>"اللهم إنا نسألك في سفرنا هذا البر والتقوى ومن العمل ما تحب وترضى، اللهم هون علينا سفرنا هذا واطو عنا بعده..."</i>.<br>4. الصعود: الله أكبر | النزول: سبحان الله.</div>
+                <div class="guide-step" style="margin-top:12px;"><b>🚌 ثانياً: عند ركوب البولمان وأدعية السفر الصحيحة:</b><br>
+                1️⃣ يكبّر ثلاثاً (اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ) ثم يقول:<br>
+                <i>«سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ. اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَلِيفَةُ فِي الْأَهْلِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ، وَكَآبَةِ الْمَنْظَرِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالْأَهْلِ»</i> (رواه مسلم).<br>
+                2️⃣ <b>عند الصعود:</b> اللَّهُ أَكْبَرُ &nbsp;|&nbsp; <b>عند النزول:</b> سُبْحَانَ اللَّهِ (رواه البخاري).<br>
+                3️⃣ <b>عند نزول منزل في الطريق:</b> «أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ» (رواه مسلم).</div>
 
-                <div class="guide-step"><b>🕋 ثالثاً: الإحرام وسننه:</b><br>1. الغسل والوضوء ولبس الإزار والرداء ونعلين يكشفان الأصابع والكعبين.<br>2. ركعتا سنة الإحرام (الكافرون والإخلاص).<br>3. <b>النية:</b> <i>"اللهم إني نويت العمرة وأحرمت بها لله تعالى فأعني عليها وتقبلها مني"</i>.<br>4. <b>التلبية:</b> <i>"لبيك اللهم بعمرة. لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك، لا شريك لك"</i> (3 مرات).</div>
+                <div class="guide-step"><b>🕋 ثالثاً: الإحرام وسننه الصحيحة:</b><br>
+                1️⃣ الاغتسال والتطيب في البدن قبل عقد نية الإحرام (مستحب).<br>
+                2️⃣ لبس الإزار والرداء ونعلين يكشفان الكعبين.<br>
+                3️⃣ <b>النية والتلبية عند الميقات:</b> «لَبَّيْكَ اللَّهُمَّ عُمْرَةً» ثم يكثر من التلبية: <i>«لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ»</i> (متفق عليه).</div>
 
                 <div class="alert-note">🛑 <b>تنبيه هام جداً للمعتمرين:</b> يُسمح العودة إلى دمشق لكل معتمر بحقيبة واحدة فقط، بالإضافة إلى عبوة مياه زمزم.</div>
             </div>
@@ -169,11 +184,10 @@
                 <div id="packing-list"></div>
             </div>
         </div>
-
         <div id="tab-admin" class="tab-content">
             <div class="card-3d" id="admin-login-box">
                 <h3>🔒 غرفة الإدارة السرية للمكتب</h3>
-                <input type="password" id="admin-pass" placeholder="أدخل كلمة المرور السرية (1234)...">
+                <input type="password" id="admin-pass" placeholder="أدخل كلمة المرور السرية...">
                 <button class="btn" onclick="loginAdmin()">دخول</button>
             </div>
 
@@ -211,14 +225,14 @@
         <button class="tab-btn" onclick="switchTab('tab-admin', this)"><span class="icon">🔒</span>الإدارة</button>
     </nav>
     <script>
-        const tawafDuas = [
-            { title: "🤲 دعاء الشوط الأول:", text: "«سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ. اللَّهُمَّ إِيمَانًا بِكَ، وَتَصْدِيقًا بِكِتَابِكَ، وَوَفَاءً بِعَهْدِكَ، وَاتِّبَاعًا لِسُنَّةِ نَبِيِّكَ مُحَمَّدٍ ﷺ»." },
-            { title: "🤲 دعاء الشوط الثاني:", text: "«اللَّهُمَّ إِنَّ هَذَا الْبَيْتَ بَيْتُكَ، وَالْحَرَمَ حَرَمُكَ، وَالْأَمْنَ أَمْنُكَ، وَهَذَا مَقَامُ الْعَائِذِ بِكَ مِنَ النَّارِ، فَحَرِّمْ لُحُومَنَا وَبَشَرَنَا عَلَى النَّارِ»." },
-            { title: "🤲 دعاء الشوط الثالث:", text: "«اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الشَّكِّ وَالشِّرْكِ وَالشِّقَاقِ وَالنِّفَاقِ وَسُوءِ الْأَخْلَاقِ، وَسُوءِ الْمَنْظَرِ فِي الْأَهْلِ وَالْمَالِ وَالْوَلَدِ»." },
-            { title: "🤲 دعاء الشوط الرابع:", text: "«اللَّهُمَّ اجْعَلْهُ حَجًّا مَبْرُورًا وَعُمْرَةً مَقْبُولَةً، وَسَعْيًا مَشْكُورًا، وَذَنْبًا مَغْفُورًا، وَعَمَلًا صَالِحًا مَقْبُولًا، وَتِجَارَةً لَنْ تَبُورَ»." },
-            { title: "🤲 دعاء الشوط الخامس:", text: "«اللَّهُمَّ أَظِلَّنِي تَحْتَ ظِلِّ عَرْشِكَ يَوْمَ لَا ظِلَّ إِلَّا ظِلُّكَ وَلَا بَاقِيَ إِلَّا وَجْهُكَ، وَاسْقِنِي مِنْ حَوْضِ نَبِيِّكَ مُحَمَّدٍ ﷺ شَرْبَةً هَنِيئَةً مَرِيئَةً لَا أَظْمَأُ بَعْدَهَا أَبَدًا»." },
-            { title: "🤲 دعاء الشوط السادس:", text: "«اللَّهُمَّ إِنَّ لَكَ عَلَيَّ حُقُوقًا كَثِيرَةً فِيمَا بَيْنِي وَبَيْنَكَ، وَحُقُوقًا كَثِيرَةً فِيمَا بَيْنِي وَبَيْنَ خَلْقِكَ، اللَّهُمَّ مَا كَانَ لَكَ مِنْهَا فَاغْفِرْهُ لِي، وَمَا كَانَ لِخَلْقِكَ فَتَحَمَّلْهُ عَنِّي»." },
-            { title: "🤲 دعاء الشوط السابع (الأخير):", text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ إِيمَانًا كَامِلًا، وَيَقِينًا صَادِقًا، وَرِزْقًا وَاسِعًا، وَقَلْبًا خَاشِعًا، وَلِسَانًا ذَاكِرًا، وَحَلَالًا طَيِّبًا، وَتَوْبَةً نَصُوحًا قَبْلَ الْمَوْتِ»." }
+        const tawafNotes = [
+            { title: "📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 1):", text: "لم يثبت عن النبي ﷺ دعاءٌ مخصصٌ لكل شوط، بل يُشرع للمعتمر في كل شوط أن يكثر من ذكر الله، وتلاوة القرآن، والاستغفار، والدعاء لنفسه وأهله بما شاء من خيري الدنيا والآخرة." },
+            { title: "📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 2):", text: "أكثر من قول: «سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ»، وادعُ الله بما يفتح به عليك." },
+            { title: "📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 3):", text: "أكثر من الاستغفار والصلاة على النبي ﷺ، والدعاء لوالديك وأهلك والمسلمين." },
+            { title: "📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 4):", text: "ادعُ الله بقبول عمرتك ومغفرة ذنوبك، ولا تنسَ عند الركن اليماني قول: «رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ»." },
+            { title: "📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 5):", text: "أكثر من الدعاء بالهداية والثبات وحسن الخاتمة، فالدعاء في الطواف من مواطن الإجابة." },
+            { title: "📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 6):", text: "أكثر من: «لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ»." },
+            { title: "📖 السُّنَّةُ فِي الطَّوَافِ (الشوط 7 والأخير):", text: "اختم طوافك بالتكبير عند الحجر الأسود، ثم توجه خلف مقام إبراهيم لصلاة ركعتي الطواف." }
         ];
 
         let currentTawaf = 1;
@@ -228,11 +242,9 @@
             if (currentTawaf < 7) {
                 currentTawaf++;
                 document.getElementById('tawaf-count').innerText = currentTawaf;
-                document.getElementById('tawaf-dua-title').innerText = tawafDuas[currentTawaf - 1].title;
-                document.getElementById('tawaf-dua-text').innerText = tawafDuas[currentTawaf - 1].text;
-                if (currentTawaf === 7) {
-                    document.getElementById('tawaf-btn').innerText = "✅ إتمام الشوط السابع والأخير";
-                }
+                document.getElementById('tawaf-dua-title').innerText = tawafNotes[currentTawaf - 1].title;
+                document.getElementById('tawaf-dua-text').innerText = tawafNotes[currentTawaf - 1].text;
+                if (currentTawaf === 7) document.getElementById('tawaf-btn').innerText = "✅ إتمام الشوط السابع والأخير";
             } else {
                 alert("تقبل الله طوافك! 🕋 توجه الآن لصلاة ركعتين خلف مقام إبراهيم ثم اشرب من ماء زمزم.");
                 triggerCelebration();
@@ -242,8 +254,8 @@
         function resetTawaf() {
             currentTawaf = 1;
             document.getElementById('tawaf-count').innerText = 1;
-            document.getElementById('tawaf-dua-title').innerText = tawafDuas[0].title;
-            document.getElementById('tawaf-dua-text').innerText = tawafDuas[0].text;
+            document.getElementById('tawaf-dua-title').innerText = tawafNotes.title;
+            document.getElementById('tawaf-dua-text').innerText = tawafNotes.text;
             document.getElementById('tawaf-btn').innerText = "➕ أتممت الشوط، انتقل للشوط التالي";
         }
 
@@ -253,9 +265,7 @@
                 document.getElementById('sai-count').innerText = currentSai;
                 let dir = (currentSai % 2 === 1) ? "📍 من الصفا إلى المروة" : "📍 من المروة إلى الصفا";
                 document.getElementById('sai-direction').innerText = `${dir} (شوط ${currentSai} من 7)`;
-                if (currentSai === 7) {
-                    document.getElementById('sai-btn').innerText = "✅ إتمام الشوط السابع عند المروة";
-                }
+                if (currentSai === 7) document.getElementById('sai-btn').innerText = "✅ إتمام الشوط السابع عند المروة";
             } else {
                 alert("عمرة مقبولة وسعي مشكور! 🤲 توجه الآن للحلق أو التقصير للتحلل من الإحرام.");
                 triggerCelebration();
@@ -268,7 +278,6 @@
             document.getElementById('sai-direction').innerText = "📍 من الصفا إلى المروة (شوط 1 من 7)";
             document.getElementById('sai-btn').innerText = "➕ أتممت الشوط، انتقل للشوط التالي";
         }
-
         const packingItems = [
             "جواز السفر الأصلي وتأشيرة العمرة",
             "الرداء والإزار (المناشف) في حقيبة اليد بالبولمان",
@@ -349,7 +358,7 @@
         }
 
         function loginAdmin() {
-            if (document.getElementById('admin-pass').value === '1234') {
+            if (document.getElementById('admin-pass').value === '5555') {
                 document.getElementById('admin-login-box').style.display = 'none';
                 document.getElementById('admin-panel-box').style.display = 'block';
             } else { alert('❌ كلمة المرور غير صحيحة!'); }
@@ -380,48 +389,50 @@
         function renderAdminList() {
             const container = document.getElementById('admin-pilgrims-list');
             let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || []; container.innerHTML = '';
-db.forEach((p, idx) => {
-let div = document.createElement('div'); div.className = 'admin-item-row';
-div.innerHTML = <span>👤 ${p.name} (${p.bus} - ${p.seat})</span> <button class="btn-del" onclick="deletePilgrim(${idx})">حذف</button>;
-container.appendChild(div);
-});
-}
-function checkPilgrim() {
-const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
-const resultBox = document.getElementById('search-result');
-if(!searchInput) { resultBox.innerHTML = <p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">⚠️ يرجى كتابة الاسم للبحث أولاً!</p>; return; }
-let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || [];
-const found = db.filter(p => p.name.toLowerCase().includes(searchInput) || p.passport.toLowerCase() === searchInput);
-if(found.length > 0) {
-let htmlResults = "";
-found.forEach(p => {
-htmlResults += <div class="vip-ticket"><div class="ticket-row"><span>🕋 الاسم:</span><span>${p.name} بن ${p.father || '-'}</span></div><div class="ticket-row"><span>🛂 رقم الجواز:</span><span>${p.passport}</span></div><div class="ticket-row"><span>🚌 البولمان:</span><span style="color:#8d6e27;">${p.bus}</span></div><div class="ticket-row"><span>💺 رقم المقعد:</span><span style="color:#8d6e27;">${p.seat}</span></div><div class="ticket-row"><span>🟢 التأشيرة:</span><span style="color:#23c55e;">${p.status}</span></div><div class="ticket-row"><span>🤵 المشرف:</span><span>أسامة قيسر</span></div></div>;
-});
-resultBox.innerHTML = htmlResults; triggerCelebration(); playSound();
-} else { resultBox.innerHTML = <p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">❌ لم نجد بيانات مطابقة.</p>; }
-}
-function playSound() {
-let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let oscillator = audioCtx.createOscillator(); let gainNode = audioCtx.createGain();
-oscillator.connect(gainNode); gainNode.connect(audioCtx.destination);
-oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
-oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.3);
-}
-function triggerCelebration() {
-const canvas = document.getElementById('celebration-canvas'); const ctx = canvas.getContext('2d');
-canvas.style.display = 'block'; canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-let particles = [];
-for (let i = 0; i < 60; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10, alpha: 1, color: hsl(${Math.random() * 40 + 35}, 100%, 50%) }); }
-function animate() {
-ctx.clearRect(0, 0, canvas.width, canvas.height); let alive = false;
-particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.alpha -= 0.02; if (p.alpha > 0) { alive = true; ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill(); } });
-if (alive) requestAnimationFrame(animate); else canvas.style.display = 'none';
-}
-animate();
-}
+            db.forEach((p, idx) => {
+                let div = document.createElement('div'); div.className = 'admin-item-row';
+                div.innerHTML = `<span>👤 ${p.name} (${p.bus} - ${p.seat})</span> <button class="btn-del" onclick="deletePilgrim(${idx})">حذف</button>`;
+                container.appendChild(div);
+            });
+        }
 
+        function checkPilgrim() {
+            const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+            const resultBox = document.getElementById('search-result');
+            if(!searchInput) { resultBox.innerHTML = `<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">⚠️ يرجى كتابة الاسم للبحث أولاً!</p>`; return; }
+            
+            let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || [];
+            const found = db.filter(p => p.name.toLowerCase().includes(searchInput) || p.passport.toLowerCase() === searchInput);
+            
+            if(found.length > 0) {
+                let htmlResults = "";
+                found.forEach(p => {
+                    htmlResults += `<div class="vip-ticket"><div class="ticket-row"><span>🕋 الاسم:</span><span>${p.name} بن ${p.father || '-'}</span></div><div class="ticket-row"><span>🛂 رقم الجواز:</span><span>${p.passport}</span></div><div class="ticket-row"><span>🚌 البولمان:</span><span style="color:#8d6e27;">${p.bus}</span></div><div class="ticket-row"><span>💺 رقم المقعد:</span><span style="color:#8d6e27;">${p.seat}</span></div><div class="ticket-row"><span>🟢 التأشيرة:</span><span style="color:#23c55e;">${p.status}</span></div><div class="ticket-row"><span>🤵 المشرف:</span><span>أسامة قيسر</span></div></div>`;
+                });
+                resultBox.innerHTML = htmlResults; triggerCelebration(); playSound();
+            } else { resultBox.innerHTML = `<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">❌ لم نجد بيانات مطابقة.</p>`; }
+        }
 
+        function playSound() {
+            let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            let oscillator = audioCtx.createOscillator(); let gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode); gainNode.connect(audioCtx.destination);
+            oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.3);
+        }
 
-<FollowUp>
-!
-</FollowUp>
+        function triggerCelebration() {
+            const canvas = document.getElementById('celebration-canvas'); const ctx = canvas.getContext('2d');
+            canvas.style.display = 'block'; canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            let particles = [];
+            for (let i = 0; i < 60; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10, alpha: 1, color: `hsl(${Math.random() * 40 + 35}, 100%, 50%)` }); }
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); let alive = false;
+                particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.alpha -= 0.02; if (p.alpha > 0) { alive = true; ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill(); } });
+                if (alive) requestAnimationFrame(animate); else canvas.style.display = 'none';
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
