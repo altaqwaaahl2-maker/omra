@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8d6e27">
     <title>أهل التقوى لخدمات العمرة - رحلة 12/12</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Amiri&family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
-    <script src="https://cloudflare.com"></script>
     <style>
         :root { 
             --royal-bg: #f5f7fa;
@@ -17,64 +17,103 @@
             --border-color: rgba(179, 146, 69, 0.25);
             --text-main: #1a2332;
             --text-muted: #64748b;
+            --step-bg: #fafafa;
+            --dua-scale: 1.35rem;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-        body { background: radial-gradient(circle at center, #ffffff 0%, var(--royal-bg) 100%); color: var(--text-main); padding-bottom: 105px; min-height: 100vh; }
+        body.dark-mode {
+            --royal-bg: #0f172a;
+            --card-bg: #1e293b;
+            --royal-gold: #d4af37;
+            --dark-gold: #f3d06b;
+            --border-color: rgba(212, 175, 55, 0.25);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --step-bg: #0f172a;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; transition: background-color 0.25s, color 0.25s; }
+        body { background: var(--royal-bg); color: var(--text-main); padding-bottom: 105px; min-height: 100vh; }
         #celebration-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; display: none; }
-        header { padding: 35px 20px 25px; text-align: center; }
-        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.4rem; color: var(--dark-gold); text-shadow: 0 2px 10px rgba(141,110,39,0.15); margin-bottom: 5px; }
-        header p { font-family: 'Amiri', serif; font-size: 1.4rem; color: var(--royal-gold); font-weight: bold; }
-        .sub-header { font-size: 0.9rem; color: var(--text-main); margin-top: 10px; font-weight: bold; background: rgba(179, 146, 69, 0.1); display: inline-block; padding: 6px 22px; border-radius: 30px; border: 1px solid var(--royal-gold); }
-        .ticker-wrap { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; padding: 11px; font-size: 0.92rem; font-weight: 700; overflow: hidden; white-space: nowrap; }
+        .top-utility-bar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 8px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 900; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .util-group { display: flex; gap: 6px; align-items: center; }
+        .util-btn { background: rgba(179, 146, 69, 0.12); color: var(--dark-gold); border: 1px solid var(--border-color); padding: 5px 11px; border-radius: 10px; font-weight: bold; font-size: 0.82rem; cursor: pointer; }
+        .offline-badge { font-size: 0.75rem; color: #16a34a; font-weight: bold; background: rgba(22, 163, 74, 0.1); padding: 4px 10px; border-radius: 20px; }
+        header { padding: 25px 20px 20px; text-align: center; }
+        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 2.3rem; color: var(--dark-gold); margin-bottom: 5px; }
+        header p { font-family: 'Amiri', serif; font-size: 1.35rem; color: var(--royal-gold); font-weight: bold; }
+        .sub-header { font-size: 0.9rem; color: var(--text-main); margin-top: 8px; font-weight: bold; background: rgba(179, 146, 69, 0.1); display: inline-block; padding: 5px 20px; border-radius: 30px; border: 1px solid var(--royal-gold); }
+        .ticker-wrap { background: linear-gradient(135deg, #d4af37, #8d6e27); color: #ffffff; padding: 10px; font-size: 0.92rem; font-weight: 700; overflow: hidden; white-space: nowrap; }
         .ticker { display: inline-block; padding-left: 100%; animation: marquee 38s linear infinite; }
         @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-        .container { padding: 20px 15px; max-width: 650px; margin: 0 auto; }
+        .container { padding: 18px 15px; max-width: 650px; margin: 0 auto; }
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: smoothSpawn 0.4s ease; }
-        @keyframes smoothSpawn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .card-3d { background: var(--card-bg); border-radius: 22px; padding: 22px; margin-bottom: 22px; box-shadow: 0 12px 30px rgba(141,110,39,0.06); border: 1px solid var(--border-color); }
-        .card-3d h3 { color: var(--dark-gold); margin-bottom: 16px; font-size: 1.25rem; font-family: 'Reem Kufi', sans-serif; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .tab-content.active { display: block; animation: smoothSpawn 0.35s ease; }
+        @keyframes smoothSpawn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .card-3d { background: var(--card-bg); border-radius: 22px; padding: 20px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.04); border: 1px solid var(--border-color); }
+        .card-3d h3 { color: var(--dark-gold); margin-bottom: 15px; font-size: 1.2rem; font-family: 'Reem Kufi', sans-serif; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+        .route-tracker { display: flex; justify-content: space-between; align-items: center; position: relative; margin: 15px 0 5px; padding: 0 5px; }
+        .route-step { text-align: center; flex: 1; position: relative; z-index: 2; }
+        .route-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--step-bg); border: 2px solid var(--border-color); margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: bold; }
+        .route-step.done .route-dot { background: #16a34a; color: white; border-color: #16a34a; }
+        .route-step.current .route-dot { background: #d4af37; color: #1a2332; border-color: #8d6e27; transform: scale(1.15); box-shadow: 0 0 12px rgba(212,175,55,0.6); }
+        .route-label { font-size: 0.72rem; font-weight: bold; color: var(--text-muted); }
+        .route-step.current .route-label { color: var(--dark-gold); }
+        .notice-board { background: var(--step-bg); border: 2px dashed var(--royal-gold); border-radius: 16px; padding: 15px; font-size: 0.96rem; line-height: 1.9; color: var(--text-main); font-weight: 600; white-space: pre-line; }
+        .currency-box { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
         .countdown-title { text-align: center; font-family: 'Amiri', serif; font-size: 1.15rem; color: var(--dark-gold); font-weight: bold; margin-bottom: 12px; }
-        .countdown-container { display: flex; justify-content: space-around; background: #fafafa; padding: 14px; border-radius: 14px; border: 1px solid var(--border-color); }
+        .countdown-container { display: flex; justify-content: space-around; background: var(--step-bg); padding: 14px; border-radius: 14px; border: 1px solid var(--border-color); }
         .countdown-item { text-align: center; flex: 1; }
         .countdown-item span { display: block; font-size: 1.65rem; font-weight: 700; color: var(--dark-gold); }
         .countdown-item label { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
         .premium-banner-container { width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); background-color: #ffffff; }
         .premium-banner { width: 100%; height: auto; display: block; object-fit: contain; }
-        input, select { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid var(--border-color); border-radius: 14px; font-size: 1rem; outline: none; background: #ffffff; color: var(--text-main); font-weight: 600; text-align: center; }
-        .btn { background: linear-gradient(135deg, #fdf5e6, #d4af37, #b39245); color: #ffffff; border: none; padding: 15px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.05rem; box-shadow: 0 5px 18px rgba(141,110,39,0.2); text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .btn-wa { background: #25D366; color: white; border: none; padding: 12px; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.95rem; margin-bottom: 8px; display: block; text-align: center; text-decoration: none; }
-        .btn-download { background: #1a2332; color: #d4af37; border: 1px solid #d4af37; padding: 13px; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.95rem; margin-top: 12px; }
-        .btn-reset { background: #f1f5f9; color: var(--text-muted); border: 1px solid #cbd5e1; padding: 10px; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.9rem; margin-top: 10px; }
-        .counter-box { background: #fffcf5; border: 2px solid var(--royal-gold); border-radius: 18px; padding: 20px; text-align: center; margin-bottom: 15px; }
+        input, select, textarea { width: 100%; padding: 13px; margin-bottom: 12px; border: 1px solid var(--border-color); border-radius: 14px; font-size: 1rem; outline: none; background: var(--step-bg); color: var(--text-main); font-weight: 600; text-align: center; }
+        textarea { text-align: right; min-height: 95px; resize: vertical; }
+        .btn { background: linear-gradient(135deg, #d4af37, #8d6e27); color: #ffffff; border: none; padding: 14px; width: 100%; border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 1.05rem; box-shadow: 0 5px 15px rgba(141,110,39,0.2); }
+        .btn-status { color: white; border: none; padding: 13px; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.96rem; margin-bottom: 8px; display: block; text-align: center; }
+        .btn-reset { background: var(--step-bg); color: var(--text-muted); border: 1px solid var(--border-color); padding: 10px; width: 100%; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.9rem; margin-top: 10px; }
+        .counter-box { background: var(--step-bg); border: 2px solid var(--royal-gold); border-radius: 18px; padding: 20px; text-align: center; margin-bottom: 15px; }
         .counter-number { font-size: 3.5rem; font-weight: 700; color: var(--dark-gold); line-height: 1.2; }
         .tasbih-circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #8d6e27); color: white; border: 5px solid #fdf5e6; font-size: 2.2rem; font-weight: bold; margin: 15px auto; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 25px rgba(141,110,39,0.3); user-select: none; }
         .tasbih-circle:active { transform: scale(0.94); }
-        .active-dua-card { background: #ffffff; border-right: 4px solid #16a34a; padding: 15px; border-radius: 12px; text-align: right; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-        .vip-ticket { background: linear-gradient(180deg, #ffffff 0%, #fffcf5 100%); border-radius: 18px; border: 2px solid var(--dark-gold); padding: 20px; margin-top: 15px; box-shadow: 0 15px 35px rgba(141,110,39,0.12); line-height: 2; }
+        .active-dua-card { background: var(--card-bg); border-right: 4px solid #16a34a; padding: 15px; border-radius: 12px; text-align: right; margin-top: 15px; border: 1px solid var(--border-color); }
+        .vip-ticket { background: var(--card-bg); border-radius: 18px; border: 2px solid var(--dark-gold); padding: 20px; margin-top: 15px; box-shadow: 0 15px 35px rgba(141,110,39,0.12); line-height: 2; }
+        .cert-box { background: linear-gradient(135deg, #fffcf5, #fdf5e6); color: #1a2332; border: 4px double #8d6e27; border-radius: 20px; padding: 24px 18px; text-align: center; margin-top: 15px; box-shadow: 0 12px 30px rgba(141,110,39,0.18); }
         .ticket-header { text-align: center; border-bottom: 2px dashed var(--royal-gold); padding-bottom: 10px; margin-bottom: 10px; }
-        .ticket-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 6px 0; font-size: 0.95rem; }
+        .ticket-row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding: 6px 0; font-size: 0.95rem; }
         .ticket-row span:first-child { color: var(--text-muted); }
         .ticket-row span:last-child { font-weight: bold; }
-        .guide-step { background: #fafafa; border-right: 4px solid var(--dark-gold); padding: 14px 16px; border-radius: 10px; margin-bottom: 12px; font-size: 0.98rem; line-height: 1.9; }
+        .screenshot-hint { background: #1a2332; color: #fdf5e6; padding: 10px; border-radius: 10px; font-size: 0.85rem; font-weight: bold; text-align: center; margin-top: 12px; }
+        .guide-step { background: var(--step-bg); border-right: 4px solid var(--dark-gold); padding: 14px 16px; border-radius: 10px; margin-bottom: 12px; font-size: 0.98rem; line-height: 1.9; }
         .guide-step b { color: var(--dark-gold); font-size: 1.05rem; }
-        .dua-text { font-family: 'Amiri', serif; font-size: 1.35rem; color: #1a2332; display: block; margin-top: 6px; line-height: 2.1; }
-        .alert-note { background: rgba(220, 38, 38, 0.06); border: 1px solid rgba(220, 38, 38, 0.3); color: #991b1b; padding: 14px; border-radius: 12px; font-size: 0.92rem; font-weight: 600; line-height: 1.7; margin-top: 10px; }
-        .prayer-time-row { display: flex; justify-content: space-between; padding: 13px; background: #fafafa; border-radius: 12px; margin-bottom: 8px; border-left: 4px solid var(--dark-gold); font-weight: bold; }
-        .checklist-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #fafafa; border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+        .dua-text { font-family: 'Amiri', serif; font-size: var(--dua-scale); color: var(--text-main); display: block; margin-top: 6px; line-height: 2.1; }
+        .alert-note { background: rgba(220, 38, 38, 0.08); border: 1px solid rgba(220, 38, 38, 0.35); color: #ef4444; padding: 14px; border-radius: 12px; font-size: 0.92rem; font-weight: 600; line-height: 1.7; margin-top: 10px; }
+        .ihram-rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .rule-allowed { background: rgba(22, 163, 74, 0.08); border: 1px solid rgba(22, 163, 74, 0.3); padding: 12px; border-radius: 12px; font-size: 0.88rem; line-height: 1.8; }
+        .rule-forbidden { background: rgba(220, 38, 38, 0.08); border: 1px solid rgba(220, 38, 38, 0.3); padding: 12px; border-radius: 12px; font-size: 0.88rem; line-height: 1.8; }
+        .prayer-time-row { display: flex; justify-content: space-between; padding: 13px; background: var(--step-bg); border-radius: 12px; margin-bottom: 8px; border-left: 4px solid var(--dark-gold); font-weight: bold; }
+        .checklist-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--step-bg); border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 600; font-size: 0.95rem; }
         .checklist-item input[type="checkbox"] { width: 20px; height: 20px; margin: 0; accent-color: var(--dark-gold); }
-        .checklist-item.checked { text-decoration: line-through; color: var(--text-muted); background: #f1f5f9; }
-        .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(20px); display: flex; justify-content: space-around; box-shadow: 0 -10px 40px rgba(141,110,39,0.08); z-index: 1000; border-top: 1px solid var(--border-color); border-radius: 22px 22px 0 0; padding: 8px 0; }
+        .checklist-item.checked { text-decoration: line-through; color: var(--text-muted); opacity: 0.7; }
+        .nav-tabs { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg); display: flex; justify-content: space-around; box-shadow: 0 -10px 30px rgba(0,0,0,0.08); z-index: 1000; border-top: 1px solid var(--border-color); border-radius: 22px 22px 0 0; padding: 8px 0; }
         .tab-btn { background: none; border: none; padding: 6px 2px; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); flex: 1; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; }
         .tab-btn.active { color: var(--dark-gold); }
         .tab-btn span.icon { font-size: 1.2rem; }
-        .admin-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8fafc; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; font-size: 0.9rem; font-weight: bold; }
+        .admin-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--step-bg); border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border-color); font-size: 0.9rem; font-weight: bold; }
         .btn-del { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; }
-        .office-footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; padding: 20px 12px; border-top: 1px solid var(--border-color); margin-top: 25px; background: rgba(255,255,255,0.75); border-radius: 16px; }
+        .office-footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; padding: 20px 12px; border-top: 1px solid var(--border-color); margin-top: 25px; background: var(--card-bg); border-radius: 16px; }
     </style>
 </head>
 <body>
     <canvas id="celebration-canvas"></canvas>
+
+    <div class="top-utility-bar">
+        <div class="util-group">
+            <button class="util-btn" onclick="toggleDarkMode()" id="dark-btn">🌙 ليلي</button>
+            <button class="util-btn" onclick="changeFontSize(0.15)">A+ تكبير</button>
+            <button class="util-btn" onclick="changeFontSize(-0.15)">A- تصغير</button>
+        </div>
+        <div class="offline-badge">⚡ يعمل بدون إنترنت</div>
+    </div>
 
     <header>
         <h1>أهل التقوى لخدمات العمرة</h1>
@@ -83,26 +122,59 @@
     </header>
     
     <div class="ticker-wrap">
-        <div class="ticker">🕋 رحلة عمرة شهر كانون الأول (12/12) بعد صلاة الفجر مباشرة - استعلم عن بطاقتك ورقم البولمان والمقعد الآن 🕋</div>
+        <div class="ticker">🕋 رحلة عمرة شهر كانون الأول (12/12) بعد صلاة الفجر مباشرة - رفيقك الذكي في البولمان والحرم بدون إنترنت 🕋</div>
     </div>
     
     <div class="container">
         
         <div id="tab-search" class="tab-content active">
             <div class="card-3d">
+                <h3>🗺️ خط سير الرحلة ومحطاتنا</h3>
+                <div class="route-tracker" id="route-tracker-box"></div>
+            </div>
+
+            <div class="card-3d">
+                <h3>📢 تنبيهات ومواعيد الحملة اليومية</h3>
+                <div class="notice-board" id="campaign-notices-display"></div>
+            </div>
+
+            <div class="card-3d">
                 <h3>🔍 استعلم عن بطاقتك (رقم البولمان والمقعد)</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align: center;">اكتب اسمك الكريم أو رقم جوازك لإصدار بطاقة المعتمر وحفظها كصورة:</p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align: center;">اكتب اسمك الكريم أو رقم جوازك لإصدار بطاقتك وصوّر الشاشة (سكرين شوت):</p>
                 <input type="text" id="search-input" placeholder="أدخل الاسم أو رقم الجواز...">
                 <button class="btn" onclick="checkPilgrim()">عرض بطاقة المعتمر VIP</button>
                 <div id="search-result"></div>
             </div>
+            <div class="card-3d">
+                <h3>📸 بطاقات المشاركة للأهل (جاهزة للسكرين شوت)</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align: center;">اختر البطاقة المناسبة لتظهر لك بتصميم ملكي، ثم صوّر الشاشة وشاركها:</p>
+                <button class="btn-status" style="background:#b39245;" onclick="showStatusCard('🚌 وصلنا إلى الحدود بسلامة الله وأمانه', 'نسألكم الدعاء بتيسير الطريق والوصول إلى بيت الله الحرام')">🚌 وصلنا الحدود بسلامة الله</button>
+                <button class="btn-status" style="background:#16a34a;" onclick="showStatusCard('🕋 لبيك اللهم عمرة.. وصلنا مكة المكرمة', 'الحمد لله الذي بنعمته تتم الصالحات، بدأنا مناسك العمرة ونسألكم الدعاء')">🕋 وصلنا مكة المكرمة</button>
+                <button class="btn-status" style="background:#0f766e;" onclick="showStatusCard('🕌 وصلنا إلى المدينة المنورة الطيبة', 'الصلاة والسلام عليك يا حبيب الله، نسأل الله لنا ولكم القبول')">🕌 وصلنا المدينة المنورة</button>
+                <button class="btn-status" style="background:#1e3a8a;" onclick="showStatusCard('🤲 أنا الآن في رحاب الحرم الشريف', 'اكتبوا لي أدعيتكم بظهر الغيب لأدعو لكم في هذه البقاع الطاهرة')">🤲 ادعُ لي بظهر الغيب (من الحرم)</button>
+
+                <div id="status-card-display" style="display:none; margin-top:18px; background: linear-gradient(135deg, #fffcf5, #fdf5e6); border: 2px solid #8d6e27; border-radius: 18px; padding: 22px; text-align: center; box-shadow: 0 10px 25px rgba(141,110,39,0.15);">
+                    <div style="font-family: 'Reem Kufi', sans-serif; color: #8d6e27; font-size: 1.3rem; margin-bottom: 5px;">👑 أهل التقوى لخدمات العمرة 👑</div>
+                    <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 12px;">بإشراف الحاج أبو ناصر قيسر - رحلة 12/12</div>
+                    <div id="status-card-title" style="font-size: 1.25rem; font-weight: bold; color: #1a2332; margin-bottom: 8px;"></div>
+                    <div id="status-card-sub" style="font-family: 'Amiri', serif; font-size: 1.25rem; color: #8d6e27; margin-bottom: 15px;"></div>
+                    <div class="screenshot-hint">📸 صوّر الشاشة الآن (سكرين شوت) وشاركها مع أهلك!</div>
+                </div>
+            </div>
 
             <div class="card-3d">
-                <h3>📱 طمّن أهلك بضغطة زر (عبر واتساب)</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align: center;">اختر حالتك الحالية لإرسالها فوراً لأهلك عبر واتساب:</p>
-                <a class="btn-wa" href="https://whatsapp.com" target="_blank">🚌 وصلنا الحدود بسلامة الله</a>
-                <a class="btn-wa" href="https://whatsapp.com" target="_blank">🕋 وصلنا مكة المكرمة</a>
-                <a class="btn-wa" href="https://whatsapp.com" target="_blank">🕌 وصلنا المدينة المنورة</a>
+                <h3>💱 محوّل العملات السريع (دولار ↔ ريال سعودي)</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align:center;">احسب أسعار مشترياتك في الحرمين بسهولة (1 دولار = 3.75 ريال):</p>
+                <div class="currency-box">
+                    <div>
+                        <label style="font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:6px; font-weight:bold;">بالدولار الأمريكي ($)</label>
+                        <input type="number" id="usd-input" placeholder="100" oninput="convertCurrency('USD')">
+                    </div>
+                    <div>
+                        <label style="font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:6px; font-weight:bold;">بالريال السعودي (SAR)</label>
+                        <input type="number" id="sar-input" placeholder="375" oninput="convertCurrency('SAR')">
+                    </div>
+                </div>
             </div>
 
             <div class="card-3d">
@@ -150,7 +222,7 @@
                         <span class="dua-text" id="tawaf-dua-text">لم يثبت عن النبي ﷺ دعاءٌ مخصصٌ لكل شوط، بل يُشرع للمعتمر في كل شوط أن يكثر من ذكر الله، وتلاوة القرآن، والاستغفار، والدعاء لنفسه وأهله بما شاء من خيري الدنيا والآخرة.</span>
                     </div>
                 </div>
-                <div class="guide-step" style="border-right-color: #16a34a; background: #f0fdf4;"><b>📍 بين الركن اليماني والحجر الأسود (في كل شوط):</b><span class="dua-text">«رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ» (رواه أبو داود).</span></div>
+                <div class="guide-step" style="border-right-color: #16a34a;"><b>📍 بين الركن اليماني والحجر الأسود (في كل شوط):</b><span class="dua-text">«رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ» (رواه أبو داود).</span></div>
             </div>
             <div class="card-3d">
                 <h3>🏃‍♂️ عدّاد وأدعية السعي (الصفا والمروة)</h3>
@@ -167,28 +239,55 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="card-3d">
+                <h3>🎓 شهادة "عمرة مقبولة" التذكارية</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; text-align:center;">بعد إتمام عمرتك بفضل الله، اكتب اسمك لإصدار شهادة تهنئة تذكارية:</p>
+                <input type="text" id="cert-name-input" placeholder="اكتب اسمك الكريم هنا...">
+                <button class="btn" onclick="generateCertificate()">✨ إصدار شهادة العمرة التذكارية</button>
+                <div id="cert-result"></div>
+            </div>
+        </div>
         <div id="tab-guide" class="tab-content">
             <div class="card-3d">
                 <h3>🕋 نية العمرة وكيفية الإحرام خطوة بخطوة</h3>
                 <div class="guide-step"><b>1️⃣ الاغتسال والتطيب:</b> يُستحب الاغتسال قبل الإحرام والتطيب في البدن (وليس في ثياب الإحرام).</div>
                 <div class="guide-step"><b>2️⃣ لبس الإحرام:</b> يلبس الرجل الإزار والرداء الأبيضين ونعلين يكشفان الكعبين، وتلبس المرأة ملابسها الشرعية الساترة دون نقاب أو قفازين.</div>
-                <div class="guide-step" style="border-right-color: #16a34a; background: #f0fdf4;"><b>3️⃣ عقد نية العمرة عند الميقات:</b><span class="dua-text">يقول بلسانه: «لَبَّيْكَ اللَّهُمَّ عُمْرَةً» (وإن خاف عائقاً قال: اللَّهُمَّ مَحِلِّي حَيْثُ حَبَسْتَنِي).</span></div>
+                <div class="guide-step" style="border-right-color: #16a34a;"><b>3️⃣ عقد نية العمرة عند الميقات:</b><span class="dua-text">يقول بلسانه: «لَبَّيْكَ اللَّهُمَّ عُمْرَةً» (وإن خاف عائقاً قال: اللَّهُمَّ مَحِلِّي حَيْثُ حَبَسْتَنِي).</span></div>
                 <div class="guide-step"><b>4️⃣ التلبية المستمرة حتى رؤية الكعبة:</b><span class="dua-text">«لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ» (متفق عليه).</span></div>
                 <div class="alert-note">⚠️ <b>ملحوظة هامة:</b> يرجى اصطحاب الرداء والإزار والنعلين إلى مكان جلوسك في البولمان من أجل الإحرام من الميقات.</div>
+            </div>
+
+            <div class="card-3d">
+                <h3>⚖️ دليل المباحات والمحظورات أثناء الإحرام</h3>
+                <div class="ihram-rules-grid">
+                    <div class="rule-allowed">
+                        <b style="color:#16a34a;">✅ يُباح للمُحرم:</b><br>
+                        • الاغتسال وتغيير الإحرام.<br>
+                        • لبس الساعة والنظارة.<br>
+                        • حمل الحقيبة وحزام النقود.<br>
+                        • استخدام المظلة الشمسية.<br>
+                        • غسل الرأس برفق.
+                    </div>
+                    <div class="rule-forbidden">
+                        <b style="color:#dc2626;">❌ يُحظر على المُحرم:</b><br>
+                        • قص الشعر أو تقليم الأظافر.<br>
+                        • وضع الطيب والعطور.<br>
+                        • تغطية الرأس للرجل.<br>
+                        • لبس المخيط المفصّل للرجل.<br>
+                        • النقاب والقفازان للمرأة.
+                    </div>
+                </div>
             </div>
             <div class="card-3d">
                 <h3>🤲 الأدعية المأثورة وآداب السفر (إعداد: يوسف قيسر)</h3>
                 <div class="guide-step"><b>🏠 عند الخروج من المنزل:</b><span class="dua-text">«بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أَضِلَّ أَوْ أُضَلَّ، أَوْ أَزِلَّ أَوْ أُزَلَّ، أَوْ أَظْلِمَ أَوْ أُظْلَمَ، أَوْ أَجْهَلَ أَوْ يُجْهَلَ عَلَيَّ».</span></div>
                 <div class="guide-step"><b>🚌 دعاء ركوب البولمان والسفر:</b><span class="dua-text">«اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ. اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَلِيفَةُ فِي الْأَهْلِ».</span></div>
-                <div class="guide-step"><b>🕌 دعاء دخول المسجد الحرام:</b><span class="dua-text">يقدم رجله اليمنى ويقول: «بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَاامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ».</span></div>
+                <div class="guide-step"><b>🕌 دعاء دخول المسجد الحرام:</b><span class="dua-text">يقدم رجله اليمنى ويقول: «بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ».</span></div>
                 <div class="guide-step"><b>💧 دعاء شرب ماء زمزم:</b><span class="dua-text">«اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا وَاسِعًا، وَشِفَاءً مِنْ كُلِّ دَاءٍ».</span></div>
                 <div class="alert-note">🛑 <b>تنبيه هام جداً:</b> يُسمح العودة إلى دمشق لكل معتمر بحقيبة واحدة فقط، بالإضافة إلى عبوة مياه زمزم.</div>
             </div>
-        </div>
 
-        <div id="tab-azkar" class="tab-content">
             <div class="card-3d">
                 <h3>☀️ أذكار الصباح والمساء الكاملة</h3>
                 <div class="guide-step"><b>1️⃣ آية الكرسي:</b><span class="dua-text">«اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ».</span></div>
@@ -197,6 +296,7 @@
                 <div class="guide-step"><b>4️⃣ ذكر الحفظ من كل سوء (3 مرات):</b><span class="dua-text">«بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ».</span></div>
                 <div class="guide-step"><b>5️⃣ ذكر الصباح والمساء:</b><span class="dua-text">«أَصْبَحْنَا (أَمْسَيْنَا) وَأَصْبَحَ (وَأَمْسَى) الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ».</span></div>
             </div>
+
             <div class="card-3d">
                 <h3>🕌 مواقيت الصلاة التفاعلية</h3>
                 <select id="country-select" onchange="updateProvinces()">
@@ -213,7 +313,6 @@
                 <div id="packing-list"></div>
             </div>
         </div>
-
         <div id="tab-admin" class="tab-content">
             <div class="card-3d" id="admin-login-box">
                 <h3>🔒 غرفة الإدارة السرية للمكتب</h3>
@@ -223,6 +322,23 @@
 
             <div class="card-3d" id="admin-panel-box" style="display: none;">
                 <h3>👑 لوحة تحكم حملة أهل التقوى</h3>
+                
+                <h4 style="color:var(--dark-gold); margin-bottom:8px;">🗺️ تحديد محطة الرحلة الحالية (خط السير):</h4>
+                <select id="adm-route-stage">
+                    <option value="0">1. الاستعداد والانطلاق من دمشق</option>
+                    <option value="1">2. عبور الحدود بسلامة الله</option>
+                    <option value="2">3. الميقات وعقد الإحرام</option>
+                    <option value="3">4. مكة المكرمة وأداء العمرة</option>
+                    <option value="4">5. المدينة المنورة وزيارة المسجد النبوي</option>
+                    <option value="5">6. العودة إلى أرض الوطن بسلامة</option>
+                </select>
+                <button class="btn" onclick="saveRouteFromAdmin()" style="margin-bottom: 20px;">تحديث محطة الرحلة</button>
+
+                <h4 style="color:var(--dark-gold); margin-bottom:8px;">📢 تحديث لوحة تنبيهات ومواعيد الحملة:</h4>
+                <textarea id="adm-notices-text" placeholder="اكتب هنا مواعيد التحرك والزيارات اليومية للمعتمرين..."></textarea>
+                <button class="btn" onclick="saveNoticesFromAdmin()" style="margin-bottom: 20px;">نشر التنبيهات للمعتمرين</button>
+
+                <h4 style="color:var(--dark-gold); margin-bottom:8px;">🖼️ تحديث صورة برنامج الرحلة:</h4>
                 <input type="text" id="adm-banner-url" placeholder="رابط صورة الإعلان (program12.jpg)">
                 <button class="btn" onclick="saveMediaFromAdmin()" style="margin-bottom: 20px;">تحديث الصورة</button>
 
@@ -250,12 +366,83 @@
 
     <nav class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('tab-search', this)"><span class="icon">🔍</span>بطاقتك</button>
-        <button class="tab-btn" onclick="switchTab('tab-manasik', this)"><span class="icon">🕋</span>الطواف والمسبحة</button>
-        <button class="tab-btn" onclick="switchTab('tab-guide', this)"><span class="icon">🚌</span>الإحرام والأدعية</button>
-        <button class="tab-btn" onclick="switchTab('tab-azkar', this)"><span class="icon">☀️</span>الأذكار والمواقيت</button>
+        <button class="tab-btn" onclick="switchTab('tab-manasik', this)"><span class="icon">🕋</span>الطواف والشهادة</button>
+        <button class="tab-btn" onclick="switchTab('tab-guide', this)"><span class="icon">🚌</span>الأدعية والمواقيت</button>
         <button class="tab-btn" onclick="switchTab('tab-admin', this)"><span class="icon">🔒</span>الإدارة</button>
     </nav>
     <script>
+        if ('serviceWorker' in navigator) {
+            const swCode = "const CACHE_NAME='ahl-altaqwa-v3';self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(['./','index.html','program12.jpg']).catch(()=>{})))});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).then(r=>{const rc=r.clone();caches.open(CACHE_NAME).then(c=>c.put(e.request,rc));return r}).catch(()=>caches.match(e.request)))});";
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('dark-btn').innerText = isDark ? '☀️ نهاري' : '🌙 ليلي';
+            localStorage.setItem('dark_mode_12', isDark ? '1' : '0');
+        }
+
+        let currentDuaScale = 1.35;
+        function changeFontSize(delta) {
+            currentDuaScale = Math.min(2.1, Math.max(1.1, currentDuaScale + delta));
+            document.documentElement.style.setProperty('--dua-scale', currentDuaScale + 'rem');
+        }
+
+        const routeStages = ["دمشق", "الحدود", "الميقات", "مكة", "المدينة", "العودة"];
+        function renderRouteTracker() {
+            const activeIdx = parseInt(localStorage.getItem('route_stage_12') || '0');
+            const box = document.getElementById('route-tracker-box');
+            box.innerHTML = '';
+            routeStages.forEach((name, idx) => {
+                let cls = 'route-step';
+                let icon = idx + 1;
+                if (idx < activeIdx) { cls += ' done'; icon = '✓'; }
+                else if (idx === activeIdx) { cls += ' current'; icon = '🚌'; }
+                box.innerHTML += '<div class="' + cls + '"><div class="route-dot">' + icon + '</div><div class="route-label">' + name + '</div></div>';
+            });
+            document.getElementById('adm-route-stage').value = activeIdx;
+        }
+
+        function saveRouteFromAdmin() {
+            localStorage.setItem('route_stage_12', document.getElementById('adm-route-stage').value);
+            renderRouteTracker();
+            alert('✅ تم تحديث محطة الرحلة بنجاح!');
+        }
+
+        function generateCertificate() {
+            const name = document.getElementById('cert-name-input').value.trim();
+            const box = document.getElementById('cert-result');
+            if (!name) { alert('⚠️ يرجى كتابة اسمك الكريم أولاً!'); return; }
+            box.innerHTML = '<div class="cert-box">' +
+                '<div style="font-family:\'Reem Kufi\', sans-serif; font-size:1.4rem; color:#8d6e27; margin-bottom:6px;">🕋 تهنئة عمرة مقبولة 🕋</div>' +
+                '<div style="font-size:0.85rem; color:#64748b; margin-bottom:12px;">تتقدم أسرة <b>أهل التقوى لخدمات العمرة</b> بإشراف الحاج أبو ناصر قيسر بأسمى آيات التهنئة إلى المعتمر/ة:</div>' +
+                '<div style="font-size:1.45rem; font-weight:bold; color:#1a2332; border-bottom:2px dashed #b39245; display:inline-block; padding:0 15px 5px; margin-bottom:12px;">' + name + '</div>' +
+                '<div style="font-family:\'Amiri\', serif; font-size:1.25rem; color:#8d6e27; line-height:1.9;">بمناسبة إتمام مناسك العمرة المباركة لعام 1448هـ - 2026م<br>«تَقَبَّلَ اللَّهُ طَاعَتَكُمْ، وَغَفَرَ ذَنْبَكُمْ، وَأَخْلَفَ عَلَيْكُمْ نَفَقَتَكُمْ»</div>' +
+                '<div class="screenshot-hint">📸 صوّر الشاشة الآن (سكرين شوت) للاحتفاظ بشهادتك!</div>' +
+                '</div>';
+            triggerCelebration();
+            playSound();
+        }
+        function convertCurrency(from) {
+            const usd = document.getElementById('usd-input');
+            const sar = document.getElementById('sar-input');
+            if (from === 'USD') {
+                sar.value = usd.value ? (parseFloat(usd.value) * 3.75).toFixed(2) : '';
+            } else {
+                usd.value = sar.value ? (parseFloat(sar.value) / 3.75).toFixed(2) : '';
+            }
+        }
+
+        function showStatusCard(title, sub) {
+            document.getElementById('status-card-title').innerText = title;
+            document.getElementById('status-card-sub').innerText = sub;
+            document.getElementById('status-card-display').style.display = 'block';
+            triggerCelebration();
+            playSound();
+        }
+
         let tasbihCount = 0;
         function countTasbih() {
             tasbihCount++;
@@ -296,16 +483,17 @@
         function resetTawaf() {
             currentTawaf = 1;
             document.getElementById('tawaf-count').innerText = 1;
-            document.getElementById('tawaf-dua-title').innerText = tawafNotes.title;
-            document.getElementById('tawaf-dua-text').innerText = tawafNotes.text;
+            document.getElementById('tawaf-dua-title').innerText = tawafNotes[0].title;
+            document.getElementById('tawaf-dua-text').innerText = tawafNotes[0].text;
             document.getElementById('tawaf-btn').innerText = "➕ أتممت الشوط، انتقل للشوط التالي";
         }
+
         function nextSai() {
             if (currentSai < 7) {
                 currentSai++;
                 document.getElementById('sai-count').innerText = currentSai;
                 let dir = (currentSai % 2 === 1) ? "📍 من الصفا إلى المروة" : "📍 من المروة إلى الصفا";
-                document.getElementById('sai-direction').innerText = `${dir} (شوط ${currentSai} من 7)`;
+                document.getElementById('sai-direction').innerText = dir + " (شوط " + currentSai + " من 7)";
                 if (currentSai === 7) document.getElementById('sai-btn').innerText = "✅ إتمام الشوط السابع عند المروة";
             } else {
                 alert("عمرة مقبولة وسعي مشكور! 🤲 توجه الآن للحلق أو التقصير للتحلل من الإحرام.");
@@ -319,7 +507,6 @@
             document.getElementById('sai-direction').innerText = "📍 من الصفا إلى المروة (شوط 1 من 7)";
             document.getElementById('sai-btn').innerText = "➕ أتممت الشوط، انتقل للشوط التالي";
         }
-
         const globalPrayerTimes = {
             SY: { "دمشق": { "الفجر": "05:15 ص", "الظهر": "12:25 م", "العصر": "03:35 م", "المغرب": "06:00 م", "العشاء": "07:30 م" } },
             JO: { "عمان": { "الفجر": "05:20 ص", "الظهر": "12:28 م", "العصر": "03:38 م", "المغرب": "06:05 م", "العشاء": "07:35 م" } },
@@ -335,7 +522,7 @@
         function updatePrayerTimes() {
             const countryKey = document.getElementById('country-select').value; const provinceKey = document.getElementById('province-select').value;
             const container = document.getElementById('prayer-times-container'); if (!provinceKey) return;
-            let html = ""; for(let prayer in globalPrayerTimes[countryKey][provinceKey]) { html += `<div class="prayer-time-row"><span>${prayer}</span><span>${globalPrayerTimes[countryKey][provinceKey][prayer]}</span></div>`; }
+            let html = ""; for(let prayer in globalPrayerTimes[countryKey][provinceKey]) { html += '<div class="prayer-time-row"><span>' + prayer + '</span><span>' + globalPrayerTimes[countryKey][provinceKey][prayer] + '</span></div>'; }
             container.innerHTML = html;
         }
 
@@ -347,15 +534,21 @@
             "الأدوية الشخصية ومرطب للجلد غير معطر",
             "شاحن الهاتف المحمول وبطارية احتياطية"
         ];
+
         const defaultPilgrims = [
             { name: "أسامة قيسر", father: "محمد ثابت", passport: "02828836", bus: "بولمان 1", seat: "مقعد 1", status: "صادرة وجاهزة على المسار الإلكتروني ✅" },
             { name: "محمد الديك", father: "علي", passport: "000401704", bus: "بولمان 1", seat: "مقعد 2", status: "صادرة وجاهزة على المسار الإلكتروني ✅" }
         ];
 
+        const defaultNotices = "🚌 التجمع للانطلاق: يوم 12/12 بعد صلاة الفجر مباشرة.\n⚠️ يرجى إحضار الإحرام والنعلين في حقيبة اليد داخل البولمان.\n🧳 يسمح بالعودة بحقيبة واحدة فقط + عبوة مياه زمزم.";
+
         if (!localStorage.getItem('pilgrims_db_12')) localStorage.setItem('pilgrims_db_12', JSON.stringify(defaultPilgrims));
         if (!localStorage.getItem('banner_url_12')) localStorage.setItem('banner_url_12', 'program12.jpg');
+        if (!localStorage.getItem('campaign_notices')) localStorage.setItem('campaign_notices', defaultNotices);
 
         window.onload = function() {
+            if (localStorage.getItem('dark_mode_12') === '1') toggleDarkMode();
+            renderRouteTracker();
             updateProvinces();
             startCountdown();
             renderPackingList();
@@ -385,7 +578,6 @@
             updateTimer();
             setInterval(updateTimer, 1000);
         }
-
         function renderPackingList() {
             const container = document.getElementById('packing-list');
             let saved = JSON.parse(localStorage.getItem('packing_state')) || {};
@@ -394,7 +586,7 @@
                 let isChecked = saved[idx] ? 'checked' : '';
                 let div = document.createElement('div');
                 div.className = 'checklist-item ' + isChecked;
-                div.innerHTML = `<input type="checkbox" ${isChecked} onchange="togglePack(${idx})"> <span>${item}</span>`;
+                div.innerHTML = '<input type="checkbox" ' + isChecked + ' onchange="togglePack(' + idx + ')"> <span>' + item + '</span>';
                 container.appendChild(div);
             });
         }
@@ -410,6 +602,15 @@
             const url = localStorage.getItem('banner_url_12');
             document.getElementById('main-ads-banner').src = url;
             document.getElementById('adm-banner-url').value = url;
+            const notices = localStorage.getItem('campaign_notices');
+            document.getElementById('campaign-notices-display').innerText = notices;
+            document.getElementById('adm-notices-text').value = notices;
+        }
+
+        function saveNoticesFromAdmin() {
+            localStorage.setItem('campaign_notices', document.getElementById('adm-notices-text').value.trim());
+            refreshMediaUI();
+            alert('✅ تم نشر التنبيهات للمعتمرين بنجاح!');
         }
 
         function saveMediaFromAdmin() {
@@ -432,7 +633,6 @@
             const bus = document.getElementById('p-bus').value.trim() || 'يحدد لاحقاً';
             const seat = document.getElementById('p-seat').value.trim() || 'يحدد لاحقاً';
             const status = document.getElementById('p-status').value;
-
             if (!name || !passport) { alert('⚠️ يرجى إدخال الاسم ورقم الجواز!'); return; }
             let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || [];
             db.push({ name, father, passport, bus, seat, status });
@@ -452,36 +652,24 @@
             let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || []; container.innerHTML = '';
             db.forEach((p, idx) => {
                 let div = document.createElement('div'); div.className = 'admin-item-row';
-                div.innerHTML = `<span>👤 ${p.name} (${p.bus} - ${p.seat})</span> <button class="btn-del" onclick="deletePilgrim(${idx})">حذف</button>`;
+                div.innerHTML = '<span>👤 ' + p.name + ' (' + p.bus + ' - ' + p.seat + ')</span> <button class="btn-del" onclick="deletePilgrim(' + idx + ')">حذف</button>';
                 container.appendChild(div);
-            });
-        }
-
-        function downloadTicketImage() {
-            const ticket = document.getElementById('vip-card-capture');
-            html2canvas(ticket, { scale: 2 }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'بطاقة-معتمر-اهل-التقوى.png';
-                link.href = canvas.toDataURL();
-                link.click();
             });
         }
 
         function checkPilgrim() {
             const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
             const resultBox = document.getElementById('search-result');
-            if(!searchInput) { resultBox.innerHTML = `<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">⚠️ يرجى كتابة الاسم للبحث أولاً!</p>`; return; }
-            
+            if(!searchInput) { resultBox.innerHTML = '<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">⚠️ يرجى كتابة الاسم للبحث أولاً!</p>'; return; }
             let db = JSON.parse(localStorage.getItem('pilgrims_db_12')) || [];
             const found = db.filter(p => p.name.toLowerCase().includes(searchInput) || p.passport.toLowerCase() === searchInput);
-            
             if(found.length > 0) {
                 let htmlResults = "";
                 found.forEach(p => {
-                    htmlResults += `<div class="vip-ticket" id="vip-card-capture"><div class="ticket-header"><b style="color:#8d6e27; font-size:1.1rem;">🕋 بطاقة معتمر VIP - أهل التقوى 🕋</b><br><span style="font-size:0.8rem; color:#64748b;">رحلة كانون الأول (12/12) - بإشراف الحاج أبو ناصر قيسر</span></div><div class="ticket-row"><span>👤 الاسم:</span><span>${p.name} بن ${p.father || '-'}</span></div><div class="ticket-row"><span>🛂 رقم الجواز:</span><span>${p.passport}</span></div><div class="ticket-row"><span>🚌 البولمان:</span><span style="color:#8d6e27;">${p.bus}</span></div><div class="ticket-row"><span>💺 رقم المقعد:</span><span style="color:#8d6e27;">${p.seat}</span></div><div class="ticket-row"><span>🟢 التأشيرة:</span><span style="color:#23c55e;">${p.status}</span></div></div><button class="btn-download" onclick="downloadTicketImage()">📸 حفظ بطاقتي كصورة (لمشاركتها ستوري)</button>`;
+                    htmlResults += '<div class="vip-ticket"><div class="ticket-header"><b style="color:#8d6e27; font-size:1.1rem;">🕋 بطاقة معتمر VIP - أهل التقوى 🕋</b><br><span style="font-size:0.8rem; color:#64748b;">رحلة كانون الأول (12/12) - بإشراف الحاج أبو ناصر قيسر</span></div><div class="ticket-row"><span>👤 الاسم:</span><span>' + p.name + ' بن ' + (p.father || '-') + '</span></div><div class="ticket-row"><span>🛂 رقم الجواز:</span><span>' + p.passport + '</span></div><div class="ticket-row"><span>🚌 البولمان:</span><span style="color:#8d6e27;">' + p.bus + '</span></div><div class="ticket-row"><span>💺 رقم المقعد:</span><span style="color:#8d6e27;">' + p.seat + '</span></div><div class="ticket-row"><span>🟢 التأشيرة:</span><span style="color:#23c55e;">' + p.status + '</span></div><div class="screenshot-hint">📸 صوّر الشاشة الآن (سكرين شوت) للاحتفاظ ببطاقتك!</div></div>';
                 });
                 resultBox.innerHTML = htmlResults; triggerCelebration(); playSound();
-            } else { resultBox.innerHTML = `<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">❌ لم نجد بيانات مطابقة.</p>`; }
+            } else { resultBox.innerHTML = '<p style="color:#ef4444; font-weight:bold; margin-top:15px; text-align:center;">❌ لم نجد بيانات مطابقة.</p>'; }
         }
 
         function playSound() {
@@ -496,7 +684,7 @@
             const canvas = document.getElementById('celebration-canvas'); const ctx = canvas.getContext('2d');
             canvas.style.display = 'block'; canvas.width = window.innerWidth; canvas.height = window.innerHeight;
             let particles = [];
-            for (let i = 0; i < 60; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10, alpha: 1, color: `hsl(${Math.random() * 40 + 35}, 100%, 50%)` }); }
+            for (let i = 0; i < 60; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10, alpha: 1, color: 'hsl(' + (Math.random() * 40 + 35) + ', 100%, 50%)' }); }
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height); let alive = false;
                 particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.alpha -= 0.02; if (p.alpha > 0) { alive = true; ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill(); } });
